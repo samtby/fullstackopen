@@ -1,0 +1,18 @@
+title New note
+
+note over browser:
+Add new note, the browser executes the event handler 
+that renders the new note to display in list of notes
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note over server:
+Adding the note on the server and return
+status code HTTP 201 "Created"
+end note
+server-->browser: [{"message":"note created"}]
+
+note over browser:
+The browser executes the event handler 
+that renders the response in the Console
+end note
