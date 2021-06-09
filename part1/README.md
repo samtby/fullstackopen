@@ -1,4 +1,7 @@
+
 # Getting Started with Create React App
+
+If you have already project React, you can run `npm install --save react react-dom` to install module React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
