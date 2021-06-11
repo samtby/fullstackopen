@@ -1,8 +1,5 @@
-
 # Getting Started with Create React App
-Start with Docker `docker run -v -t magmanite/npm-cli:latest`
-
-If you have already project React, you can run `npm install --save react react-dom` to install module React
+Start with Docker `docker run -v  -t magmanite/npm-cli:latest`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
