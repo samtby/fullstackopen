@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+Start with Docker `docker run -v -t magmanite/npm-cli:latest`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
