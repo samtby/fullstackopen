@@ -16,6 +16,13 @@
 * part10 React Native
 * part11 CI/CD
 
+# Useful 
+
+# ECMAScript6 (ES6)
+[ES6](http://es6-features.org/#BlockScopedVariables)
+
+#Arrow function expressions
+[Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 # Useful libraries
 
