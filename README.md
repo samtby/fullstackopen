@@ -23,6 +23,9 @@
 
 #Arrow function expressions
 [JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+[create-react-app](https://github.com/facebook/create-react-app)
+[the React-library](https://reactjs.org/docs/getting-started.html)
+[React-component](https://reactjs.org/docs/components-and-props.html)
 
 # Useful libraries
 
