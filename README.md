@@ -18,7 +18,7 @@
 
 # Useful 
 
-* [https://www.thymeleaf.org/](Thymeleaf used along with Java Spring)
+* [Thymeleaf used along with Java Spring](https://www.thymeleaf.org/)
 * [ECMAScript6-ES6](http://es6-features.org/#BlockScopedVariables)
 * [JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 * [create-react-app](https://github.com/facebook/create-react-app)
