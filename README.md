@@ -18,16 +18,16 @@
 
 # Useful 
 
-[https://www.thymeleaf.org/](Thymeleaf used along with Java Spring)
-[ECMAScript6-ES6](http://es6-features.org/#BlockScopedVariables)
-[JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
-[create-react-app](https://github.com/facebook/create-react-app)
-command to create-react-app:  ```npx create-react-app myapp```
-[the React-library](https://reactjs.org/docs/getting-started.html)
-[React-component](https://reactjs.org/docs/components-and-props.html)
-[Babel](https://babeljs.io/)
-[XML](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction)
-[Props It is possible to pass data to components using so called props.](https://reactjs.org/docs/components-and-props.html)
+* [https://www.thymeleaf.org/](Thymeleaf used along with Java Spring)
+* [ECMAScript6-ES6](http://es6-features.org/#BlockScopedVariables)
+* [JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* [create-react-app](https://github.com/facebook/create-react-app)
+* command to create-react-app:  ```npx create-react-app myapp```
+* [the React-library](https://reactjs.org/docs/getting-started.html)
+* [React-component](https://reactjs.org/docs/components-and-props.html)
+* [Babel](https://babeljs.io/)
+* [XML](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction)
+* [Props It is possible to pass data to components using so called props.](https://reactjs.org/docs/components-and-props.html)
 
 # Useful libraries
 
@@ -41,7 +41,7 @@ You need for node_module
 npm install react-scripts --save
 ```
 
-## React auto refresh with wsl2
+## React auto refresh with wsl2 
 
 ### Solution n°1
 
