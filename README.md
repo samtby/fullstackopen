@@ -22,11 +22,19 @@
 [ES6](http://es6-features.org/#BlockScopedVariables)
 
 #Arrow function expressions
-[Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+[JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 # Useful libraries
 
 # Problems encountred
+
+## React-scripts not found
+
+You need for node_module
+
+```
+npm install react-scripts --save
+```
 
 ## React auto refresh with wsl2
 
