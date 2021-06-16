@@ -13,16 +13,21 @@ const Header = (porps) => {
 const Content  = (porps) => {  
   return (
   <div>
+    <Part part={porps.part1}  exercises={porps.exercises1}/>
+    <Part part={porps.part2}  exercises={porps.exercises2}/>  
+    <Part part={porps.part3}  exercises={porps.exercises3}/>
+  </div>
+  )
+}
+
+
+const Part  = (props) => {  
+  return (
+  <>
     <p>
-        {porps.part1} {porps.exercises1}
-      </p>
-      <p>
-        {porps.part2} {porps.exercises2}
-      </p>
-      <p>
-        {porps.part3} {porps.exercises3}
-      </p>
-    </div>
+      {props.part} {props.exercises}
+    </p>
+  </>
   )
 }
 
@@ -31,7 +36,7 @@ const Total  = (props) => {
   <>
     <p>Number of exercises {props.total}</p>
   </>
-)
+  )
 }
  
 
