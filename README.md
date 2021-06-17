@@ -28,10 +28,18 @@
 * [Babel](https://babeljs.io/)
 * [XML](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction)
 * [Props It is possible to pass data to components using so called props.](https://reactjs.org/docs/components-and-props.html)
+* [JSbin](https://jsbin.com/?js,console)
+* [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
 
 # Useful libraries
 
 # Problems encountred
+
+## Update npm
+
+```
+npm install -g npm
+```
 
 ## React-scripts not found
 
