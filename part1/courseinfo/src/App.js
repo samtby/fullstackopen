@@ -1,21 +1,22 @@
 import React from 'react'
 
 
-const Header = (porps) => {  
+const Header = (props) => {  
+  console.log(props)
   return (
   <>
-    <h1>{porps.course}</h1>
+    <h1>{props.course}</h1>
   </>
   )
 }
 
 
-const Content  = (porps) => {  
+const Content  = (props) => {  
   return (
   <div>
-    <Part part={porps.part1}  exercises={porps.exercises1}/>
-    <Part part={porps.part2}  exercises={porps.exercises2}/>  
-    <Part part={porps.part3}  exercises={porps.exercises3}/>
+    <Part part={props.part1}  exercises={props.exercises1}/>
+    <Part part={props.part2}  exercises={props.exercises2}/>  
+    <Part part={props.part3}  exercises={props.exercises3}/>
   </div>
   )
 }
