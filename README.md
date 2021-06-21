@@ -31,6 +31,12 @@
 * [JSbin](https://jsbin.com/?js,console)
 * [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
 
+## JavaScript materials
+* [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
+* [A re-introduction to JavaScript (JS tutorial) ](http://kangax.github.io/compat-table/es2016plus)
+* [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
+* [javascript.info](https://github.com/getify/You-Dont-Know-JS)
+
 # Useful libraries
 
 # Problems encountred
