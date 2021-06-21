@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Header = (props) => {
   console.log("Header",props)
@@ -40,7 +40,7 @@ const Total  = (props) => {
   </>
   )
 }
- 
+ /*
 const App = () => {
   const course = {
     name: 'Half Stack application development',
@@ -68,7 +68,7 @@ const App = () => {
     </div>
   )
 }
-
+*/
 
 //<Content part={parts}/>
 //<Total total={part1.exercises +part2.exercises+ part3.exercises}/>
@@ -92,15 +92,114 @@ const App = () => {
 }
 
 */
+/*
+const Hello = (props) => {
+  const { name, age } = props Destructuring
+*/
+/////////////////////////////
+///  Component helper functions and Destructuring
+/////////////////////////////
 
+/* 
+const Hello = ({ name, age }) => { // Destructuring
+  const bornYear = () => new Date().getFullYear() - age 
 
-const Test  = (props) => {  
-  console.log("Test",props)
   return (
-  <>
-    <p>Test component to exercise</p>
-  </>
+    <div>
+      <p>
+        Hello {name}, you are {age} years old
+      </p>
+      <p>So you were probably born in {bornYear()}</p>    </div>
   )
 }
+
+const App = () => {
+  const name = 'Peter'
+  const age = 10
+
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello name="Maya" age={26 + 10} />
+      <Hello name={name} age={age} />
+    </div>
+  )
+}
+*/
+
+//
+// c Component state, event handlers
+// ----------------------------------------------------------------------
+/*
+const Button = ({handleClick,text}) => //Destructuring
+<button onClick={handleClick}> 
+  {text} 
+</button>
+
+// compact of arrow functions:
+const Display = ({ counter }) => <div>{counter}</div>
+
+
+const App = (props) => {
+  const [ counter, setCounter ] = useState(0)
+
+  const increaseByOne = () => setCounter(counter + 1)  
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+
+  const handleClick = () => {    console.log('clicked')  }
+  //console.log('rendering...', counter)
+
+  return (
+    <div>
+      <div>{counter}</div>
+      <Display counter={counter}/>
+      <Button handleClick={increaseByOne} 
+        text='plus' 
+      />
+      <Button handleClick={setToZero} 
+        text='zero'
+      />
+       <Button handleClick={decreaseByOne}
+        text='minus' 
+       />    
+    </div>
+  )
+}
+*/
+//
+// d A more complex state, debugging React apps
+// ----------------------------------------------------------------------
+const App = () => {
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const [allClicks, setAll] = useState([])
+  
+  const handleLeftClick = () => {
+    setAll(allClicks.concat('L'))
+    setLeft(left + 1) 
+  }
+  
+  const handleRightClick = () => {
+    setAll(allClicks.concat('R'))
+    setRight(right + 1)
+
+  }
+
+  return (
+    <div>
+      {left}
+      <button onClick={() => setLeft(left + 1)}>
+        left
+      </button>
+      <button onClick={() => setRight(right + 1)}>
+        right
+      </button>
+      {right}
+      <p>{allClicks.join(' ')}</p>
+    </div>
+  )
+}
+
 
 export default App
