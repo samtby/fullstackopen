@@ -2,15 +2,22 @@ title New note
 
 note over browser:
 Add new note, the browser executes the event handler 
-that renders the new note to display in list of notes
+that renders the new note to display in list of notes in json
 end note
 
+note over browser:
+Send JSON [{"content":"my note","date":"2021-06-23T15:48:27.597Z"}] 
+in the request of the page exampleapp/new_note_spa
+end note
+
+
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
 note over server:
 Adding the note on the server and return
 status code HTTP 201 "Created"
 end note
-server-->browser: [{"message":"note created"}]
+server-->browser: JSON [{"message":"note created"}]
 
 note over browser:
 The browser executes the event handler 
