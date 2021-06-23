@@ -32,6 +32,7 @@
 * [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
 
 ## JavaScript materials
+
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
 * [A re-introduction to JavaScript (JS tutorial) ](http://kangax.github.io/compat-table/es2016plus)
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
@@ -43,6 +44,9 @@
 
 * [React Developer Tools Firefox](https://addons.mozilla.org/fr/firefox/addon/react-devtools/)
 * [React Developer Tools Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+
+* [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react)
+
 
 # Useful libraries
 
