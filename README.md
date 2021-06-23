@@ -39,8 +39,6 @@
 
 # Useful libraries
 
-# Importent
-
 # Problems encountred
 
 ## Update npm
