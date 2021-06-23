@@ -37,6 +37,13 @@
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
 * [javascript.info](https://github.com/getify/You-Dont-Know-JS)
 
+## Debugging React applications
+
+* On application you can use instruction ```debugger``` 
+
+* [React Developer Tools Firefox](https://addons.mozilla.org/fr/firefox/addon/react-devtools/)
+* [React Developer Tools Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+
 # Useful libraries
 
 # Problems encountred
