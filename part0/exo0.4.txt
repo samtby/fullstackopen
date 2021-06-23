@@ -1,5 +1,9 @@
 title new note
 
+note over browser:
+Add in body request note="myNote" from data form
+end note
+
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
 note over server:
 Adding the note on the server and return
