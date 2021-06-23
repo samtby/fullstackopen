@@ -172,46 +172,37 @@ const App = (props) => {
 // ----------------------------------------------------------------------
 
 const History = (props) => {
-    if (props.allClicks.length === 0) {
-      return (
-        <div>
-          the app is used by pressing the buttons
-        </div>
-      )
-    }
+  if (props.allClicks.length === 0) {
     return (
-      <di>
-          button press history: {props.allClicks.join(' ')}
-      </di>
+      <div>
+        the app is used by pressing the buttons
+      </div>
     )
-}
+  }
 
-const Button = (props) => { 
-  console.log('props value is', props)
-  const { onClick, text } = props
   return (
-    <button onClick={onClick}>
-      {text}
-    </button>
+    <div>
+      button press history: {props.allClicks.join(' ')}
+    </div>
   )
 }
 
+const Button = ({ handleClick, text }) => (  <button onClick={handleClick}>    {text}  </button>)
 const App = () => {
   const [left, setLeft] = useState(0)
   const [right, setRight] = useState(0)
   const [allClicks, setAll] = useState([])
-  
+
   const handleLeftClick = () => {
     setAll(allClicks.concat('L'))
-    setLeft(left + 1) 
+    setLeft(left + 1)
   }
-  
+
   const handleRightClick = () => {
     setAll(allClicks.concat('R'))
     setRight(right + 1)
-
   }
-  
+
   return (
     <div>
       {left}
@@ -222,6 +213,4 @@ const App = () => {
     </div>
   )
 }
-
-
 export default App
