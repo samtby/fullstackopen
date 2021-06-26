@@ -17,28 +17,24 @@ const App = () => {
   const [bad, setBad] = useState(0)
   
   const [all, setAll] = useState(0)
-  const [average, setAverage] = useState(0)
-  const [positive, setPositive] = useState(0)
+  //const [average, setAverage] = useState(0)
+  //const [positive, setPositive] = useState(0)
   
   //the average score (good: 1, neutral: 0, bad: -1) 
-  const averageScore = { good: 1,  neutral: 0, bad: -1 }
+//  const averageScore = { good: 1,  neutral: 0, bad: -1 }
   
   const setIncreaseByOneGood = () => { 
     setAll(all + 1)
     setGood(good + 1)   
     console.log(good) 
-    setAverage(good+(neutral*averageScore.neutral)+(bad*averageScore.bad))
   }
-
   const setIncreaseByOneNeutral = () => {
     setAll(all + 1)
     setNeutral(neutral + 1)
-    setAverage(good+(neutral*averageScore.neutral)+(bad*averageScore.bad))
   }
   const setIncreaseByOneBad = () => {
     setAll(all + 1)
     setBad(bad + 1)
-    setAverage(good+(neutral*averageScore.neutral)+(bad*averageScore.bad))
   }
 
   const Display = props => <h1>{props.value}</h1>
@@ -47,9 +43,22 @@ const App = () => {
       <button onClick={handleClick}>{text}</button>
     )
 
-    const Feedback =  ({text,numFeedBack}) => (
-      <p>{text} {numFeedBack}</p>
-    )
+    const Feedback =  ({text,numFeedBack}) => {
+      if (text == "average") {
+        return(
+          <p>{text} {good + (neutral*0) + bad*(-1)}</p>
+        )
+      }
+      if (text == "positive") {
+        return(
+          <p>Positive in progress </p>
+        )
+      }
+      return(
+          <p>{text} {numFeedBack}</p>
+      )
+    
+  }
 
   return (
     <div>
@@ -60,12 +69,12 @@ const App = () => {
       <Button  handleClick={setIncreaseByOneNeutral} text="neutral" />
       <Button  handleClick={setIncreaseByOneBad} text="bad" />
       <Display value="statistsc"/>
-      <Feedback text="good"  numFeedBack={good}/><p>{good}</p>
-      <Feedback text="neutral"  numFeedBack={neutral}/><p>{neutral*averageScore.neutral}</p>
-      <Feedback text="bad"  numFeedBack={bad}/> <p>{bad*averageScore.bad }</p>
+      <Feedback text="good"  numFeedBack={good}/>
+      <Feedback text="neutral"  numFeedBack={neutral}/>
+      <Feedback text="bad"  numFeedBack={bad}/> 
       <Feedback text="all"  numFeedBack={all}/>
-      <Feedback text="average"  numFeedBack={average}/>
-      <Feedback text="positive"  numFeedBack={positive}/>
+      <Feedback text="average"/>
+      <Feedback text="positive"/>
     </div>
   )
 }
