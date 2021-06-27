@@ -32,7 +32,7 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const [all, setAll] = useState(0)
   const [average, setAverage] = useState(0)
-  //const [positive, setPositive] = useState(0)
+  const [positive, setPositive] = useState(0)
   
   //the average score (good: 1, neutral: 0, bad: -1) 
   //const averageScore = { good: 1,  neutral: 0, bad: -1 }
@@ -50,18 +50,12 @@ const App = () => {
     setBad(bad + 1)
   }
 
-  const Display = props => <h1>{props.value}</h1>
-
-    const Button = ({handleClick,text}) => (
-      <button onClick={handleClick}>{text}</button>
-    )
-
-    const Feedback =  ({text,numFeedBack}) => {
+    const Statistics =  ({text,numFeedBack}) => {
       setAverage((good + (neutral*0) + bad*(-1))/all)
       console.log(average)
       //if(isNaN(average)){average = 0}
 
-      if (text == "average") {
+      if (text === "average") {
         return(
           <p>{text} {average}</p>
         )
