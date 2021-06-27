@@ -17,7 +17,7 @@ const App = () => {
   const [bad, setBad] = useState(0)
   
   const [all, setAll] = useState(0)
-  //const [average, setAverage] = useState(0)
+  const [average, setAverage] = useState(0)
   //const [positive, setPositive] = useState(0)
   
   //the average score (good: 1, neutral: 0, bad: -1) 
@@ -44,9 +44,13 @@ const App = () => {
     )
 
     const Feedback =  ({text,numFeedBack}) => {
+      setAverage((good + (neutral*0) + bad*(-1))/all)
+      console.log(average)
+      //if(isNaN(average)){average = 0}
+
       if (text == "average") {
         return(
-          <p>{text} {(good + (neutral*0) + bad*(-1))/all}</p>
+          <p>{text} {average}</p>
         )
       }
       if (text == "positive") {
