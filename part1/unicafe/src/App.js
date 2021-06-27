@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 //The application must display the total number of collected feedback for each category. 
+
 const Display = props => <h1>{props.value}</h1>
 
 const Button = ({handleClick,text}) => (
   <button onClick={handleClick}>{text}</button>
-)
-
-const Feedback =  ({text,numFeedBack}) => (
-  <p>{text} {numFeedBack}</p>
 )
 
 const App = () => {
