@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 //The application must display the total number of collected feedback for each category. 
 
 // This is the right place to define a component
-const Display = props => <h1>{props.value}</h1>
+const Display = ({value}) => <h1>{value}</h1>
 // This is the right place to define a component
 const Button = ({handleClick,text}) =><button onClick={handleClick}>{text}</button>
 
@@ -50,27 +50,23 @@ const App = () => {
     setBad(bad + 1)
   }
 
-    const Statistics =  ({text,numFeedBack}) => {
-      setAverage((good + (neutral*0) + bad*(-1))/all)
-      console.log(average)
-      //if(isNaN(average)){average = 0}
-
-      if (text === "average") {
-        return(
-          <p>{text} {average}</p>
-        )
-      }
-      if (text === "positive") {
-          setPositive(good/(all/100))
-        return(
-          <p>positive {positive} %</p>
-        )
-      }
+  const Statistics =  ({text,numFeedBack}) => {
+    setAverage((good + (neutral*0) + bad*(-1))/all)
+    if (text === "average") {
       return(
-          <p>{text} {numFeedBack}</p>
+        <p>{text} {average}</p>
       )
     }
-  
+    if (text === "positive") {
+        setPositive(good/(all/100))
+      return(
+        <p>positive {positive} %</p>
+      )
+    }
+    return(
+        <p>{text} {numFeedBack}</p>
+    )
+  }
   return (
     <div>
       <Display value="give feedback"/>
