@@ -17,11 +17,8 @@ const App = () => {
   const [bad, setBad] = useState(0)
   
   const [all, setAll] = useState(0)
-  //const [average, setAverage] = useState(0)
-  //const [positive, setPositive] = useState(0)
-  
-  //the average score (good: 1, neutral: 0, bad: -1) 
-//  const averageScore = { good: 1,  neutral: 0, bad: -1 }
+  const [average, setAverage] = useState(0)
+  const [positive, setPositive] = useState(0)
   
   const setIncreaseByOneGood = () => { 
     setAll(all + 1)
@@ -45,26 +42,25 @@ const App = () => {
 
     const Feedback =  ({text,numFeedBack}) => {
       if (text == "average") {
+          setAverage((good + (neutral*0) + bad*(-1))/all)
         return(
-          <p>{text} {(good + (neutral*0) + bad*(-1))/all}</p>
+          <p>{text} {average}</p>
         )
       }
       if (text == "positive") {
+          setPositive(good/(all/100))
         return(
-          <p>Positive in progress </p>
+          <p>positive {positive}</p>
         )
       }
       return(
           <p>{text} {numFeedBack}</p>
       )
-    
   }
 
   return (
     <div>
       <Display value="give feedback"/>
-      
-      <Display value={(6+2*0+-1*1)/9}/>
       <Button  handleClick={setIncreaseByOneGood} text="good" />
       <Button  handleClick={setIncreaseByOneNeutral} text="neutral" />
       <Button  handleClick={setIncreaseByOneBad} text="bad" />
