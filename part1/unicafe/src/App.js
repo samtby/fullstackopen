@@ -46,7 +46,7 @@ const App = () => {
     const Feedback =  ({text,numFeedBack}) => {
       if (text == "average") {
         return(
-          <p>{text} {good + (neutral*0) + bad*(-1)}</p>
+          <p>{text} {(good + (neutral*0) + bad*(-1))/all}</p>
         )
       }
       if (text == "positive") {
