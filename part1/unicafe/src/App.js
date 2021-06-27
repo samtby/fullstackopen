@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 //The application must display the total number of collected feedback for each category. 
 
-const Display = props => <h1>{props.value}</h1>
-
-const Button = ({handleClick,text}) => (
-  <button onClick={handleClick}>{text}</button>
-)
-
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -38,16 +32,16 @@ const App = () => {
     )
 
     const Feedback =  ({text,numFeedBack}) => {
-      if (text == "average") {
+      if (text === "average") {
           setAverage((good + (neutral*0) + bad*(-1))/all)
         return(
           <p>{text} {average}</p>
         )
       }
-      if (text == "positive") {
+      if (text === "positive") {
           setPositive(good/(all/100))
         return(
-          <p>positive {positive}</p>
+          <p>positive {positive} %</p>
         )
       }
       return(
