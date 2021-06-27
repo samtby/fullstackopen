@@ -1,20 +1,42 @@
 import React, { useState } from 'react'
 //The application must display the total number of collected feedback for each category. 
 
+// This is the right place to define a component
+const Display = props => <h1>{props.value}</h1>
+// This is the right place to define a component
+const Button = ({handleClick,text}) =><button onClick={handleClick}>{text}</button>
+
+/*
+const Statistics =  ({text,numFeedBack}) => {
+  if (text === "average") {
+    //App.setAverage((App.good + (App.neutral*0) + App.bad*(-1))/all)
+    return(
+      <p>{text} {App.average}</p>
+    )
+  }
+  if (text === "positive") {
+      //App.setPositive(App.good/(App.all/100))
+    return(
+      <p>positive {App.positive} %</p>
+    )
+  }
+  return(
+      <p>{text} {numFeedBack}</p>
+  )
+}
+*/
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  
   const [all, setAll] = useState(0)
   const [average, setAverage] = useState(0)
   const [positive, setPositive] = useState(0)
   
-  const setIncreaseByOneGood = () => { 
+  const setIncreaseByOneGood = () => {
     setAll(all + 1)
     setGood(good + 1)   
-    console.log(good) 
   }
   const setIncreaseByOneNeutral = () => {
     setAll(all + 1)
@@ -25,15 +47,11 @@ const App = () => {
     setBad(bad + 1)
   }
 
-  const Display = props => <h1>{props.value}</h1>
-
-    const Button = ({handleClick,text}) => (
-      <button onClick={handleClick}>{text}</button>
-    )
-
-    const Feedback =  ({text,numFeedBack}) => {
+    // Do not define components inside another component
+    // const Display = props => <div>{props.value}</div>
+    const Statistics =  ({text,numFeedBack}) => {
       if (text === "average") {
-          setAverage((good + (neutral*0) + bad*(-1))/all)
+        setAverage((good + (neutral*0) + bad*(-1))/all)
         return(
           <p>{text} {average}</p>
         )
@@ -47,8 +65,8 @@ const App = () => {
       return(
           <p>{text} {numFeedBack}</p>
       )
-  }
-
+    }
+  
   return (
     <div>
       <Display value="give feedback"/>
@@ -56,12 +74,12 @@ const App = () => {
       <Button  handleClick={setIncreaseByOneNeutral} text="neutral" />
       <Button  handleClick={setIncreaseByOneBad} text="bad" />
       <Display value="statistsc"/>
-      <Feedback text="good"  numFeedBack={good}/>
-      <Feedback text="neutral"  numFeedBack={neutral}/>
-      <Feedback text="bad"  numFeedBack={bad}/> 
-      <Feedback text="all"  numFeedBack={all}/>
-      <Feedback text="average"/>
-      <Feedback text="positive"/>
+      <Statistics text="good"  numFeedBack={good}/>
+      <Statistics text="neutral"  numFeedBack={neutral}/>
+      <Statistics text="bad"  numFeedBack={bad}/> 
+      <Statistics text="all"  numFeedBack={all}/>
+      <Statistics text="average"/>
+      <Statistics text="positive"/>
     </div>
   )
 }
