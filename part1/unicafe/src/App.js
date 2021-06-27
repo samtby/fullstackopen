@@ -35,7 +35,7 @@ const App = () => {
   //const [positive, setPositive] = useState(0)
   
   //the average score (good: 1, neutral: 0, bad: -1) 
-//  const averageScore = { good: 1,  neutral: 0, bad: -1 }
+  //const averageScore = { good: 1,  neutral: 0, bad: -1 }
   
   const setIncreaseByOneGood = () => {
     setAll(all + 1)
