@@ -12,22 +12,6 @@ import React, { useState } from 'react'
 /*
 */
 
-
-const Button =  ({text,value}) => {
-
-  const setIncreaseByOneGood = () => {
-  /*  setAll(all + 1)
-    setGood(good + 1)   
-    */
-  }
-
-  return(
-    <div>
-        <button value={text} onClick={setIncreaseByOneGood}>value</button>
-    </div>
-  )
-}
-
 const Statistic =  ({text,value}) => <p>{text} {value}</p>
 
 const Statistics =  ({good,neutral,bad,all}) => {
@@ -53,17 +37,14 @@ const Statistics =  ({good,neutral,bad,all}) => {
 }
 
 const FeedbackSystem = ()=>{
-  const [clicks, setClicks] = useState({
-    good: 0, right: 0, bad: 0, all: 0
-  })
-
+  const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  const [all, setAll] = useState(0) 
+  const [all, setAll] = useState(0)
 
   const setIncreaseByOneGood = () => {
     setAll(all + 1)
-    setClicks({ ...clicks, good: clicks.good + 1 })
+    setGood(good + 1)   
   }
   const setIncreaseByOneNeutral = () => {
     setAll(all + 1)
@@ -87,7 +68,7 @@ const FeedbackSystem = ()=>{
   }
   return (
     <div>
-      <button value={good}onClick={setIncreaseByOneGood}>good</button>
+      <button value={good} onClick={setIncreaseByOneGood}>good</button>
       <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
       <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
       <h1>give feedback</h1>
