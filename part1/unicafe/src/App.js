@@ -58,11 +58,25 @@ const FeedbackSystem = ()=>{
     setAll(all + 1)
     setBad(bad + 1)
   }
+  
+  if( all === 0 ){
+    return (
+      <div>
+        <button value={good} onClick={setIncreaseByOneGood}>good</button>
+        <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
+        <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
+        <h1>Statistics</h1>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <button value={good} onClick={setIncreaseByOneGood}>good</button>
       <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
       <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
+      <h1>Statistics</h1>
       <p>
         good  {good}<br/>
         neutral {neutral}<br/>
@@ -77,7 +91,7 @@ const FeedbackSystem = ()=>{
 const App = () => {
   return (
     <div>
-      <h1>Feedback</h1>
+      <h1>give feedback</h1>
       <FeedbackSystem/>
         {/* comments */}
     </div>
