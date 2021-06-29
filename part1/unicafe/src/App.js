@@ -57,10 +57,9 @@ const FeedbackSystem = ()=>{
     good: 0, right: 0, bad: 0, all: 0
   })
 
-  const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  const [all, setAll] = useState(0)
+  const [all, setAll] = useState(0) 
 
   const setIncreaseByOneGood = () => {
     setAll(all + 1)
