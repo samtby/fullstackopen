@@ -10,16 +10,9 @@ import React, { useState } from 'react'
 //   const [positive, setPositive] = useState(0)
 // }
 /*
-const Average = (props){
-
-  //setAverage((good + (neutral*0) + bad*(-1))/all)    
-  //setPositive(good/(all/100))
-  return(
-    <div>
-      
-    </div>
-}
 */
+
+const Statistic =  ({text,value}) => <p>{text} {value}</p>
 
 const Statistics =  ({good,neutral,bad,all}) => {
 
@@ -31,12 +24,15 @@ const Statistics =  ({good,neutral,bad,all}) => {
   //setPositive(good/(all/100))
 
   return(
-    <di>
+    <div>
       <p>
-        average {(good + (neutral*0) + bad*(-1))/all}<br/>
-        positive {good/(all/100)}
+        <Statistic text="good" value ={good} />
+        <Statistic text="neutral" value ={neutral} />
+        <Statistic text="bad" value ={bad} />
+        <Statistic text="average" value ={(good + (neutral*0) + bad*(-1))/all} />
+        <Statistic text="positive" value ={good/(all/100)} />
       </p>
-    </di>
+    </div>
   )
 }
 
@@ -70,19 +66,12 @@ const FeedbackSystem = ()=>{
       </div>
     )
   }
-
   return (
     <div>
       <button value={good} onClick={setIncreaseByOneGood}>good</button>
       <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
       <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
-      <h1>Statistics</h1>
-      <p>
-        good  {good}<br/>
-        neutral {neutral}<br/>
-        bad {bad}<br/>
-        all {all}<br/>
-      </p>
+      <h1>give feedback</h1>
       <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
     </div>
   )
