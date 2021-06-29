@@ -30,8 +30,8 @@ const Average = (props){
 
 const Statistics =  ({good,neutral,bad,all}) => {
 
-  const [average, setAverage] = useState(0)
-  const [positive, setPositive] = useState(0)
+  //const [average, setAverage] = useState(0)
+  //const [positive, setPositive] = useState(0)
   
   //Genare Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
   //setAverage((good + (neutral*0) + bad*(-1))/all)    
