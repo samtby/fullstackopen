@@ -19,8 +19,16 @@ const App = () => {
   
   return (
     <div>
-      {anecdotes[selected]}<br/>
-      <button onClick={SeTrandomAnecdote}>next anectdote</button>
+      <table>
+      <tbody>
+          <tr>
+            {anecdotes[selected]}
+          </tr> 
+          <tr>
+            <button onClick={SeTrandomAnecdote}>vote</button><button onClick={SeTrandomAnecdote}>next anectdote</button>
+          </tr>
+        </tbody>
+      </table>
     </div>
   )
 }
