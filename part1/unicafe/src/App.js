@@ -2,7 +2,7 @@ import React, { useState } from 'react'
   //The application must display the total number of collected feedback for each category. 
 
   const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
-  const Statistic =  ({text,value}) =>  <td>{text} {value}</td>
+  const Statistic =  ({text,value}) =>  <td>{text} {value}{text==='positive'?'%':''}</td>
   const Statistics =  ({good,neutral,bad,all}) => {
  /*
   Warning: validateDOMNesting(...): <tr> cannot appear as a child of <table>.
@@ -24,10 +24,13 @@ import React, { useState } from 'react'
           <Statistic text="bad" value ={bad} />
           </tr>
           <tr>
+          <Statistic text="all" value ={all} />
+          </tr>
+          <tr>
           <Statistic text="average" value ={(good + (neutral*0) + bad*(-1))/all} />
           </tr>
           <tr>
-          <Statistic text="positive" value ={good/(all/100)} />
+          <Statistic text="positive" value ={good/(all/100)}/>
           </tr>
         </tbody>
       </table>
@@ -59,7 +62,7 @@ const FeedbackSystem = ()=>{
         <Button handleClick={setIncreaseByOneGood} text="good"/>
         <Button handleClick={setIncreaseByOneNeutral} text="neutral"/>
         <Button handleClick={setIncreaseByOneBad} text="bad"/>
-        <h1>Statistics</h1>
+        <h1>statistics</h1>
         <p>No feedback given</p>
       </div>
     )
@@ -69,7 +72,7 @@ const FeedbackSystem = ()=>{
         <Button handleClick={setIncreaseByOneGood} text="good"/>
         <Button handleClick={setIncreaseByOneNeutral} text="neutral"/>
         <Button handleClick={setIncreaseByOneBad} text="bad"/>
-        <h1>Statistics</h1>
+        <h1>statistics</h1>
       <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
     </div>
   )
