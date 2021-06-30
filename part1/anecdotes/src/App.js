@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
 const App = () => {
+/*
+  const votes = const points = { 0: 0, 1: 0, 2: 0 , 3: 0}
+  const copyVotes = { ...votes }
+*/
   const anecdotes = [
     'If it hurts, do it more often',
     'Adding manpower to a late software project makes it later!',
@@ -16,16 +20,38 @@ const App = () => {
   const SeTrandomAnecdote = () => {
     setSelected((Math.floor(Math.random() * anecdotes.length)))
   }
+
+  const [votes, setVotes] = useState({
+    0: 0, 
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0
+  })
+
+  const addNote = () => {
+    
+  }
   
+  // increment the value in position 2 by one
+  ///copyVotes[2] += 1
+  //
+  //
   return (
     <div>
       <table>
-      <tbody>
+        <tbody>
           <tr>
-            {anecdotes[selected]}
+            <td>
+              {anecdotes[selected]}
+            </td>
           </tr> 
           <tr>
-            <button onClick={SeTrandomAnecdote}>vote</button><button onClick={SeTrandomAnecdote}>next anectdote</button>
+            <td>
+              <button onClick={addNote}>vote</button><button onClick={SeTrandomAnecdote}>next anectdote</button>
+            </td>
           </tr>
         </tbody>
       </table>
