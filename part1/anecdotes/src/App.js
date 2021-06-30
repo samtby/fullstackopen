@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
 const App = () => {
-/*
-  const votes = const points = { 0: 0, 1: 0, 2: 0 , 3: 0}
-  const copyVotes = { ...votes }
-*/
+
+  const points = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0  }
+  //const copyVotes = { ...points }
+  const [votes, setVotes] = useState(points)
+
   const anecdotes = [
     'If it hurts, do it more often',
     'Adding manpower to a late software project makes it later!',
@@ -16,29 +17,18 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  //setSelected((Math.floor(Math.random() * anecdotes.length)))
+
+
   const SeTrandomAnecdote = () => {
     setSelected((Math.floor(Math.random() * anecdotes.length)))
   }
 
-  const [votes, setVotes] = useState({
-    0: 0, 
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0
-  })
-
-  const addNote = () => {
-    
+  const addNote = () => {  
+    setVotes(votes[selected] = 1)
+    console.log(selected)
+    console.log(votes[selected] )
   }
   
-  // increment the value in position 2 by one
-  ///copyVotes[2] += 1
-  //
-  //
   return (
     <div>
       <table>
@@ -47,6 +37,11 @@ const App = () => {
             <td>
               {anecdotes[selected]}
             </td>
+          </tr> 
+          <tr>
+            <td>
+            has {votes[selected]} votes
+          </td>
           </tr> 
           <tr>
             <td>
