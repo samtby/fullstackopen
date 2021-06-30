@@ -105,4 +105,5 @@ After that we start the dbus service with this command
 # Automatically start D-Bus to allow communication with Cypress GUI app
 sudo /etc/init.d/dbus start &> /dev/null
 ```
-
+### Fix warnings in Browser Toolbox.
+[hg.mozilla.org](https://hg.mozilla.org/integration/autoland/rev/b800ffcad8496b9124b7d246b15b4443d0be3830)
