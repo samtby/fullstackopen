@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 
 const App = () => {
 
-  const points = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0  }
+  //const points = new Object({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0  })
+   const points = [0 ,1 , 2, 3, 4, 5, 6]
   //const copyVotes = { ...points }
-  const [votes, setVotes] = useState(points)
+  let [votes, setVotes] = useState(points)
 
   const anecdotes = [
     'If it hurts, do it more often',
@@ -18,15 +19,25 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
 
-
   const SeTrandomAnecdote = () => {
     setSelected((Math.floor(Math.random() * anecdotes.length)))
   }
 
+  let test = 0
+
   const addNote = () => {  
-    setVotes(votes[selected] = 1)
+/*    setVotes(votes[selected] = 1)
     console.log(selected)
     console.log(votes[selected] )
+
+    */
+    setVotes(votes[test] +=1) //Fail
+    //votes[test] +=1 //Ok
+    console.log(votes[test])
+    test +=1
+    console.log(test)
+
+    
   }
   
   return (
@@ -40,7 +51,7 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-            has {votes[selected]} votes
+            has {test} votes
           </td>
           </tr> 
           <tr>
