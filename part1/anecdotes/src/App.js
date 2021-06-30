@@ -12,7 +12,7 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-
+  //setSelected((Math.floor(Math.random() * anecdotes.length)))
   return (
     <div>
       {anecdotes[selected]}
