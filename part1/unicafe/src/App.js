@@ -12,6 +12,8 @@ import React, { useState } from 'react'
 /*
 */
 
+const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
+
 const Statistic =  ({text,value}) => <p>{text} {value}</p>
 
 const Statistics =  ({good,neutral,bad,all}) => {
@@ -58,9 +60,16 @@ const FeedbackSystem = ()=>{
   if( all === 0 ){
     return (
       <div>
-        <button value={good} onClick={setIncreaseByOneGood}>good</button>
+        {/*<Button handleClick={()=> setGood(good + 1) } text="good"/>
+        <Button handleClick={()=> setNeutral(neutral + 1)} text="neutral"/>
+    <Button handleClick={()=> setBad(bad + 1)} text="bad"/> */}
+
+        <Button handleClick={setIncreaseByOneGood} text="good"/>
+        <Button handleClick={setIncreaseByOneNeutral} text="neutral"/>
+        <Button handleClick={setIncreaseByOneBad} text="bad"/>
+        {/*<button value={good} onClick={setIncreaseByOneGood}>good</button>
         <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
-        <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
+    <button value={bad} onClick={setIncreaseByOneBad}>bad</button>*/}
         <h1>Statistics</h1>
         <p>No feedback given</p>
       </div>
@@ -68,9 +77,12 @@ const FeedbackSystem = ()=>{
   }
   return (
     <div>
-      <button value={good} onClick={setIncreaseByOneGood}>good</button>
+        <Button handleClick={setIncreaseByOneGood} text="good"/>
+        <Button handleClick={setIncreaseByOneNeutral} text="neutral"/>
+        <Button handleClick={setIncreaseByOneBad} text="bad"/>
+      {/*<button value={good} onClick={setIncreaseByOneGood}>good</button>
       <button value={neutral} onClick={setIncreaseByOneNeutral}>neutral</button>
-      <button value={bad} onClick={setIncreaseByOneBad}>bad</button>
+  <button value={bad} onClick={setIncreaseByOneBad}>bad</button> */}
       <h1>give feedback</h1>
       <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
     </div>
