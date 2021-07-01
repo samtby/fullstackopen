@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 
+const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
+
 const App = () => {
 
   //const points = new Object({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0  })
-   const points = [0 ,1 , 2, 3, 4, 5, 6]
+   //let points =  new Array([0 ,1 , 2, 3, 4, 5, 6])
+   let points = [0 ,0 , 0, 0, 0, 0, 0]
+
   //const copyVotes = { ...points }
-  let [votes, setVotes] = useState(points)
+  let [votes, setVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
+  
 
   const anecdotes = [
     'If it hurts, do it more often',
@@ -23,21 +28,19 @@ const App = () => {
     setSelected((Math.floor(Math.random() * anecdotes.length)))
   }
 
-  let test = 0
+  const addNote = (props) => {   
+    console.log(props)   
+    setVotes(votes => votes[props] +=1)
 
-  const addNote = () => {  
-/*    setVotes(votes[selected] = 1)
-    console.log(selected)
-    console.log(votes[selected] )
 
+    //  setVotes([...votes,votes[props] =+ 1 //add
+    //setVotes(votes => [ ...votes,votes[props] ])
+ 
+    /*console.log(selected)
+    setVotes( array =>  array[selected] += 1) //Fail    
+
+    console.log(votes[selected])
     */
-    setVotes(votes[test] +=1) //Fail
-    //votes[test] +=1 //Ok
-    console.log(votes[test])
-    test +=1
-    console.log(test)
-
-    
   }
   
   return (
@@ -51,12 +54,14 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-            has {test} votes
+            has {votes[4]} votes
           </td>
           </tr> 
           <tr>
             <td>
-              <button onClick={addNote}>vote</button><button onClick={SeTrandomAnecdote}>next anectdote</button>
+
+              <Button handleClick={()=> addNote(selected)} text="vote"/>
+              <button onClick={SeTrandomAnecdote}>next anectdote</button>
             </td>
           </tr>
         </tbody>
