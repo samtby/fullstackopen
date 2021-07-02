@@ -30,9 +30,9 @@ const App = () => {
 
   const addNote = (props) => {   
     console.log(props)   
-    setVotes(votes => votes[props] +=1)
-
-
+    setVotes(votes.splice(props.selected,0,88))
+    
+    //setVotes(votes => votes.se +=1)
     //  setVotes([...votes,votes[props] =+ 1 //add
     //setVotes(votes => [ ...votes,votes[props] ])
  
