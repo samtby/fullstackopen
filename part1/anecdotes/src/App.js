@@ -9,7 +9,7 @@ const App = () => {
    let points = [0 ,0 , 0, 0, 0, 0, 0]
 
   //const copyVotes = { ...points }
-  let [votes, setVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
+  let [votes, updateVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
   
 
   const anecdotes = [
@@ -30,7 +30,8 @@ const App = () => {
 
   const addNote = (props) => {   
     console.log(props)   
-    setVotes(votes.splice(props.selected,0,88))
+    //updateVotes(votes.splice(props.selected,0,88))
+    updateVotes(oldArray  => [oldArray, oldArray[selected] += 1])
     
     //setVotes(votes => votes.se +=1)
     //  setVotes([...votes,votes[props] =+ 1 //add
