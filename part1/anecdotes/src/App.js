@@ -8,9 +8,9 @@ const App = () => {
    //let points =  new Array([0 ,1 , 2, 3, 4, 5, 6])
    let points = [0 ,0 , 0, 0, 0, 0, 0]
 
-  //const copyVotes = { ...points }
-  let [votes, updateVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
   
+  let [votes, setVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
+  let copyVotes = { ...votes }
 
   const anecdotes = [
     'If it hurts, do it more often',
@@ -23,15 +23,35 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [voteSelected, setSelectedVote] = useState(0)
 
   const SeTrandomAnecdote = () => {
     setSelected((Math.floor(Math.random() * anecdotes.length)))
+    console.log("selected",selected)
   }
 
   const addNote = (props) => {   
-    console.log(props)   
-    //updateVotes(votes.splice(props.selected,0,88))
-    updateVotes(oldArray  => [oldArray, oldArray[selected] += 1])
+        //updateVotes(votes.splice(props.selected,0,88))
+    //updateVotes(oldArray  => [oldArray, oldArray[selected] += 1])
+    
+    //Version noCopy 
+    
+    votes[0][selected] +=  1
+    setSelectedVote(votes[0][selected])
+    //console.log("votes",votes[0][selected])
+    
+    
+    //Version copy
+    //copyVotes[selected]
+    //console.log("votes",copyVotes[selected])
+   /* setVotes(
+      //array.map(function(currentValue, index, arr))
+      //votes.map.set(votes.indexOf(1))
+      /*votes.map((votes) =>{
+        votes.id === selected ? newVote : vo
+      
+
+      )*/
     
     //setVotes(votes => votes.se +=1)
     //  setVotes([...votes,votes[props] =+ 1 //add
@@ -126,7 +146,7 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-            has {votes[4]} votes
+            has {votes[0][selected]} votes
           </td>
           </tr> 
           <tr>
