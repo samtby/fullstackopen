@@ -146,7 +146,7 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-            has {votes[0][selected]} votes
+            has {votes[0][selected]} votes 
           </td>
           </tr> 
           <tr>
