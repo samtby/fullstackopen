@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
-const Votes = ({nbVotes}) => {
-  console.log(nbVotes)
-  return(
-  <p>has {nbVotes} votes</p>
-  )
-}
-
+const Votes = ({nbVotes}) =><>has {nbVotes} votes</>
 
 const App = () => {
 
@@ -21,21 +15,24 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blod tests when dianosing patients'
   ]
   
-   const points = new Array(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
-   //Output as [0, 0, 0, 0, 0, 0, 0]
-   //Auther way to create Array
-   //const points = new Array(10+1).join('0').split('').map(parseFloat)
     const [selected, setSelected] = useState(0)
-    const [votes] = useState(points)
-    const copyVotes = [...votes]
 
-  const [voteSelected, setSelectedVote] = useState(0)
-  console.log("copyVotes[0]",copyVotes[0],selected)
-  const SeTrandomAnecdote = () =>  {
-    setSelected((Math.floor(Math.random() * anecdotes.length)))
-    setSelectedVote(copyVotes[0][selected])
-  }
-  const addNote = () =>setSelectedVote(copyVotes[0][selected] +=  1)
+    const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
+  
+    const [voteSelected, setSelectedVote] = useState(0)
+  
+    const SeTrandomAnecdote = () =>  {      
+      
+      setSelected((Math.floor(Math.random() * anecdotes.length)))
+      console.log("copyPoints SeTrandomAnecdote",points,selected)
+   }
+
+    const addNote = () =>{
+      const copyPoints = [...points]
+      copyPoints[selected] +=1
+      setPoints(copyPoints)
+      console.log("copyPoints addNote",copyPoints,selected)
+   }
 
   return (
     <div>
@@ -43,18 +40,18 @@ const App = () => {
         <tbody>
           <tr>
             <td>
-              {anecdotes[selected]}
+               {anecdotes[selected]}
             </td>
           </tr> 
           <tr>
             <td>
-            <Votes nbVotes={copyVotes[0][selected]}/>
+            <Votes nbVotes={points[selected]}/>
           </td>
           </tr> 
           <tr>
             <td>
               <Button handleClick={addNote} text="vote"/>
-              <button onClick={SeTrandomAnecdote}>next anectdote</button> 
+              <Button handleClick={SeTrandomAnecdote} text="next anectdote"/>
             </td>
           </tr>
         </tbody>
