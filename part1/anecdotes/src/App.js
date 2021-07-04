@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
+const Votes = ({nbVotes}) => {
+  console.log(nbVotes)
+  return(
+  <p>has {nbVotes} votes</p>
+  )
+}
+
 
 const App = () => {
 
@@ -13,40 +20,23 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blod tests when dianosing patients'
   ]
-   
-
-  //const points = new Object({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0  })
-   //let points =  new Array([0 ,1 , 2, 3, 4, 5, 6])
-   const points = new Array([0 ,0 , 0, 0, 0, 0, 0])
-
-   //const points = new Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0);
-  /*
-   Array.apply(null, new Array(7)).map(Number.prototype.valueOf,0);
-   //Output as [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-   
-   new Array(10+1).join('0').split('').map(parseFloat)
-   //Output as [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  */ 
-
-  //let [votes, setVotes] = useState(new Array([0 ,0 , 0, 0, 0, 0, 0]))
-  const [votes, setVotes] = useState(points)
-  const copyVotes = { ...votes }
-
- 
-  const [selected, setSelected] = useState(0)
-  const [voteSelected, setSelectedVote] = useState(0)
-
-  const SeTrandomAnecdote = () => {
-    setSelected((Math.floor(Math.random() * anecdotes.length)))
-    console.log("selected",selected)
-  }
-
-  const addNote = (props) => {   
-    setSelectedVote(votes[0][selected] +=  1)
-    console.log("votes[0]",votes[0])
-    
-  }
   
+   const points = new Array(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
+   //Output as [0, 0, 0, 0, 0, 0, 0]
+   //Auther way to create Array
+   //const points = new Array(10+1).join('0').split('').map(parseFloat)
+    const [selected, setSelected] = useState(0)
+    const [votes] = useState(points)
+    const copyVotes = [...votes]
+
+  const [voteSelected, setSelectedVote] = useState(0)
+  console.log("copyVotes[0]",copyVotes[0],selected)
+  const SeTrandomAnecdote = () =>  {
+    setSelected((Math.floor(Math.random() * anecdotes.length)))
+    setSelectedVote(copyVotes[0][selected])
+  }
+  const addNote = () =>setSelectedVote(copyVotes[0][selected] +=  1)
+
   return (
     <div>
       <table>
@@ -58,14 +48,13 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-            has {votes[0][selected]} votes 
+            <Votes nbVotes={copyVotes[0][selected]}/>
           </td>
           </tr> 
           <tr>
             <td>
-
-              <Button handleClick={()=> addNote(selected)} text="vote"/>
-              <button onClick={SeTrandomAnecdote}>next anectdote</button>
+              <Button handleClick={addNote} text="vote"/>
+              <button onClick={SeTrandomAnecdote}>next anectdote</button> 
             </td>
           </tr>
         </tbody>
