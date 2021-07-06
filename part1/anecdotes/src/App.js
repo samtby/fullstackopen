@@ -19,12 +19,10 @@ const App = () => {
 
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
   
-    const [voteSelected, setSelectedVote] = useState(0)
-  
-    const SeTrandomAnecdote = () =>  {      
+    const SetRandomAnecdote = () =>  {      
       
       setSelected((Math.floor(Math.random() * anecdotes.length)))
-      console.log("copyPoints SeTrandomAnecdote",points,selected)
+      console.log("copyPoints SeTrandomAnecdote",points,selected, points[selected])
    }
 
     const addNote = () =>{
@@ -50,8 +48,8 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-              <Button handleClick={addNote} text="vote"/>
-              <Button handleClick={SeTrandomAnecdote} text="next anectdote"/>
+              <Button handleClick={()=>addNote()} text="vote"/>
+              <Button handleClick={()=>SetRandomAnecdote()} text="next anectdote"/>
             </td>
           </tr>
         </tbody>
