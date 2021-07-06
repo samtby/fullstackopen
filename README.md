@@ -54,6 +54,9 @@
 
 # Useful libraries
 
+# Problems on Code React 
+
+## [Hoock with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
 # Problems encountred
 
 ## Update npm
