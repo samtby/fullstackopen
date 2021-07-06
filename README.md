@@ -38,6 +38,10 @@
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
 * [javascript.info](https://github.com/getify/You-Dont-Know-JS)
 
+## Problems on React 
+
+* [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
+
 ## Debugging React applications
 
 * On application you can use instruction ```debugger``` 
