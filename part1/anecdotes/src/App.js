@@ -4,7 +4,6 @@ const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</
 const Votes = ({nbVotes}) =><>has {nbVotes} votes</>
 
 const App = () => {
-
   const anecdotes = [
     'If it hurts, do it more often',
     'Adding manpower to a late software project makes it later!',
@@ -14,24 +13,22 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blod tests when dianosing patients'
   ]
-  
+
     const [selected, setSelected] = useState(0)
 
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
   
-    const [voteSelected, setSelectedVote] = useState(0)
-  
-    const SeTrandomAnecdote = () =>  {      
+    const SeTrandomAnecdote = () =>  {
       
       setSelected((Math.floor(Math.random() * anecdotes.length)))
-      console.log("copyPoints SeTrandomAnecdote",points,selected)
+      //console.log("copy SeTrandomAnecdote",points,selected)
    }
 
     const addNote = () =>{
-      const copyPoints = [...points]
-      copyPoints[selected] +=1
-      setPoints(copyPoints)
-      console.log("copyPoints addNote",copyPoints,selected)
+      const copy = [...points]
+      copy[selected] +=1
+      setPoints(copy)
+      //console.log("copy addNote",copy,selected)
    }
 
   return (
