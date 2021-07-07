@@ -15,9 +15,8 @@ const App = () => {
   ]
 
     const [selected, setSelected] = useState(0)
-
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
-
+    const [max, setMax] = useState(Math.max(...points))
 
   // returns maximum in arr[] of size n
   const largest = (arr) => {    
@@ -30,21 +29,25 @@ const App = () => {
       
       setSelected((Math.floor(Math.random() * anecdotes.length)))
       console.log("copyPoints SeTrandomAnecdote",points,selected, points[selected])
+      console.log(max)
+      setMax(Math.max(...points))
    }
 
     const addNote = () =>{
       const copy = [...points]
       copy[selected] +=1
       setPoints(copy)
+      setMax(Math.max(...copy))
+      //console.log(Math.max(...copy))
       //console.log("copy addNote",copy,selected)
    }
 
 
   return (
     <div>
+      <Display title="Anecdote of the day" />
       <table>
-        <tbody>
-          <Display title="Anecdote of the day" />
+        <tbody>          
           <tr>
             <td>
                {anecdotes[selected]}
@@ -61,15 +64,19 @@ const App = () => {
               <Button handleClick={()=>SetRandomAnecdote()} text="next anectdote"/>
             </td>
           </tr>
-          <Display title="Anecdote with most votes" />
+          </tbody>
+      </table>  
+      <Display title="Anecdote with most votes" />
+      <table>
+        <tbody>           
           <tr>
             <td>
-               {anecdotes[selected]}
+               {anecdotes[points[max]]}
             </td>
           </tr> 
           <tr>
             <td>
-              <Votes nbVotes={largest(points)}/>
+              <Votes nbVotes={points[max]}/>
             </td>
           </tr>           
         </tbody>
