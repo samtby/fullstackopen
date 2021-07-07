@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+const Display = ({title}) =><h3>{title}</h3>
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 const Votes = ({nbVotes}) =><>has {nbVotes} votes</>
 
@@ -18,6 +18,14 @@ const App = () => {
 
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
 
+
+  // returns maximum in arr[] of size n
+  const largest = (arr) => {    
+      arr.sort();      
+      //return arr[arr.length-1];
+      return arr.length-1;
+  }          
+
     const SetRandomAnecdote = () =>  {      
       
       setSelected((Math.floor(Math.random() * anecdotes.length)))
@@ -31,10 +39,12 @@ const App = () => {
       //console.log("copy addNote",copy,selected)
    }
 
+
   return (
     <div>
       <table>
         <tbody>
+          <Display title="Anecdote of the day" />
           <tr>
             <td>
                {anecdotes[selected]}
@@ -51,6 +61,17 @@ const App = () => {
               <Button handleClick={()=>SetRandomAnecdote()} text="next anectdote"/>
             </td>
           </tr>
+          <Display title="Anecdote with most votes" />
+          <tr>
+            <td>
+               {anecdotes[selected]}
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <Votes nbVotes={largest(points)}/>
+            </td>
+          </tr>           
         </tbody>
       </table>
     </div>
