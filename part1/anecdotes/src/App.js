@@ -17,7 +17,7 @@ const App = () => {
     const [selected, setSelected] = useState(0)
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
     const [max, setMax] = useState(Math.max(...points))
-
+    const [maxAnecddote, setMaxAnecdote] = useState(Math.max(...points))
   // returns maximum in arr[] of size n
   const largest = (arr) => {    
       arr.sort();      
@@ -31,6 +31,7 @@ const App = () => {
       console.log("copyPoints SeTrandomAnecdote",points,selected, points[selected])
       console.log(max)
       setMax(Math.max(...points))
+      setMaxAnecdote(points.indexOf(max))
    }
 
     const addNote = () =>{
@@ -38,6 +39,7 @@ const App = () => {
       copy[selected] +=1
       setPoints(copy)
       setMax(Math.max(...copy))
+      setMaxAnecdote(copy.indexOf(max))
       //console.log(Math.max(...copy))
       //console.log("copy addNote",copy,selected)
    }
@@ -71,12 +73,12 @@ const App = () => {
         <tbody>           
           <tr>
             <td>
-               {anecdotes[points[max]]}
+               {anecdotes[maxAnecddote]}
             </td>
           </tr> 
           <tr>
             <td>
-              <Votes nbVotes={points[max]}/>
+              <Votes nbVotes={max}/>
             </td>
           </tr>           
         </tbody>
