@@ -39,7 +39,7 @@ const App = () => {
       copy[selected] +=1
       setPoints(copy)
       setMax(Math.max(...copy))
-      setMaxAnecdote(copy.indexOf(max))
+      setMaxAnecdote(points.indexOf(max))
       //console.log(Math.max(...copy))
       //console.log("copy addNote",copy,selected)
    }
