@@ -78,7 +78,7 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-              <Votes nbVotes={max}/>
+              <Votes nbVotes={points[maxAnecddote]}/>
             </td>
           </tr>           
         </tbody>
