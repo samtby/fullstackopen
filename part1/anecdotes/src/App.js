@@ -35,11 +35,12 @@ const App = () => {
    }
 
     const addNote = () =>{
+      
       const copy = [...points]
       copy[selected] +=1
       setPoints(copy)
       setMax(Math.max(...copy))
-      setMaxAnecdote(points.indexOf(max))
+      setMaxAnecdote(copy.indexOf(max))
       //console.log(Math.max(...copy))
       //console.log("copy addNote",copy,selected)
    }
@@ -78,7 +79,7 @@ const App = () => {
           </tr> 
           <tr>
             <td>
-              <Votes nbVotes={points[maxAnecddote]}/>
+              <Votes nbVotes={max}/>
             </td>
           </tr>           
         </tbody>
