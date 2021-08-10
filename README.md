@@ -53,6 +53,7 @@
 
 # How Debugging React applications on console
 
+## Use
 ```
 console.log('props value is', props
 ```
