@@ -61,8 +61,27 @@ console.log('props value is', props
 ```
 console.log('props value is' + props)
 ```
+The most important snippet is the one for the console.log() command, for example clog. This can be created like so: 
+```
+{
+  "console.log": {
+    "prefix": "clog",
+    "body": [
+      "console.log('$1')",
+    ],
+    "description": "Log output to console"
+  }
+}
+```
 # Useful libraries
 
+# Useful for VScode
+
+## Protip: Visual Studio Code snippets
+
+ [Instructions for creating snippets can be found here.](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_creating-your-own-snippets)
+
+ [Useful, ready-made snippets can also be found as VS Code plugins, in the marketplace.](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
 # Problems on Code React 
 
 ## [Hoock with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
