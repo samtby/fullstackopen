@@ -21,8 +21,6 @@ const App = () => {
 
     const SetRandomAnecdote = () =>  {            
       setSelected((Math.floor(Math.random() * anecdotes.length)))
-      console.log("copyPoints SeTrandomAnecdote",points,selected, points[selected])
-      console.log(max)
       setMax(Math.max(...points))
       setMaxAnecdote(points.indexOf(max))
    }
