@@ -37,7 +37,14 @@
 * [A re-introduction to JavaScript (JS tutorial) ](http://kangax.github.io/compat-table/es2016plus)
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
 * [javascript.info](https://github.com/getify/You-Dont-Know-JS)
+* [Destructuring]()
 
+# JavaScript Arrays
+
+* [Higher-order functions](https://www.youtube.com/watch?v=BMUiFMZr7vk&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84)
+* [Map](https://www.youtube.com/watch?v=bCqtb-Z5YGQ&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=3)
+* [Reduce basics](https://www.youtube.com/watch?v=Wl98eZpkp-c&t=31s)
+* [Index as a key is an anti-pattern](https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318)
 ## Problems on React 
 
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
