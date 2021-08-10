@@ -18,15 +18,8 @@ const App = () => {
     const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
     const [max, setMax] = useState(Math.max(...points))
     const [maxAnecddote, setMaxAnecdote] = useState(Math.max(...points))
-  // returns maximum in arr[] of size n
-  const largest = (arr) => {    
-      arr.sort();      
-      //return arr[arr.length-1];
-      return arr.length-1;
-  }          
 
-    const SetRandomAnecdote = () =>  {      
-      
+    const SetRandomAnecdote = () =>  {            
       setSelected((Math.floor(Math.random() * anecdotes.length)))
       console.log("copyPoints SeTrandomAnecdote",points,selected, points[selected])
       console.log(max)
@@ -34,17 +27,13 @@ const App = () => {
       setMaxAnecdote(points.indexOf(max))
    }
 
-    const addNote = () =>{
-      
+    const addNote = () =>{      
       const copy = [...points]
       copy[selected] +=1
       setPoints(copy)
       setMax(Math.max(...copy))
       setMaxAnecdote(copy.indexOf(Math.max(...copy)))
-      //console.log(Math.max(...copy))
-      //console.log("copy addNote",copy,selected)
    }
-
 
   return (
     <div>
