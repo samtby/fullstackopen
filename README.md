@@ -51,7 +51,15 @@
 
 * [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react)
 
+# How Debugging React applications on console
 
+```
+console.log('props value is', props
+```
+## Never use
+```
+console.log('props value is' + props)
+```
 # Useful libraries
 
 # Problems on Code React 
