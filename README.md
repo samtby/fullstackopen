@@ -55,7 +55,7 @@
 
 ## Use
 ```
-console.log('props value is', props
+console.log('props value is', props)
 ```
 ## Never use
 ```
