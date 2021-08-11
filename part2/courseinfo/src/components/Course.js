@@ -32,11 +32,13 @@
     return (
     /*
     <div>
-        <h4>total of exercises {parts.parts.map(li => li.exercises).reduce(total,0)}</h4>
+        <h4>total of exercises {parts.parts.map(li => li.exercises).reduce(total,0)}</h4>        
     </div>
+    Ok <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises).reduce(total,0))}</h4>
     */
    <div>
-
+        <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises))}</h4>
+        <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises).reduce(total,0))}</h4>
    </div>
     )
   }
