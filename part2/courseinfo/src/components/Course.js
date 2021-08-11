@@ -1,18 +1,14 @@
-  const Header = ({course}) =><h1>{course.name}</h1>
+  const Header = ({course}) =><h3>{course.name}</h3>
   
   const Parts  = ({parts}) =>parts.map(parts => parts.parts.map(parts =>  <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>))
     
   const Content = ({parts}) => {
     return (
         <div>
-            {parts.map(courses  => 
-
-                <li key={courses.id}> {courses.name}
-                    {courses.parts.map(part => 
-                        <p key={part.id}>
-                        {part.name} {part.exercises}
-                        </p>)}
-                </li>
+            {parts.map(part => 
+                <p key={part.id}>
+                {part.name} {part.exercises}
+                </p>
             )}
         </div>
         )        
@@ -35,9 +31,16 @@
       //<Header course={course} />
     return (
     <div>
+        {course.map(courses  => 
+        <li>
+            <Header course={courses}/>
+            <Content parts={courses.parts}/>
+
+        </li>
+        )}
         
-        <Content parts={course}/>    
-        <Total parts={course} /> 
+        {/*<Content parts={course}/>
+        <Total parts={course} /> */}
     </div>
     )
 }
