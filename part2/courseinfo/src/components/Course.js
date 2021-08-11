@@ -1,44 +1,16 @@
-  const Header = (props) => {
-      return <h1>{props.course.name}</h1>
-  }
+  const Header = ({course}) =><h1>{course.name}</h1>
   
-  const Content  = ({parts}) => {    
-
-
-
-    return (
-    /*
-    <div>
-        {parts.map(parts => parts.parts.map(parts =>
-            <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>
-        ))}
-    </div>*/
-    <div>
-        {parts.map(parts => parts.parts.map(parts =>  <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>))}
-    </div>
-    )
-  }
-  
-  const Part  = (props) => {  
-    return <p>{props.parts} {props.exercises}</p>
-  }
-
-
+  const Content  = ({parts}) =>parts.map(parts => parts.parts.map(parts =>  <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>))
+    
+  const Part  = ({parts,exercises}) => <p>{parts} {exercises}</p>
   const Total  = ({parts}) => {              
     const total = function total(sum, val) {
+        //console.log(sum, val,'somme', sum + val)
         return sum + val;
     }
-
     return (
-    /*
-    <div>
-        <h4>total of exercises {parts.parts.map(li => li.exercises).reduce(total,0)}</h4>        
-    </div>
-    Ok <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises).reduce(total,0))}</h4>
-    */
    <div>
-        <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises))}</h4>
-        <h4>total of exercises {parts.map(parts => parts.parts.map(li => li.exercises).reduce(total,0))}</h4>
+        <h4>total of exercises {parts.map(course => course.parts.map(li => li.exercises).reduce(total,0)).reduce(total,0)}</h4>
    </div>
     )
   }
