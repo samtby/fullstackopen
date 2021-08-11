@@ -4,6 +4,8 @@
   
   const Content  = ({parts}) => {    
 
+
+
     return (
     /*
     <div>
@@ -12,7 +14,7 @@
         ))}
     </div>*/
     <div>
-        
+        {parts.map(parts => parts.parts.map(parts =>  <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>))}
     </div>
     )
   }
