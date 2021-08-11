@@ -17,8 +17,7 @@
   }
 
 
-  const Total  = ({parts}) => {          
-    
+  const Total  = ({parts}) => {              
     const total = function total(sum, val) {
         return sum + val;
     }
