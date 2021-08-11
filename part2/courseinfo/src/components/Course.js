@@ -3,11 +3,16 @@
   }
   
   const Content  = ({parts}) => {    
+
     return (
+    /*
     <div>
-        {parts.parts.map(parts =>
+        {parts.map(parts => parts.parts.map(parts =>
             <Part key={parts.id} parts={parts.name}  exercises={parts.exercises}/>
-        )}
+        ))}
+    </div>*/
+    <div>
+        
     </div>
     )
   }
@@ -23,9 +28,14 @@
     }
 
     return (
+    /*
     <div>
         <h4>total of exercises {parts.parts.map(li => li.exercises).reduce(total,0)}</h4>
     </div>
+    */
+   <div>
+
+   </div>
     )
   }
 
