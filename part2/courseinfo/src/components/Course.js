@@ -5,16 +5,15 @@
   const Content = ({parts}) => {
     return (
         <div>
-             <li>
-                {parts.map(courses  => 
-                    <li key={courses.id}> {courses.name}
-                        {courses.parts.map(part => 
-                            <p key={part.id}>
-                            {part.name} {part.exercises}
-                            </p>)}
-                    </li>
+            {parts.map(courses  => 
+
+                <li key={courses.id}> {courses.name}
+                    {courses.parts.map(part => 
+                        <p key={part.id}>
+                        {part.name} {part.exercises}
+                        </p>)}
+                </li>
             )}
-            </li>
         </div>
         )        
   }
