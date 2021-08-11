@@ -22,8 +22,8 @@ const App = () => {
         id: 3
       },
       {
-        name: 'Use state of React',
-        exercises: 17,
+        name: 'Redux',
+        exercises: 11,
         id: 4
       }
     ]

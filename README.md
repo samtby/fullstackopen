@@ -37,7 +37,8 @@
 * [A re-introduction to JavaScript (JS tutorial) ](http://kangax.github.io/compat-table/es2016plus)
 * [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
 * [javascript.info](https://github.com/getify/You-Dont-Know-JS)
-* [Destructuring]()
+* [Destructuring](https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0)
+* [JS Refactor plugin for VS Code that automatically changes short form arrow functions into their longer form, and vice versa.](https://marketplace.visualstudio.com/items?itemName=cmstead.jsrefactor)
 
 # JavaScript Arrays
 

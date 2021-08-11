@@ -1,12 +1,8 @@
   const Header = (props) => {
-      //console.log("Header",props)
       return <h1>{props.course.name}</h1>
   }
   
   const Content  = ({parts}) => {    
-    //console.log("Contect",props) 
-    //    <Part parts={parts.parts[1].name}  exercises={parts.parts[1].exercises}/>
-    
     return (
     <div>
         {parts.parts.map(parts =>
@@ -17,21 +13,29 @@
   }
   
   const Part  = (props) => {  
-    //console.log("Part",props)
     return <p>{props.parts} {props.exercises}</p>
   }
-/*  You don't need the sum of the exercises yet.
-  const Total  = (props) => {  
-    console.log("Total",props)
-    return <p>Number of exercises {props.parts.parts[0].exercises + props.parts.parts[1].exercises +props.parts.parts[2].exercises}</p>
-  }
-*/
-  const Course = ({course}) => {
+
+
+  const Total  = ({parts}) => {          
+    
+    const total = function total(sum, val) {
+        return sum + val;
+    }
 
     return (
     <div>
+        <h4>total of exercises {parts.parts.map(li => li.exercises).reduce(total,0)}</h4>
+    </div>
+    )
+  }
+
+  const Course = ({course}) => {
+    return (
+    <div>
         <Header course={course} />
-        <Content parts={course}/>        
+        <Content parts={course}/>    
+        <Total parts={course} /> 
     </div>
     )
 }
