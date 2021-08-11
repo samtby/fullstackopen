@@ -19,7 +19,7 @@
     <div>
         <h2>Web development curriculum</h2>
         {course.map(courses  => 
-        <li>
+        <li key={courses.id}>
             <Header course={courses}/>
             <Content parts={courses.parts}/>
             <Total parts={courses.parts}/>      
