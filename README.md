@@ -21,7 +21,7 @@
 
 ```
 npx create-react-app myapp
-cd my-app
+cd my-app²
 npm start
 ```
 # Support example apps
@@ -61,6 +61,7 @@ npm start
 
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
 * [never mutate state directly in React!](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
+* [lists-and-keys](https://reactjs.org/docs/lists-and-keys.html#keys)
 
 ## Debugging React applications
 
