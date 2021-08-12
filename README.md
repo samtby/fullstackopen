@@ -16,6 +16,14 @@
 * part10 React Native
 * part11 CI/CD
 
+
+# Create React App
+
+```
+npx create-react-app myapp
+cd my-app
+npm start
+```
 # Support example apps
 
 * [Application Courses React App ](https://github.com/FullStack-HY/part2-notes/)
@@ -26,7 +34,6 @@
 * [ECMAScript6-ES6](http://es6-features.org/#BlockScopedVariables)
 * [JS Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 * [create-react-app](https://github.com/facebook/create-react-app)
-* command to create-react-app:  ```npx create-react-app myapp```
 * [the React-library](https://reactjs.org/docs/getting-started.html)
 * [React-component](https://reactjs.org/docs/components-and-props.html)
 * [Babel](https://babeljs.io/)
@@ -61,7 +68,6 @@
 
 * [React Developer Tools Firefox](https://addons.mozilla.org/fr/firefox/addon/react-devtools/)
 * [React Developer Tools Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-
 * [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react)
 
 # How Debugging React applications on console
