@@ -49,6 +49,7 @@
 ## Problems on React 
 
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
+* [never mutate state directly in React!](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 
 ## Debugging React applications
 
