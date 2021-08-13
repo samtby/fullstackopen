@@ -16,7 +16,6 @@
 * part10 React Native
 * part11 CI/CD
 
-
 # Create React App
 
 ```
