@@ -10,12 +10,18 @@ const App = () => {
     event.preventDefault()    
     console.log('button clicked', event.target.value)  
     setNewName(event.target.value)
-    const personObject = {
-      name: newName,
-    }
-     console.log("addPerson",newName)
-    
-    setPersons(persons.concat(personObject))
+        // Check if a value exists in the fruits array
+        if(persons.indexOf(newName) !== -1){
+          alert(`${newName} is already added to phonebook`)
+      } else{
+          alert("Value does not exists!")
+          const personObject = {
+            name: newName,
+          }
+           console.log("addPerson",newName)
+          
+          setPersons(persons.concat(personObject))
+      }
     setNewName('')
   }
 
