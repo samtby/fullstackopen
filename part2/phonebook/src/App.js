@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas'}
+    { name: 'Arto Hellas'},
   ]) 
   const [ newName, setNewName ] = useState('')
 
@@ -13,12 +13,15 @@ const App = () => {
     const personObject = {
       name: newName
     }
+
+    console.log("addPerson",personObject)
         // Check if a value exists in the fruits array
+        console.log(persons.includes(personObject))
         if(persons.includes(personObject)){
           alert(newName +" is already added to phonebook")
       } else{
 
-           console.log("addPerson",newName)
+           
           setPersons(persons.concat(personObject))
       }
     setNewName('')
@@ -29,6 +32,11 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  /*
+    var array = [{"name": "john"}, {"name": "jack"}];
+    var obj = {"name": "john"};
+    alert(array.indexOf(obj));
+  */
   
   return (
     <div>
