@@ -7,7 +7,8 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
 
   const addPerson = (event) => {    
-    event.preventDefault()    
+    event.preventDefault()
+    const copy = [...persons]
     setNewName(event.target.value)
     
     const personObject = {
@@ -16,8 +17,17 @@ const App = () => {
 
     console.log("addPerson",personObject)
         // Check if a value exists in the fruits array
-        console.log(persons.includes(personObject))
-        persons.map(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
+        //console.log(persons.includes(personObject))
+        //persons.some(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
+    
+        if(copy.some(person => person.name === newName)){
+          console.log("Object found inside the array.");
+      } else{
+        console.log("Object not found.");
+          setPersons(copy.concat(personObject))
+      }
+
+
         /*if(persons.includes(personObject)){
           //alert(newName +" is already added to phonebook")           
       } else{
@@ -34,6 +44,7 @@ const App = () => {
     var array = [{"name": "john"}, {"name": "jack"}];
     var obj = {"name": "john"};
     alert(array.indexOf(obj));
+    https://www.tutorialrepublic.com/faq/how-to-check-if-an-array-includes-an-object-in-javascript.php
   */
  
   return(
