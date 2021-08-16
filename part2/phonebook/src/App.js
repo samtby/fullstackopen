@@ -17,13 +17,11 @@ const App = () => {
     console.log("addPerson",personObject)
         // Check if a value exists in the fruits array
         console.log(persons.includes(personObject))
-        if(persons.includes(personObject)){
-          alert(newName +" is already added to phonebook")
+        persons.map(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
+        /*if(persons.includes(personObject)){
+          //alert(newName +" is already added to phonebook")           
       } else{
-
-           
-          setPersons(persons.concat(personObject))
-      }
+      }*/
     setNewName('')
   }
 
