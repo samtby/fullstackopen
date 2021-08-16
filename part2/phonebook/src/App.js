@@ -8,14 +8,14 @@ const App = () => {
 
   const addPerson = (event) => {    
     event.preventDefault()    
-    console.log('button clicked', event.target.value)  
     setNewName(event.target.value)
+    
     const personObject = {
       name: newName
     }
         // Check if a value exists in the fruits array
         if(persons.includes(personObject)){
-          alert("{newName} is already added to phonebook")
+          alert(newName +" is already added to phonebook")
       } else{
 
            console.log("addPerson",newName)
@@ -29,6 +29,7 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  
   return (
     <div>
       <h2>Phonebook</h2>

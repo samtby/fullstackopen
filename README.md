@@ -20,7 +20,7 @@
 
 ```
 npx create-react-app myapp
-cd my-app²
+cd my-app
 npm start
 ```
 # Support example apps
