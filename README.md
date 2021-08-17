@@ -56,6 +56,7 @@ npm start
 * [Map](https://www.youtube.com/watch?v=bCqtb-Z5YGQ&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=3)
 * [Reduce basics](https://www.youtube.com/watch?v=Wl98eZpkp-c&t=31s)
 * [Index as a key is an anti-pattern](https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318)
+* [Simplify your JavaScript – Use .map(), .reduce(), and .filter()](https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d)
 ## Problems on React 
 
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)

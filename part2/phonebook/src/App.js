@@ -2,10 +2,15 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-        { name: 'Arto Hellas',number: '040-1234567'}
+      { name: 'Arto Hellas', number: '040-123456' },
+      { name: 'Ada Lovelace', number: '39-44-5323523' },
+      { name: 'Dan Abramov', number: '12-43-234345' },
+      { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ newFilter, setNewFilter ] = useState('')
+  
 
   const addPerson = (event) => {    
     event.preventDefault()
@@ -26,6 +31,13 @@ const App = () => {
           console.log("Object not found.");
       }     
     setNewName('')
+  }
+
+  const handleFilterChange = (event) => {
+    if(event.target.name === 'filter')
+    setNewFilter(event.target.value)    
+
+    console.log( event.target.name ,event.target.value)
   }
 
   const handlePersonChange = (event) => {
@@ -49,7 +61,11 @@ const App = () => {
   return(
     <div>
     <h2>Phonebook</h2>
-    <form onSubmit={addPerson}>
+      <div>
+          name: <input name="filter" value={newFilter}  onChange={handleFilterChange}/>
+      </div>
+    <h2>add a new</h2>
+      <form onSubmit={addPerson}>
         <div>
           name: <input name="name" value={newName}  onChange={handlePersonChange}/>
         </div>
