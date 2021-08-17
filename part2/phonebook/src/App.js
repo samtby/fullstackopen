@@ -5,16 +5,15 @@ const App = () => {
         { name: 'Arto Hellas',number: '040-1234567'}
   ]) 
   const [ newName, setNewName ] = useState('')
-  const [ newPhone, setNewPhone ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
 
   const addPerson = (event) => {    
     event.preventDefault()
     const copy = [...persons]
-    setNewName(event.target.value)
     
     const personObject = {
       name: newName,
-      phone: newPhone
+      number: newNumber
     }
 
     console.log("addPerson",personObject)
@@ -22,15 +21,16 @@ const App = () => {
         //console.log(persons.includes(personObject))
         //persons.some(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
     
-        if(copy.some(person => person === personObject)){
+        if(copy.some(person => person.name === newName) && copy.some(person => person.number === newNumber)){
           console.log("Object found inside the array.");
-          alert(`the note '${newName} ${newPhone} ' is already added to phonebook`)
+          alert(`the note '${personObject.name} ${personObject.phone} ' is already added to phonebook`)
       } else{
           console.log("Object not found.");
           setPersons(copy.concat(personObject))
       }
-
       console.log("copyTab",copy);
+      console.log("personsTab",persons);
+      
 
         /*if(persons.includes(personObject)){
           //alert(newName +" is already added to phonebook")           
@@ -40,15 +40,17 @@ const App = () => {
   }
 
   const handlePersonChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
+    const target = event.target;
+    const value = target.name === 'name' ? setNewName(target.value) : target.value;
+    console.log( target.name ,target.value)
+    /*console.log(event.target.value)
+    setNewName(event.target.value)*/
   }
-
   
   const handlePhoneChange = (event) => {
     const target = event.target;
-    const value = target.name === 'phone' ? setNewPhone(target.value) : target.value;
-    console.log(value)
+    const value = target.name === 'number' ? setNewNumber(target.value) : target.value;
+    console.log( target.name ,target.value)
   }
 
   /*
@@ -66,7 +68,7 @@ const App = () => {
           name: <input name="name" value={newName}  onChange={handlePersonChange}/>
         </div>
         <div>
-          number: <input name="phone" onChange={handlePhoneChange}/>
+          number: <input name="number" value={newNumber} onChange={handlePhoneChange}/>
         </div>
         <div>
           <button type="submit">add</button>
