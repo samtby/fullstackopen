@@ -22,11 +22,13 @@ const App = () => {
     
         if(copy.some(person => person.name === newName)){
           console.log("Object found inside the array.");
+          alert(`the note '${newName}' is already added to phonebook`)
       } else{
-        console.log("Object not found.");
+          console.log("Object not found.");
           setPersons(copy.concat(personObject))
       }
 
+      console.log("copyTab",copy);
 
         /*if(persons.includes(personObject)){
           //alert(newName +" is already added to phonebook")           
