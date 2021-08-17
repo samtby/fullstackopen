@@ -5,6 +5,7 @@ const App = () => {
         { name: 'Arto Hellas',number: '040-1234567'}
   ]) 
   const [ newName, setNewName ] = useState('')
+  const [ newPhone, setNewPhone ] = useState('')
 
   const addPerson = (event) => {    
     event.preventDefault()
@@ -12,7 +13,8 @@ const App = () => {
     setNewName(event.target.value)
     
     const personObject = {
-      name: newName
+      name: newName,
+      phone: newPhone
     }
 
     console.log("addPerson",personObject)
@@ -20,9 +22,9 @@ const App = () => {
         //console.log(persons.includes(personObject))
         //persons.some(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
     
-        if(copy.some(person => person.name === newName)){
+        if(copy.some(person => person === personObject)){
           console.log("Object found inside the array.");
-          alert(`the note '${newName}' is already added to phonebook`)
+          alert(`the note '${newName} ${newPhone} ' is already added to phonebook`)
       } else{
           console.log("Object not found.");
           setPersons(copy.concat(personObject))
@@ -44,8 +46,9 @@ const App = () => {
 
   
   const handlePhoneChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
+    const target = event.target;
+    const value = target.name === 'phone' ? setNewPhone(target.value) : target.value;
+    console.log(value)
   }
 
   /*
@@ -60,10 +63,10 @@ const App = () => {
     <h2>Phonebook</h2>
     <form onSubmit={addPerson}>
         <div>
-          name: <input  value={newName}  onChange={handlePersonChange}/>
+          name: <input name="name" value={newName}  onChange={handlePersonChange}/>
         </div>
         <div>
-          number: <input  onChange={handlePhoneChange}/>
+          number: <input name="phone" onChange={handlePhoneChange}/>
         </div>
         <div>
           <button type="submit">add</button>
