@@ -17,46 +17,32 @@ const App = () => {
     }
 
     console.log("addPerson",personObject)
-        // Check if a value exists in the fruits array
-        //console.log(persons.includes(personObject))
-        //persons.some(person => person.name === newName ? alert(`the note '${newName}' is already added to phonebook`) : setPersons(persons.concat(personObject)))
-    
-        if(copy.some(person => person.name === newName) && copy.some(person => person.number === newNumber)){
-          console.log("Object found inside the array.");
-          alert(`the note '${personObject.name} ${personObject.phone} ' is already added to phonebook`)
-      } else{
-          console.log("Object not found.");
+        // Check if a value exists in the persons array
+       if(copy.some(person => person.name === newName) && copy.some(person => person.number === newNumber)){
+         console.log("Object found inside the array.");
+          alert(`the note '${newName} ${newNumber} ' is already added to phonebook`)
+      } else{          
           setPersons(copy.concat(personObject))
-      }
-      console.log("copyTab",copy);
-      console.log("personsTab",persons);
-      
-
-        /*if(persons.includes(personObject)){
-          //alert(newName +" is already added to phonebook")           
-      } else{
-      }*/
+          console.log("Object not found.");
+      }     
     setNewName('')
   }
 
   const handlePersonChange = (event) => {
-    const target = event.target;
-    const value = target.name === 'name' ? setNewName(target.value) : target.value;
-    console.log( target.name ,target.value)
-    /*console.log(event.target.value)
-    setNewName(event.target.value)*/
+    if(event.target.name === 'name')
+      setNewName(event.target.value)    
+
+    console.log( event.target.name ,event.target.value)
   }
   
   const handlePhoneChange = (event) => {
-    const target = event.target;
-    const value = target.name === 'number' ? setNewNumber(target.value) : target.value;
-    console.log( target.name ,target.value)
+    if(event.target.name === 'number')
+      setNewNumber(event.target.value) 
+      
+    console.log( event.target.name ,event.target.value)
   }
 
   /*
-    var array = [{"name": "john"}, {"name": "jack"}];
-    var obj = {"name": "john"};
-    alert(array.indexOf(obj));
     https://www.tutorialrepublic.com/faq/how-to-check-if-an-array-includes-an-object-in-javascript.php
   */
  
