@@ -10,7 +10,7 @@ const App = () => {
   const addPerson = (event) => {    
     event.preventDefault()
     const copy = [...persons]
-    
+
     const personObject = {
       name: newName,
       number: newNumber
