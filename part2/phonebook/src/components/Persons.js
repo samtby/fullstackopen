@@ -6,7 +6,9 @@ const Persons = ({persons,filter}) => {
     console.log()
     return (
     <div>
-        {persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
+        {/*persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)*/}
+        {/*persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)*/}
+        {persons.filter(name =>name.name.toLowerCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
     </div>
     )
 }
