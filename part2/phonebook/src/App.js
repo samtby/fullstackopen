@@ -33,7 +33,7 @@ const App = () => {
         
         setPersons(copy.concat(personObject))
           console.log("Object not found.");
-      }     
+      }           
     //app.setNewName('')
   }
 
@@ -65,7 +65,7 @@ const App = () => {
     </div>
     {/*<Filter filter={newFilter} handle={handleFilterChange} />*/}
     <h3>add a new</h3>
-    <form onSubmit={addPerson}>
+    {/*<form onSubmit={addPerson}>
         <div>
           name: <input name="name" value={newName}  onChange={handlePersonChange}/>
         </div>
@@ -75,8 +75,8 @@ const App = () => {
         <div>
           <button type="submit">add</button>
         </div>
-      </form>
-    {/*<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>*/}
+      </form>*/}
+    <PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>
       <h3>Numbers</h3>
       {persons.filter(name =>name.name.toLowerCase().includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
       {/*<Persons persons={persons} filter={newFilter}/>*/}

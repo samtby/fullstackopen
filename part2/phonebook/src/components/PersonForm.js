@@ -1,9 +1,11 @@
-const PersonForm = ({fonc,persons,name,number,handlePerson,handlePhone}) => {
+import React, { useState } from 'react'
 
+const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
+  const [personsstate, setPersonsstate] = useState(persons);
     const addPerson = (event) => {    
         event.preventDefault()
     
-        const copy = [...persons]
+        const copy = [...personsstate]
         const personObject = {
           name: name,
           number: number
@@ -14,10 +16,10 @@ const PersonForm = ({fonc,persons,name,number,handlePerson,handlePhone}) => {
            if(copy.some(person => person.name === name) && copy.some(person => person.number === number)){
              console.log("Object found inside the array.");
               alert(`the note '${name} ${number} ' is already added to phonebook`)
-          } else{ 
-            
-            fonc(copy.concat(personObject))
+          } else{             
+            setPersonsstate(copy.concat(personObject))
               console.log("Object not found.");
+              console.log("Tab persons",personsstate)
           }     
         //app.setNewName('')
       }
