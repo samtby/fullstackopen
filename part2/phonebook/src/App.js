@@ -4,7 +4,7 @@ const App = () => {
   const [ persons, setPersons ] = useState([
       { name: 'Arto Hellas', number: '040-123456' },
       { name: 'Ada Lovelace', number: '39-44-5323523' },
-      { name: 'Dan Abramov', number: '12-43-234345' },
+      { name: 'Ada Abramov', number: '12-43-234345' },
       { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ]) 
   const [ newName, setNewName ] = useState('')
@@ -79,6 +79,10 @@ const App = () => {
       <h2>Numbers</h2>
        {persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
       {/*<div>debug: {newName}</div>*/}
+      <h2>Test Filter</h2>
+      <div>
+      { persons.filter(name =>name.name.includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
+      </div>
     </div>
   )
 }
