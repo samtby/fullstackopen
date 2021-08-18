@@ -81,7 +81,7 @@ const App = () => {
       {/*<div>debug: {newName}</div>*/}
       <h2>Test Filter</h2>
       <div>
-      { persons.filter(name =>name.name.includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
+      { persons.filter(name =>name.name.toLowerCase().includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
       </div>
     </div>
   )
