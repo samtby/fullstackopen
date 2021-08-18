@@ -74,7 +74,7 @@ const App = () => {
       </form>}
       {/*<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>*/}
       <h3>Numbers</h3>      
-      {persons.filter(name =>name.name.toUpperCase().includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
+      {persons.filter(name =>name.name.toUpperCase().includes(newFilter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
       {/*<Persons persons={persons} filter={newFilter}/>*/}
     </div>
   )
