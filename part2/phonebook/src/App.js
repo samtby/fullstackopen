@@ -11,11 +11,10 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   
-
   const addPerson = (event) => {    
     event.preventDefault()
-    const copy = [...persons]
 
+    const copy = [...persons]
     const personObject = {
       name: newName,
       number: newNumber
@@ -49,15 +48,10 @@ const App = () => {
   
   const handlePhoneChange = (event) => {
     if(event.target.name === 'number')
-      setNewNumber(event.target.value) 
-      
+      setNewNumber(event.target.value)       
     console.log( event.target.name ,event.target.value)
   }
 
-  /*
-    https://www.tutorialrepublic.com/faq/how-to-check-if-an-array-includes-an-object-in-javascript.php
-  */
- 
   return(
     <div>
     <h2>Phonebook</h2>
@@ -77,12 +71,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-       {persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
-      {/*<div>debug: {newName}</div>*/}
-      <h2>Test Filter</h2>
-      <div>
       { persons.filter(name =>name.name.toLowerCase().includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
-      </div>
     </div>
   )
 }
