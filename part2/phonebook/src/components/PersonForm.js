@@ -17,9 +17,9 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
              console.log("Object found inside the array.");
               alert(`the note '${name} ${number} ' is already added to phonebook`)
           } else{             
-            setPersonsstate(copy.concat(personObject))
+            copy.concat(personObject)
+            console.log("Tab persons",copy)
               console.log("Object not found.");
-              console.log("Tab persons",personsstate)
           }     
         //app.setNewName('')
       }
