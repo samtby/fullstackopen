@@ -1,7 +1,8 @@
-  const Filter = () => {
+  const Filter = ({filter,handle}) => {
     return (
-    <div>
-    </div>
+      <div>
+          name: <input name="filter" value={filter}  onChange={handle}/>
+      </div>
     )
 }
 export default Filter 

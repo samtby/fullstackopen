@@ -14,6 +14,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   
+
   const addPerson = (event) => {    
     event.preventDefault()
 
@@ -28,11 +29,12 @@ const App = () => {
        if(copy.some(person => person.name === newName) && copy.some(person => person.number === newNumber)){
          console.log("Object found inside the array.");
           alert(`the note '${newName} ${newNumber} ' is already added to phonebook`)
-      } else{          
-          setPersons(copy.concat(personObject))
+      } else{ 
+        
+        setPersons(copy.concat(personObject))
           console.log("Object not found.");
       }     
-    setNewName('')
+    //app.setNewName('')
   }
 
   const handleFilterChange = (event) => {
@@ -58,11 +60,12 @@ const App = () => {
   return(
     <div>
     <h2>Phonebook</h2>
-      <div>
+    <div>
           name: <input name="filter" value={newFilter}  onChange={handleFilterChange}/>
-      </div>
-    <h2>add a new</h2>
-      <form onSubmit={addPerson}>
+    </div>
+    {/*<Filter filter={newFilter} handle={handleFilterChange} />*/}
+    <h3>add a new</h3>
+    <form onSubmit={addPerson}>
         <div>
           name: <input name="name" value={newName}  onChange={handlePersonChange}/>
         </div>
@@ -73,8 +76,10 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
-      <h2>Numbers</h2>
+    {/*<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>*/}
+      <h3>Numbers</h3>
       {persons.filter(name =>name.name.toLowerCase().includes(newFilter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
+      {/*<Persons persons={persons} filter={newFilter}/>*/}
     </div>
   )
 }
