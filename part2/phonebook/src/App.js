@@ -13,29 +13,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
-  /*
-  const addPerson = (event) => {    
-    event.preventDefault()
-
-    const copy = [...persons]
-    const personObject = {
-      name: newName,
-      number: newNumber
-    }
-
-    console.log("addPerson",personObject)
-        // Check if a value exists in the persons array
-       if(copy.some(person => person.name === newName) && copy.some(person => person.number === newNumber)){
-         console.log("Object found inside the array.");
-          alert(`the note '${newName} ${newNumber} ' is already added to phonebook`)
-      } else{ 
-        
-        setPersons(copy.concat(personObject))
-          console.log("Object not found.");
-      }           
-    //app.setNewName('')
-  }*/
-
+ 
   const handleFilterChange = (event) => {
     if(event.target.name === 'filter')
     setNewFilter(event.target.value)    
