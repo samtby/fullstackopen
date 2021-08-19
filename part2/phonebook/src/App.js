@@ -13,7 +13,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
-    
+  /*
   const addPerson = (event) => {    
     event.preventDefault()
 
@@ -34,7 +34,7 @@ const App = () => {
           console.log("Object not found.");
       }           
     //app.setNewName('')
-  }
+  }*/
 
   const handleFilterChange = (event) => {
     if(event.target.name === 'filter')
@@ -61,19 +61,9 @@ const App = () => {
     <h2>Phonebook</h2>
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-    {<form onSubmit={addPerson}>
-        <div>
-          name: <input name="name" value={newName}  onChange={handlePersonChange}/>
-        </div>
-        <div>
-          number: <input name="number" value={newNumber} onChange={handlePhoneChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>}
-      {/*<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>*/}
-      <h3>Numbers</h3>      
+      <h3>PersonForm</h3>
+      {<PersonForm persons={persons} name ={newName} number={newNumber} handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>}
+      <h3>Numbers</h3>
       {/*persons.filter(name =>name.name.toUpperCase().includes(newFilter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)*/}
       {<Persons persons={persons} filter={newFilter}/>}
     </div>

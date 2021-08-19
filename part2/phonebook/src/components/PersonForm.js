@@ -1,31 +1,32 @@
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 
-const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
-  const [personsstate, setPersonsstate] = useState(persons);
+const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhone}) => {
+  //const [personsstate, setPersonsstate] = useState(persons);
     const addPerson = (event) => {    
         event.preventDefault()
     
-        const copy = [...personsstate]
+        //const copy = [...personsstate]
         const personObject = {
           name: name,
           number: number
         }
-    
         console.log("addPerson",personObject)
             // Check if a value exists in the persons array
-           if(copy.some(person => person.name === name) && copy.some(person => person.number === number)){
+           if(persons.some(person => person.name === name) && persons.some(person => person.number === number)){
              console.log("Object found inside the array.");
               alert(`the note '${name} ${number} ' is already added to phonebook`)
-          } else{             
-            copy.concat(personObject)
-            console.log("Tab persons",copy)
+          } else{
+            //setPersonsstate()
+            //handleAddPerson(persons.concat(personObject))
+            handleAddPerson()
+            console.log("Tab persons",persons)
               console.log("Object not found.");
           }     
         //app.setNewName('')
       }
     return (
     <div>
-        <form onSubmit={addPerson}>
+      <form onSubmit={addPerson}>
         <div>
           name: <input name="name" value={name}  onChange={handlePerson}/>
         </div>
