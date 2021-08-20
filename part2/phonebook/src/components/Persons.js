@@ -1,14 +1,3 @@
-const Persons = ({persons,filter}) => {
-    const prop ={persons,filter}
-    console.log('Persons filter',prop.filter)
-    //{persons.filter(name =>name.name.toLowerCase().includes(filter)).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}         
-    //{persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
-    return (
-    <div>
-        {/*persons.map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)*/}
-        {/*persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)*/}
-        {persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}
-    </div>
-    )
-}
+const Persons = ({persons,filter}) =><div>{persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}</div>
+
 export default Persons 
