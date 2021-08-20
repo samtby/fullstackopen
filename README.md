@@ -40,7 +40,14 @@ npm start
 * [Props It is possible to pass data to components using so called props.](https://reactjs.org/docs/components-and-props.html)
 * [JSbin](https://jsbin.com/?js,console)
 * [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
-
+* [Install JSON Server](https://github.com/typicode/json-server#getting-started)
+```
+npm install -g json-server
+```
+* Run JSON Server on your app
+```
+npx json-server --port 3001 --watch db.json
+```
 ## JavaScript materials
 
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
