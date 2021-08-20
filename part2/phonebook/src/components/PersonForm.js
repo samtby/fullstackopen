@@ -1,22 +1,13 @@
-//import React, { useState } from 'react'
-
 const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhone}) => {
     const addPerson = (event) => {    
         event.preventDefault()
-        const personObject = {
-          name: name,
-          number: number
-        }
-        console.log("addPerson",personObject)
-            // Check if a value exists in the persons array
-           if(persons.some(person => person.name === name) && persons.some(person => person.number === number)){
-             console.log("Object found inside the array.");
-              alert(`the note '${name} ${number} ' is already added to phonebook`)
-          } else{
-            handleAddPerson()
-              console.log("Tab persons",persons)
-              console.log("Object not found.");
-          }     
+        if(persons.some(person => person.name === name) && persons.some(person => person.number === number)){
+          console.log("Object found inside the array.");
+          alert(`the note '${name} ${number} ' is already added to phonebook`)
+        }else{
+          handleAddPerson()              
+          console.log("Object not found.");
+        }     
       }
     return (
     <div>
@@ -34,4 +25,5 @@ const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhon
     </div>
     )
 }
+
 export default PersonForm
