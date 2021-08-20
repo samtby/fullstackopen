@@ -38,7 +38,6 @@ const App = () => {
     <h2>Phonebook</h2>
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-      <h3>PersonForm</h3>
       {<PersonForm persons={persons} name ={newName} number={newNumber} handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>}
       <h3>Numbers</h3>
       {<Persons persons={persons} filter={newFilter}/>}
