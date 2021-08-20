@@ -25,4 +25,5 @@ const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhon
     </div>
     )
 }
+
 export default PersonForm
