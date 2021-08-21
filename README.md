@@ -48,6 +48,8 @@ npm install -g json-server
 ```
 npx json-server --port 3001 --watch db.json
 ```
+
+* [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 ## JavaScript materials
 
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
