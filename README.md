@@ -48,8 +48,25 @@ npm install -g json-server
 ```
 npx json-server --port 3001 --watch db.json
 ```
+* Install json-server as a development dependency (only used during development) by executing the command:
+```
+npm install json-server --save-dev
+```
+and making a small addition to the scripts part of the package.json file:
+
+```
+"server": "json-server -p3001 --watch db.json"
+```
 
 * [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+* [Promise based HTTP client for the browser and node.js](https://www.npmjs.com/package/axios)
+Execute command at the root of the project:
+```
+npm install axios
+```
+Axios is now included among the other dependencies: in package.json in section dependencies
+
 ## JavaScript materials
 
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
@@ -128,6 +145,20 @@ You need for node_module
 
 ```
 npm install react-scripts --save
+```
+
+## Problem can't find module
+
+```
+npm cache verify && rm -rf node_modules/ && npm i
+```
+or 
+```
+npm i --legacy-peer-deps
+```
+or
+```
+npm update --force
 ```
 
 ## React auto refresh with wsl2 
