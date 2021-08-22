@@ -41,6 +41,7 @@ npm start
 * [JSbin](https://jsbin.com/?js,console)
 * [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
 * [Install JSON Server](https://github.com/typicode/json-server#getting-started)
+* [Using Concurrently with json-server and your React App](https://medium.com/@joelazarz/using-concurrently-with-json-server-and-your-react-app-3d07487acc50)
 ```
 npm install -g json-server
 ```
@@ -56,6 +57,11 @@ and making a small addition to the scripts part of the package.json file:
 
 ```
 "server": "json-server -p3001 --watch db.json"
+```
+After install j-son server and backend as dependencies in our project.
+
+```
+ npm i -D json-server backend
 ```
 
 * [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
