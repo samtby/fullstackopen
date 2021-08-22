@@ -63,7 +63,10 @@ After install j-son server and backend as dependencies in our project.
 ```
  npm i -D json-server backend
 ```
-
+In package.json
+```
+"dev": "concurrently \"npm run start\" \"npm run json-server\""
+```
 * [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
 * [Promise based HTTP client for the browser and node.js](https://www.npmjs.com/package/axios)
