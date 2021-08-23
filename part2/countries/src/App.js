@@ -4,12 +4,13 @@ import Countries from './components/Countries'
 import axios from 'axios'
 
 const App = () => {
-  const [ newFilter, setNewFilter ] = useState('Fi')
+  const [ newFilter, setNewFilter ] = useState('rou')
   const [ countries, setCountries ] = useState([]) 
+
   useEffect(() => {
     console.log('effect')
     axios
-    .get(`https://restcountries.eu/rest/v2/name/${newFilter}?fullText=true`)
+    .get(`https://restcountries.eu/rest/v2/name/${newFilter}`)
     .then(response => {
       console.log('promise fulfilled')
       setCountries(response.data)
