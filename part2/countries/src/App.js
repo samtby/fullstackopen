@@ -4,7 +4,7 @@ import Countries from './components/Countries'
 import axios from 'axios'
 
 const App = () => {
-  const [ newFilter, setNewFilter ] = useState('France')
+  const [ newFilter, setNewFilter ] = useState('Fi')
   const [ countries, setCountries ] = useState([]) 
   useEffect(() => {
     console.log('effect')
@@ -20,7 +20,7 @@ const App = () => {
     if(event.target.name === 'filter')
     setNewFilter(event.target.value)    
 
-    console.log( event.target.name ,event.target.value)
+    console.log(event.target.name ,event.target.value)
   }
   return (
     <div>
