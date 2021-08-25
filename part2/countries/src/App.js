@@ -19,7 +19,7 @@ const App = () => {
           })
         console.log('effect',countries)
       }
-    }, [newFilter,countries])// Only re-run the effect if newFilter or countries changes
+    }, [newFilter])// Only re-run the effect if newFilter or countries changes
     
   const handleFilterChange = (event) => {
     if(event.target.name === 'filter')
