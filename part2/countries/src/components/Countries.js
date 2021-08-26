@@ -5,24 +5,29 @@ const Countries = ({countries,filter}) =>{
     
     
     console.log('countries',countries.length)
+    const showCountry = () =>{
+
+      console.log('showCountry')
+    }
+
 return (
     <div>
         {
         countries.length <=10? 
           countries.length ===1?
             //countries.map(countrie =><li key={countrie.name.toString()}> {countrie.name } {countrie.capital}</li>)
-            countries.map(countrie =>
-              <div key={countrie.name.toString()}>
-                  <h2>{countrie.name }</h2>
-                  <li>capital {countrie.capital}</li>
-                  <li>population {countrie.population}</li>
+            countries.map(country =>
+              <div key={country.name.toString()}>
+                  <h2>{country.name }</h2>
+                  <li>capital {country.capital}</li>
+                  <li>population {country.population}</li>
                   <h2>languages</h2>
                   <ul>
-                    {countrie.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
+                    {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
                   </ul>                
-                  <img  src={countrie.flag} alt="flag"  height="87px"  width="100px"/>                
+                  <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
               </div>)
-              :countries.map(countrie =><li key={countrie.name.toString()}> {countrie.name } {countrie.number}</li>)
+              :countries.map(country =><li key={country.name.toString()}> {country.name } {country.number}<button  type="button" onClick={showCountry} >show</button></li> )
               :<p>Too many matches, specify another filter</p>}
     </div>
     )
