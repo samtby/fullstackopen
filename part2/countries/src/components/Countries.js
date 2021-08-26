@@ -1,12 +1,14 @@
 //const Countries = ({countries,filter}) =><div>{countries.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}</div>
+import React, {useState} from 'react'
 const Countries = ({countries,filter}) =>{
     const prop = [countries,filter]
+    const [ currentCountry, setcurrentCountry ] = useState('')
     console.log('prop',  prop[0].length)
     
     
     console.log('countries',countries.length)
-    const showCountry = () =>{
-
+    const showCountry = (contry) =>{      
+      setcurrentCountry(contry)
       console.log('showCountry')
     }
 
@@ -16,7 +18,7 @@ return (
         countries.length <=10? 
           countries.length ===1?
             //countries.map(countrie =><li key={countrie.name.toString()}> {countrie.name } {countrie.capital}</li>)
-            countries.map(country =>
+            countries.filter(word => word.name === currentCountry).countries.map(country =>
               <div key={country.name.toString()}>
                   <h2>{country.name }</h2>
                   <li>capital {country.capital}</li>
