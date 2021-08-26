@@ -6,11 +6,8 @@ import axios from 'axios'
 const App = () => {
   const [ newFilter, setNewFilter ] = useState('')
   const [ countries, setCountries ] = useState([]) 
-  const [error, setError] = useState('');
-  const initialStateCountries = []
     useEffect(() => {
-      console.log('effect')
-        if(newFilter !== ''){
+        if(newFilter !==''){
           axios
           .get(`https://restcountries.eu/rest/v2/name/${newFilter}`)
           .then(
@@ -22,10 +19,11 @@ const App = () => {
             setCountries(response.data)
           })
           .catch((err) => {
-            console.log('err',err)
-            setError(err);
+            console.log('err',err)            
         })
-        console.log('effect',countries)
+        //console.log('effect',countries)
+      }else{
+        setCountries([])
       }
     }, [newFilter])// Only re-run the effect if newFilter changes
     
@@ -35,9 +33,6 @@ const App = () => {
     console.log(event.target.name ,event.target.value)
   }
 
-  const clearStateCountries = () => {
-    setCountries({ ...initialStateCountries });
-  };
   return (
     <div>
       <Filter filter={newFilter} handle={handleFilterChange} />
