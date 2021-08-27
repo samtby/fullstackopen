@@ -17,6 +17,8 @@ const Countries = ({countries,filter}) =>{
 if(currentCountry.length ===1){
 
   //setcurrentCountry(countries.filter(counties => counties.name === currentCountry))
+
+  //https://sebhastian.com/react-filter/
 return (
   <div>
     {countries.map(country =>
