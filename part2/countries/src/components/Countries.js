@@ -2,17 +2,21 @@
 import React, {useState} from 'react'
 const Countries = ({countries,filter}) =>{
     const prop = [countries,filter]
-    const [ currentCountry, setcurrentCountry ] = useState('')
+    const [ currentCountry, setcurrentCountry ] = useState([])
     console.log('prop',  prop[0].length)
     
-    
+    console.log('showCountry',currentCountry)
     console.log('countries',countries.length)
     const showCountry = (contry) =>{      
       setcurrentCountry(contry)
-      console.log('showCountry')
+      
     }
-//countries.filter(word => word.name === currentCountry).
-if(countries.length ===1){
+ //countries.filter(counties => counties.name === currentCountry
+
+//if(countries.length ===1){
+if(currentCountry.length ===1){
+
+  //setcurrentCountry(countries.filter(counties => counties.name === currentCountry))
 return (
   <div>
     {countries.map(country =>
