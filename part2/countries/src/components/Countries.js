@@ -7,21 +7,26 @@ const Countries = ({countries,filter}) =>{
     console.log('prop',  prop[0].length)
     
     console.log('showCountry',currentCountry)
-    console.log('countries',countries.length)
+    console.log('countries',countries)
     const showCountry = (contry) =>{      
       setcurrentCountry(contry)
       
     }
  //countries.filter(counties => counties.name === currentCountry
- if(currentCountry !=='')
-    setCountry(countries.filter(counties => counties.name === currentCountry))
+ 
+ if(currentCountry !==''){
+    const copy = [...countries]
+    setCountry(copy.filter(counties => counties.alpha3Code === currentCountry))
+    console.log('country',country)
+ }
+    
 //if(countries.length ===1){
-if(country.length ===1){
-
+if(countries.length ===1 ){
   //https://sebhastian.com/react-filter/
 return (
   <div>
-    {countries.map(country =>
+    {countries
+      .map(country =>
               <div key={country.name.toString()}>
                   <h2>{country.name }</h2>
                   <li>capital {country.capital}</li>
@@ -38,7 +43,7 @@ return (
     }else if(countries.length <=10){
       return (
         <div> 
-            {countries.map(country =><li key={country.name.toString()}> {country.name } {country.number}<button  type="button" onClick={()=> setcurrentCountry(country.name.toString())} >show</button></li>)}
+            {countries.map(country =><li key={country.name.toString()}> {country.name } {country.number}<button  type="button" onClick={()=> setcurrentCountry(country.alpha3Code.toString())} >show</button></li>)}
       </div>
       )
     }else{
