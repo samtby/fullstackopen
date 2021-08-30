@@ -2,7 +2,8 @@
 import React, {useState} from 'react'
 const Countries = ({countries,filter}) =>{
     const prop = [countries,filter]
-    const [ currentCountry, setcurrentCountry ] = useState([])
+    const [ currentCountry, setcurrentCountry ] = useState('')
+    const [ country, setCountry ] = useState([])
     console.log('prop',  prop[0].length)
     
     console.log('showCountry',currentCountry)
@@ -12,11 +13,10 @@ const Countries = ({countries,filter}) =>{
       
     }
  //countries.filter(counties => counties.name === currentCountry
-
+ if(currentCountry !=='')
+    setCountry(countries.filter(counties => counties.name === currentCountry))
 //if(countries.length ===1){
-if(currentCountry.length ===1){
-
-  //setcurrentCountry(countries.filter(counties => counties.name === currentCountry))
+if(country.length ===1){
 
   //https://sebhastian.com/react-filter/
 return (
@@ -38,7 +38,7 @@ return (
     }else if(countries.length <=10){
       return (
         <div> 
-            {countries.map(country =><li key={country.name.toString()}> {country.name } {country.number}<button  type="button" onClick={showCountry} >show</button></li>)}
+            {countries.map(country =><li key={country.name.toString()}> {country.name } {country.number}<button  type="button" onClick={()=> setcurrentCountry(country.name.toString())} >show</button></li>)}
       </div>
       )
     }else{
