@@ -12,16 +12,12 @@ const App = () => {
           .get(`https://restcountries.eu/rest/v2/name/${newFilter}`)
           .then(
             response => {
-              console.log('response status',response)
-              
-            //console.log('promise fulfilled',response)
-            
+              //console.log('response status',response)            
             setCountries(response.data)
           })
           .catch((err) => {
-            console.log('err',err)            
+            //console.log('err',err)            
         })
-        //console.log('effect',countries)
       }else{
         setCountries([])
       }

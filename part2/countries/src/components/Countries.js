@@ -1,49 +1,44 @@
 //const Countries = ({countries,filter}) =><div>{countries.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}</div>
 import React, {useState,useEffect} from 'react'
 const Countries = ({countries,filter}) =>{
-
-    //const prop = [countries,filter]
     const [ currentCountry, setcurrentCountry ] = useState('')   
-    console.log('showCountry',currentCountry)
-    console.log('countries',countries)
-
     useEffect(() => {    
       setcurrentCountry('')
     }, [filter])
-  if(currentCountry !==''){
+  
+    if(currentCountry !==''){
     return (
       <div>
         {countries.filter(counties => counties.alpha3Code === currentCountry)
           .map(country =>
-                  <div key={country.name.toString()}>
-                      <h2>{country.name }</h2>
-                      <li>capital {country.capital}</li>
-                      <li>population {country.population}</li>
-                      <h2>languages</h2>
-                      <ul>
-                        {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
-                      </ul>                
-                      <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
-                  </div>)
+            <div key={country.name.toString()}>
+                <h2>{country.name }</h2>
+                <li>capital {country.capital}</li>
+                <li>population {country.population}</li>
+                <h2>languages</h2>
+                <ul>
+                  {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
+                </ul>                
+                <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
+            </div>)
             }
         </div>
       )      
   }else if(countries.length ===1 ){
-  //https://sebhastian.com/react-filter/
-return (
-  <div>
-    {countries
-      .map(country =>
-              <div key={country.name.toString()}>
-                  <h2>{country.name }</h2>
-                  <li>capital {country.capital}</li>
-                  <li>population {country.population}</li>
-                  <h2>languages</h2>
-                  <ul>
-                    {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
-                  </ul>                
-                  <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
-              </div>)
+  return (
+    <div>
+      {countries
+        .map(country =>
+          <div key={country.name.toString()}>
+              <h2>{country.name }</h2>
+              <li>capital {country.capital}</li>
+              <li>population {country.population}</li>
+              <h2>languages</h2>
+              <ul>
+                {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
+              </ul>                
+              <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
+          </div>)
         }
     </div>
   )

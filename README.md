@@ -42,6 +42,7 @@ npm start
 * [ECMAScript compatibility table](http://kangax.github.io/compat-table/es2016plus/)
 * [Install JSON Server](https://github.com/typicode/json-server#getting-started)
 * [Using Concurrently with json-server and your React App](https://medium.com/@joelazarz/using-concurrently-with-json-server-and-your-react-app-3d07487acc50)
+* [React Filter](https://sebhastian.com/react-filter/)
 ```
 npm install -g json-server
 ```
