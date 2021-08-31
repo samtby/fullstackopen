@@ -19,7 +19,7 @@
 # Create React App
 
 ```
-npx create-react-app myapp
+npx create-react-app myapp {. | myApp}
 cd my-app
 npm start
 ```
