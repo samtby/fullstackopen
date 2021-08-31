@@ -1,27 +1,32 @@
 //const Countries = ({countries,filter}) =><div>{countries.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}</div>
 import React, {useState} from 'react'
 const Countries = ({countries,filter}) =>{
-    const prop = [countries,filter]
-    const [ currentCountry, setcurrentCountry ] = useState('')
-    const [ country, setCountry ] = useState([])
-    console.log('prop',  prop[0].length)
-    
+
+    //const prop = [countries,filter]
+    const [ currentCountry, setcurrentCountry ] = useState('')   
     console.log('showCountry',currentCountry)
     console.log('countries',countries)
-    const showCountry = (contry) =>{      
-      setcurrentCountry(contry)
-      
-    }
- //countries.filter(counties => counties.name === currentCountry
- 
- if(currentCountry !==''){
-    const copy = [...countries]
-    setCountry(copy.filter(counties => counties.alpha3Code === currentCountry))
-    console.log('country',country)
- }
+
     
-//if(countries.length ===1){
-if(countries.length ===1 ){
+  if(currentCountry !==''){
+    return (
+      <div>
+        {countries.filter(counties => counties.alpha3Code === currentCountry)
+          .map(country =>
+                  <div key={country.name.toString()}>
+                      <h2>{country.name }</h2>
+                      <li>capital {country.capital}</li>
+                      <li>population {country.population}</li>
+                      <h2>languages</h2>
+                      <ul>
+                        {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
+                      </ul>                
+                      <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
+                  </div>)
+            }
+        </div>
+      )      
+  }else if(countries.length ===1 ){
   //https://sebhastian.com/react-filter/
 return (
   <div>
