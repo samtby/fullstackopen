@@ -1,5 +1,5 @@
 //const Countries = ({countries,filter}) =><div>{countries.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase())).map(person =><li key={person.name.toString()}> {person.name } {person.number}</li>)}</div>
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 const Countries = ({countries,filter}) =>{
 
     //const prop = [countries,filter]
@@ -7,7 +7,9 @@ const Countries = ({countries,filter}) =>{
     console.log('showCountry',currentCountry)
     console.log('countries',countries)
 
-    
+    useEffect(() => {    
+      setcurrentCountry('')
+    }, [filter])
   if(currentCountry !==''){
     return (
       <div>
