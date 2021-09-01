@@ -3,17 +3,17 @@ import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 const Countries = ({countries,filter}) =>{
     const [ currentCountry, setcurrentCountry ] = useState('')
-    const [ currentWeather, setcurrentWeather ] = useState([])
+    const [ currentWeather, setcurrentWeather ] = useState({})
     const api_key = process.env.REACT_APP_API_KEY
     useEffect(() => {    
       setcurrentCountry('')
-      setcurrentWeather([])
+      setcurrentWeather({})
     }, [filter])
 
     useEffect(() => {
       if(currentCountry !==''){    
         const capital = countries.filter(counties => counties.alpha3Code === currentCountry).map(country =>country.capital.toString())
-
+        
     axios
     .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${capital}`)
     .then(
@@ -25,11 +25,13 @@ const Countries = ({countries,filter}) =>{
       //console.log('err',err)            
   })
   }else{
-    setcurrentWeather([])
+    setcurrentWeather({})
   }
 }, [api_key,countries,currentCountry])/// Only re-run the effect if newFilter changes
 
-    if(currentCountry !==''){    
+    if(currentCountry !=='' && currentWeather.location !== undefined){    
+
+      console.log('currentWeather',currentWeather)
     return (
       <div>
         {countries.filter(counties => counties.alpha3Code === currentCountry)
@@ -43,8 +45,12 @@ const Countries = ({countries,filter}) =>{
                   {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
                 </ul>                
                 <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>    
-                <h2>Weather in {country.capital}</h2>      
-            </div>)}            
+                <h2>Weather in {country.capital}</h2>               
+            </div>)
+            }
+            {
+                <h2>Weather in {currentWeather.location.name}</h2>
+            }
         </div>
       )      
   }else if(countries.length ===1 ){
