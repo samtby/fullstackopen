@@ -40,7 +40,8 @@ const Countries = ({countries,filter}) =>{
 }, [api_key,countries,currentCountry])/// Only re-run the effect if newFilter changes
 
     if(currentCountry !=='' && countries.length >1 && currentWeather.location !== undefined){
-      console.log('currentWeather',currentWeather)
+      //confilct 
+      console.log('currentWeather',currentWeather) 
     return (
       <div>
         {countries.filter(counties => counties.alpha3Code === currentCountry)
