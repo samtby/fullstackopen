@@ -13,9 +13,19 @@ const Countries = ({countries,filter}) =>{
     useEffect(() => {
       if(currentCountry !==''){    
         const capital = countries.filter(counties => counties.alpha3Code === currentCountry).map(country =>country.capital.toString())
-        
     axios
     .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${capital}`)
+    .then(
+      response => {
+        //console.log('response status',response)            
+      setcurrentWeather(response.data)
+    })
+    .catch((err) => {
+      //console.log('err',err)            
+  })
+  }else if(countries.length ===1){ // tab[0]
+    axios
+    .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${countries[0].capital}`)
     .then(
       response => {
         //console.log('response status',response)            
@@ -29,34 +39,32 @@ const Countries = ({countries,filter}) =>{
   }
 }, [api_key,countries,currentCountry])/// Only re-run the effect if newFilter changes
 
-    if(currentCountry !=='' && currentWeather.location !== undefined){    
-
+    if(currentCountry !=='' && countries.length >1 && currentWeather.location !== undefined){
       console.log('currentWeather',currentWeather)
     return (
       <div>
         {countries.filter(counties => counties.alpha3Code === currentCountry)
           .map(country =>
-            <div key={country.name.toString()}>
-                <h2>{country.name }</h2>
-                <li>capital {country.capital}</li>
-                <li>population {country.population}</li>
-                <h2>languages</h2>
-                <ul>
-                  {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
-                </ul>                
-                <img  src={country.flag} alt="flag"  height="87px"  width="150px"/>                
-            </div>)
-            }
+              <div key={country.name.toString()}>
+                  <h2>{country.name }</h2>
+                  <li>capital {country.capital}</li>
+                  <li>population {country.population}</li>
+                  <h2>languages</h2>
+                  <ul>
+                    {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
+                  </ul>                
+                  <img  src={country.flag} alt="flag"  height="87px"  width="150px"/>                
+              </div>)
+          }
             {<h2>Weather in {currentWeather.location.name}</h2>}
             {<p><strong>temperature: </strong>{currentWeather.current.temperature} Celcius</p>}
             <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="100px"/>                
             {<p><strong>wind: </strong>{currentWeather.current.wind_speed} mph direction {currentWeather.current.wind_dir}</p>}
         </div>
       )      
-
-
-      
-  }else if(countries.length ===1 ){
+  }else if(countries.length ===1 && currentWeather.location !== undefined){
+    console.log('countries', countries[0].name)
+    console.log('currentWeather', currentWeather)
   return (
     <div>
       {countries
@@ -71,9 +79,13 @@ const Countries = ({countries,filter}) =>{
               </ul>                
               <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
           </div>)
-        }     
+        }
+        {<h2>Weather in {currentWeather.location.name}</h2>}
+        {<p><strong>temperature: </strong>{currentWeather.current.temperature} Celcius</p>}
+        <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="100px"/>                
+        {<p><strong>wind: </strong>{currentWeather.current.wind_speed} mph direction {currentWeather.current.wind_dir}</p>}
     </div>
-  )
+    )
     }else if(countries.length <=10){
       return (
         <div> 
