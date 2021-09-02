@@ -44,15 +44,18 @@ const Countries = ({countries,filter}) =>{
                 <ul>
                   {country.languages.map(language => <li key={language.name.toString()}>{language.name}</li>)}
                 </ul>                
-                <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>    
-                <h2>Weather in {country.capital}</h2>               
+                <img  src={country.flag} alt="flag"  height="87px"  width="150px"/>                
             </div>)
             }
-            {
-                <h2>Weather in {currentWeather.location.name}</h2>
-            }
+            {<h2>Weather in {currentWeather.location.name}</h2>}
+            {<p><strong>temperature: </strong>{currentWeather.current.temperature} Celcius</p>}
+            <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="100px"/>                
+            {<p><strong>wind: </strong>{currentWeather.current.wind_speed} mph direction {currentWeather.current.wind_dir}</p>}
         </div>
       )      
+
+
+      
   }else if(countries.length ===1 ){
   return (
     <div>
@@ -68,7 +71,7 @@ const Countries = ({countries,filter}) =>{
               </ul>                
               <img  src={country.flag} alt="flag"  height="87px"  width="100px"/>                
           </div>)
-        }
+        }     
     </div>
   )
     }else if(countries.length <=10){
