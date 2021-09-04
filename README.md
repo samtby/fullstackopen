@@ -182,6 +182,13 @@ CHOKIDAR_USEPOLLING=true
 FAST_REFRESH=false
 ```
 
+Add a environnement variable to Key API on .env
+REACT_APP_API_KEY=MyKey
+
+Using on React Component
+```
+const api_key = process.env.REACT_APP_API_KEY
+```
 ### Solution n°2
 
 Put the project inside the wsl directory that can be accessible with \\wsl$ variable inside Windows environement.
