@@ -77,6 +77,9 @@ npm install axios
 ```
 Axios is now included among the other dependencies: in package.json in section dependencies
 
+## Programer's materials
+
+* [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
 ## JavaScript materials
 
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
