@@ -85,7 +85,8 @@ Axios is now included among the other dependencies: in package.json in section d
 * [javascript.info](https://github.com/getify/You-Dont-Know-JS)
 * [Destructuring](https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0)
 * [JS Refactor plugin for VS Code that automatically changes short form arrow functions into their longer form, and vice versa.](https://marketplace.visualstudio.com/items?itemName=cmstead.jsrefactor)
-
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+* [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 # JavaScript Arrays
 
 * [Higher-order functions](https://www.youtube.com/watch?v=BMUiFMZr7vk&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84)
