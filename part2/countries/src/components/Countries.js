@@ -59,7 +59,7 @@ const Countries = ({countries,filter}) =>{
           }
             {<h2>Weather in {currentWeather.location.name}</h2>}
             {<p><strong>temperature: </strong>{currentWeather.current.temperature} Celcius</p>}
-            <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="100px"/>                
+            <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="150px"/>                
             {<p><strong>wind: </strong>{currentWeather.current.wind_speed} mph direction {currentWeather.current.wind_dir}</p>}
         </div>
       )      
@@ -83,7 +83,7 @@ const Countries = ({countries,filter}) =>{
         }
         {<h2>Weather in {currentWeather.location.name}</h2>}
         {<p><strong>temperature: </strong>{currentWeather.current.temperature} Celcius</p>}
-        <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="100px"/>                
+        <img  src={currentWeather.current.weather_icons} alt="flag"  height="87px"  width="150px"/>                
         {<p><strong>wind: </strong>{currentWeather.current.wind_speed} mph direction {currentWeather.current.wind_dir}</p>}
     </div>
     )
