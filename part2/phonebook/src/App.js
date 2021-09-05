@@ -41,7 +41,8 @@ const App = () => {
     <h2>Phonebook</h2>
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-      {<PersonForm persons={persons} name ={newName} number={newNumber} handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>}
+      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange}/>}
+      {/*handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))}*/}
       <h3>Numbers</h3>
       {<Persons persons={persons} filter={newFilter}/>}
     </div>

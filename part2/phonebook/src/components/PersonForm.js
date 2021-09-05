@@ -1,14 +1,16 @@
 import personService from '../services/persons'
 
-const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhone}) => {
-    const addPerson = (event) => {    
+const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
+//handleAddPerson
+  const addPerson = (event) => {    
         event.preventDefault()
         if(persons.some(person => person.name === name) && persons.some(person => person.number === number)){
           console.log("Object found inside the array.");
           alert(`the note '${name} ${number} ' is already added to phonebook`)
         }else{
-          handleAddPerson()              
+          //handleAddPerson()              
           console.log("Object not found.");
+          personService.create({ name , number })
         }     
       }
     return (
