@@ -1,3 +1,5 @@
+import personService from '../services/persons'
+
 const PersonForm = ({persons,name,number,handleAddPerson,handlePerson,handlePhone}) => {
     const addPerson = (event) => {    
         event.preventDefault()
