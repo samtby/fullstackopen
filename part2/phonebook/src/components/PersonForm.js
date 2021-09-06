@@ -1,6 +1,6 @@
 import personService from '../services/persons'
 
-const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
+const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleGetAll}) => {
 //handleAddPerson
   const addPerson = (event) => {    
         event.preventDefault()
@@ -11,7 +11,8 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone}) => {
           //handleAddPerson()              
           console.log("Object not found.");
           personService.create({ name , number })
-        }     
+          //handleGetAll()
+        }    
       }
     return (
     <div>
