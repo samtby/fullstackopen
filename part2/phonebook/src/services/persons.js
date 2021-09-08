@@ -20,7 +20,7 @@ const update = (id, newObject) => {
 const del = (id) => {
   const request = axios.delete(`${baseUrl}/${id}`)
   console.log("urdDelete",baseUrl,id)  
-  return request.then(response =>console.log("response",response))
+  return request.then(response =>response)
 }
 
 const request = { getAll, create, update, del}
