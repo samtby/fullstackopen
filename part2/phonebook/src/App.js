@@ -6,7 +6,7 @@ import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState('')
+  const [ newName, setNewName ] = useState('Arto Hellas')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
  
