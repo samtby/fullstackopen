@@ -10,18 +10,21 @@ const deletePerson = (id,name) => {
     //console.log(personService.getAll())
 
     if (window.confirm(`Delete ${name} ?`)) {
-        personService.del(id).then(response =>{response.status === 200?console.log(response.status):console.log(response.status)})    
+        personService.del(id).then(response =>{response.status === 200?handleGetAll():console.log(response.status)})        
     }
 
 }
 return (
     <div>
-        {persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase()))
+        { persons !== undefined?
+            persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase()))
             .map(person =>
                 <li key={person.name.toString()}> {person.name } {person.number}
-                    <button  type="button" onClick={()=>deletePerson(person.id,person.name)}>delete</button>
+                <button  type="button" onClick={()=>deletePerson(person.id,person.name)}>delete</button>
                 </li>
-                )}
+                )
+            :'Error'
+        }
     </div>)
 }
 export default Persons

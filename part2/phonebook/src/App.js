@@ -17,6 +17,12 @@ const App = () => {
       setPersons(data)
     })
   }, [])
+
+   
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  
   
   const handleFilterChange = (event) => {
     if(event.target.name === 'filter')
@@ -44,7 +50,7 @@ const App = () => {
       {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleGetAll={()=> setPersons(personService.getAll())}/>}
       {/*handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))}*/}
       <h3>Numbers</h3>
-      {<Persons persons={persons} filter={newFilter} handleGetAll={()=> setPersons()}/>}
+      {<Persons persons={persons} filter={newFilter} handleGetAll={refreshPage}/>}
     </div>
   )
 }
