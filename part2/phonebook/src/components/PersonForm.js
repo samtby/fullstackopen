@@ -16,8 +16,9 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleGetAll})
           }else{
             //handleAddPerson()              
             console.log("Object not found.");
-            personService.create({ name , number })
-            //handleGetAll()
+            //personService.create({ name , number }).then(response =>{response.status === 200?console.log(response):console.log(response)})                        
+            personService.create({ name , number }).then(response =>response !== undefined?handleGetAll():'')
+            
            }
       }
     return (

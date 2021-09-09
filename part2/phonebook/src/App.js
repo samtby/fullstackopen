@@ -6,7 +6,7 @@ import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState('Arto Hellas')
+  const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
  
@@ -47,7 +47,7 @@ const App = () => {
     <h2>Phonebook</h2>
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleGetAll={()=> setPersons(personService.getAll())}/>}
+      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleGetAll={refreshPage}/>}
       {/*handleAddPerson={() => setPersons(persons.concat({ name:newName , number:newNumber }))}*/}
       <h3>Numbers</h3>
       {<Persons persons={persons} filter={newFilter} handleGetAll={refreshPage}/>}
