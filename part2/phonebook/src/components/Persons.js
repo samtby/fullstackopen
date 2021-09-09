@@ -6,17 +6,16 @@ const Persons = ({persons,filter,handleGetAll}) =>{
         if (window.confirm(`Delete ${name} ?`)) 
             personService.del(id).then(response =>{response.status === 200?handleGetAll():console.log(response.status)})        
     }
-return (
-    <div>
-        { persons !== undefined?
-            persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase()))
-            .map(person =>
-                <li key={person.name.toString()}> {person.name } {person.number}
-                <button  type="button" onClick={()=>deletePerson(person.id,person.name)}>delete</button>
-                </li>
-                )
-            :'Error'
-        }
-    </div>)
+    if( persons !== undefined){
+        return (
+            <div>
+                {persons.filter(name =>name.name.toUpperCase().includes(filter.toUpperCase()))
+                    .map(person =>
+                    <li key={person.name.toString()}> {person.name } {person.number}
+                        <button  type="button" onClick={()=>deletePerson(person.id,person.name)}>delete</button>
+                    </li>
+                    )}
+            </div>)
+    }
 }
 export default Persons
