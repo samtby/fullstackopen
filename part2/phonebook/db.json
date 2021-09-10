@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "040-123456",
+      "number": "456",
       "id": 1
     },
     {
@@ -149,6 +149,16 @@
       "name": "zerzerzer",
       "number": "213213232323",
       "id": 30
+    },
+    {
+      "name": "EEEE",
+      "number": "88888",
+      "id": 31
+    },
+    {
+      "name": "zrezrez",
+      "number": "98978",
+      "id": 32
     }
   ]
 }

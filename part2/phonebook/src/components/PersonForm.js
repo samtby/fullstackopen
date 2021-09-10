@@ -9,16 +9,13 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleGetAll})
           if(person.some(person => person.name === name)){
             //console.log("Object found inside the array.");                
               if(person.some(person => person.number !== number)){
-                console.log("id",person[0].id)
+                console.log("id",person[0].id)                
                     if (window.confirm(`${name} is already added is already added to phonebook, replace the old number with a new one?`))
-                        personService.update(person[0].id,{ name , number }).then(response =>{response.status === 200?handleGetAll():console.log(response.status)})            
+                      personService.update(person[0].id,{ name , number }).then(response =>{handleGetAll()})                                            
               }
-          }else{
-            //handleAddPerson()              
-            console.log("Object not found.");
-            //personService.create({ name , number }).then(response =>{response.status === 200?console.log(response):console.log(response)})                        
-            personService.create({ name , number }).then(response =>response !== undefined?handleGetAll():'')
-            
+          }else{              
+              console.log("Object not found.")
+              personService.create({ name , number }).then(response =>response !== undefined?handleGetAll():console.log("Create error status."))
            }
       }
     return (
