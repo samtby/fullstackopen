@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import personService from './services/persons'
+import Notification from './components/Notification'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
@@ -9,6 +10,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
  
   useEffect(() => {
     personService     
@@ -43,9 +45,10 @@ const App = () => {
   return(
     <div>
     <h2>Phonebook</h2>
+      <Notification message={errorMessage} />
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleGetAll={refreshPage}/>}
+      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleSetPersons={setPersons} handleSetName={()=>setNewName('')} handleSetNumber={()=>setNewNumber('')}  handleGetAll={refreshPage} handleNotif={setErrorMessage}/>}
       <h3>Numbers</h3>
       {<Persons persons={persons} filter={newFilter} handleGetAll={refreshPage}/>}
     </div>
