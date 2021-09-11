@@ -7,7 +7,7 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
       handleNotif(message)
       setTimeout(() => {
         handleNotif(null)
-      }, 5000)
+      }, 3000)
     }
 
   const addPerson = (event) => {    
