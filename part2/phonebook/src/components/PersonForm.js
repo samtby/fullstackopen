@@ -15,20 +15,20 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
                 handleSetNumber()
               })
               //.then(response =>{handleGetAll()})
-        }else{              
-            console.log("Object not found.")
-            personService
-              .create({ name , number })
-              .then(returnedPerson  => {handleSetPersons(persons.concat(returnedPerson))
-                handleNotif(`Added '${name}`)
-                handleSetName()
-                handleSetNumber()
-              })
-              //.then(response =>response !== undefined?handleGetAll():console.log("Create error status."))              
+          }
+        }
+      }else{              
+        console.log("Object not found.")
+        personService
+          .create({ name , number })
+          .then(returnedPerson  => {handleSetPersons(persons.concat(returnedPerson))
+            handleNotif(`Added '${name}`)
+            handleSetName()
+            handleSetNumber()
+          })
+          //.then(response =>response !== undefined?handleGetAll():console.log("Create error status."))              
         }
       }
-    }
-  }
     return (
     <div>
       <form onSubmit={addPerson}>

@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "456",
+      "number": "66666",
       "id": 1
     },
     {
@@ -31,19 +31,9 @@
       "id": 6
     },
     {
-      "name": "aze",
-      "number": "321654",
-      "id": 7
-    },
-    {
       "name": "AzE",
       "number": "98746",
       "id": 8
-    },
-    {
-      "name": "erzz",
-      "number": "45456",
-      "id": 11
     },
     {
       "name": "jkl",
@@ -62,7 +52,7 @@
     },
     {
       "name": "GOT",
-      "number": "888",
+      "number": "777",
       "id": 15
     },
     {

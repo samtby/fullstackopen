@@ -50,7 +50,7 @@ const App = () => {
     <h3>add a new</h3>
       {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleSetPersons={setPersons} handleSetName={()=>setNewName('')} handleSetNumber={()=>setNewNumber('')}  handleGetAll={refreshPage} handleNotif={setErrorMessage}/>}
       <h3>Numbers</h3>
-      {<Persons persons={persons} filter={newFilter} handleGetAll={refreshPage}/>}
+      {<Persons persons={persons} filter={newFilter} handleSetPersons={()=>personService.getAll().then(data =>{setPersons(data)})} handleGetAll={refreshPage}/>}
     </div>
   )
 }
