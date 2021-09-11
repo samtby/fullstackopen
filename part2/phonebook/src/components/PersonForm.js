@@ -4,7 +4,7 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
 //handleAddPerson
 
     const messageNotification = (message) =>{
-      handleNotif(message.toString())
+      handleNotif(message)
       setTimeout(() => {
         handleNotif(null)
       }, 5000)
@@ -19,9 +19,14 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
             if (window.confirm(`${name} is already added is already added to phonebook, replace the old number with a new one?`))
               personService.update(person[0].id,{ name , number })
               .then(returnedPerson =>{ handleSetPersons(persons.map(person => person.id !== returnedPerson.id ? person: returnedPerson))
-                messageNotification(`Added ${name}`)
+                console.log('success')
+                messageNotification({status:`success`,content:`Added ${name}`})
                 handleSetName()
                 handleSetNumber()
+              })
+              .catch(error => {
+                console.log('fail')
+                messageNotification({status:`fail`,content:`Information of ${name} has already been removed from server`})
               })
           }
         }
@@ -30,7 +35,8 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
         personService
           .create({ name , number })
           .then(returnedPerson  => {handleSetPersons(persons.concat(returnedPerson))
-            messageNotification(`Added ${name}`)
+            console.log('success')
+            messageNotification({status:`success`,content:`Added ${name}`})
             handleSetName()
             handleSetNumber()
           })
