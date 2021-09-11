@@ -19,11 +19,7 @@ const App = () => {
       setPersons(data)
     })
   }, [])
-   
-  function refreshPage() {
-    window.location.reload(false);
-  }
-    
+      
   const handleFilterChange = (event) => {
     if(event.target.name === 'filter')
     setNewFilter(event.target.value)    
@@ -48,9 +44,9 @@ const App = () => {
       <Notification message={errorMessage} />
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>
-      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleSetPersons={setPersons} handleSetName={()=>setNewName('')} handleSetNumber={()=>setNewNumber('')}  handleGetAll={refreshPage} handleNotif={setErrorMessage}/>}
+      {<PersonForm persons={persons} name ={newName} number={newNumber} handlePerson={handlePersonChange} handlePhone={handlePhoneChange} handleSetPersons={setPersons} handleSetName={()=>setNewName('')} handleSetNumber={()=>setNewNumber('')} handleNotif={setErrorMessage}/>}
       <h3>Numbers</h3>
-      {<Persons persons={persons} filter={newFilter} handleSetPersons={()=>personService.getAll().then(data =>{setPersons(data)})} handleGetAll={refreshPage}/>}
+      {<Persons persons={persons} filter={newFilter} handleSetPersons={()=>personService.getAll().then(data =>{setPersons(data)})}/>}
     </div>
   )
 }

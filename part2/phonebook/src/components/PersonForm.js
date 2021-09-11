@@ -1,6 +1,6 @@
 import personService from '../services/persons'
 
-const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPersons,handleSetName,handleSetNumber,handleGetAll,handleNotif}) => {
+const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPersons,handleSetName,handleSetNumber,handleNotif}) => {
 //handleAddPerson
   const addPerson = (event) => {    
      event.preventDefault()
@@ -14,7 +14,6 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
                 handleSetName()
                 handleSetNumber()
               })
-              //.then(response =>{handleGetAll()})
           }
         }
       }else{              
@@ -26,7 +25,6 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
             handleSetName()
             handleSetNumber()
           })
-          //.then(response =>response !== undefined?handleGetAll():console.log("Create error status."))              
         }
       }
     return (
