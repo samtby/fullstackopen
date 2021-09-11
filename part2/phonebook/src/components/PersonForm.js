@@ -2,6 +2,14 @@ import personService from '../services/persons'
 
 const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPersons,handleSetName,handleSetNumber,handleNotif}) => {
 //handleAddPerson
+
+    const messageNotification = (message) =>{
+      handleNotif(message.toString())
+      setTimeout(() => {
+        handleNotif(null)
+      }, 5000)
+    }
+
   const addPerson = (event) => {    
      event.preventDefault()
       const person = persons.filter(person => person.name === name)
@@ -11,6 +19,7 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
             if (window.confirm(`${name} is already added is already added to phonebook, replace the old number with a new one?`))
               personService.update(person[0].id,{ name , number })
               .then(returnedPerson =>{ handleSetPersons(persons.map(person => person.id !== returnedPerson.id ? person: returnedPerson))
+                messageNotification(`Added ${name}`)
                 handleSetName()
                 handleSetNumber()
               })
@@ -21,7 +30,7 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
         personService
           .create({ name , number })
           .then(returnedPerson  => {handleSetPersons(persons.concat(returnedPerson))
-            handleNotif(`Added '${name}`)
+            messageNotification(`Added ${name}`)
             handleSetName()
             handleSetNumber()
           })
