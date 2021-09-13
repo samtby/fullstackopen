@@ -177,6 +177,19 @@ or
 npm update --force
 ```
 
+
+Node applicaiton:  We can update the dependencies of the project with the command:
+
+```
+npm update
+```
+
+Node applicaiton: Likewise, if we start working on the project on another computer, we can install all up-to-date dependencies of the project defined in package.json with the command:
+
+```
+npm install
+```
+
 ## React auto refresh with wsl2 
 
 ### Solution n°1
