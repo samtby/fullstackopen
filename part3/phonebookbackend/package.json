@@ -2,14 +2,18 @@
   "name": "phonebookbackend",
   "version": "0.0.1",
   "description": "",
-  "main": "node index.js",
+  "main": "node --ext index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon -L index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NoRoc",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

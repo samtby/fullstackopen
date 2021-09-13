@@ -189,7 +189,23 @@ Node applicaiton: Likewise, if we start working on the project on another comput
 ```
 npm install
 ```
+## Node App auto refresh with wsl2 
 
+ * [nodemon](https://github.com/remy/nodemon) 
+
+```
+// Install nodemon globally with Node JS
+npm install nodemon -g
+```
+
+```
+npm install --save-dev nodemon
+```
+
+```
+// On package.json in   "scripts" section add 
+"dev": "nodemon -L index.js", -A signaler
+```
 ## React auto refresh with wsl2 
 
 ### Solution n°1
