@@ -132,13 +132,15 @@ route-parameters
 ```
 npm install express
 ```
-
+```
+npm install body-parser --save // On signale undefine ==>response.json(request.body)
+```
 On node app
 ```
 const express = require('express')
 const app = express()
-var bodyParser = require('body-parser');  // A signale  undefine ==>response.json(request.body)
-app.use(bodyParser.json()); // A signale  undefine ==>response.json(request.body)
+var bodyParser = require('body-parser');  // On signale  undefine ==>response.json(request.body)
+app.use(bodyParser.json()); // On signale undefine ==>response.json(request.body)
 ```
 *[A signale Part3 - Receiving data ](https://fullstackopen.com/en/part3/node_js_and_express#receiving-data)
 ## Problems on React 
