@@ -80,7 +80,27 @@ Axios is now included among the other dependencies: in package.json in section d
 ## Programer's materials
 
 * [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
+* [transitive dependencies ](https://lexi-lambda.github.io/blog/2016/08/24/understanding-the-npm-dependency-model/)
+* [semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
 ## JavaScript materials
+
+* In Js Toutes les valeurs sont vraies sauf si elles sont définies comme fausses (c'est-à-dire, à l'exception de faux, 0, -0, 0n, "", null, undefined et NaN). 
+```
+//Truthy
+if (true)
+if ({})
+if ([])
+if (42)
+if ("0")
+if ("false")
+if (new Date())
+if (-42)
+if (12n)
+if (3.14)
+if (-3.14)
+if (Infinity)
+if (-Infinity)
+```
 
 * [Mozilla's JavaScript Guide](http://kangax.github.io/compat-table/es2016plus)
 * [A re-introduction to JavaScript (JS tutorial) ](http://kangax.github.io/compat-table/es2016plus)
@@ -99,6 +119,20 @@ Axios is now included among the other dependencies: in package.json in section d
 * [Reduce basics](https://www.youtube.com/watch?v=Wl98eZpkp-c&t=31s)
 * [Index as a key is an anti-pattern](https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318)
 * [Simplify your JavaScript – Use .map(), .reduce(), and .filter()](https://medium.com/poka-techblog/simplify-your-javascript-use-map-reduce-and-filter-bd02c593cc2d)
+
+
+# Web
+* [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+* [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5)
+
+# Express
+
+Express est une infrastructure d'applications Web Node.js minimaliste et flexible qui fournit un ensemble de fonctionnalités robuste pour les applications Web et mobiles. 
+route-parameters
+```
+npm install express
+```
+
 ## Problems on React 
 
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
