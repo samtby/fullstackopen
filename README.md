@@ -142,6 +142,11 @@ const app = express()
 var bodyParser = require('body-parser');  // On signale  undefine ==>response.json(request.body)
 app.use(bodyParser.json()); // On signale undefine ==>response.json(request.body)
 ```
+```
+npm install response-time
+let responseTime = require('response-time')
+```
+
 *[A signale Part3 - Receiving data ](https://fullstackopen.com/en/part3/node_js_and_express#receiving-data)
 ## Problems on React 
 
