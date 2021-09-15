@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express()
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
 let responseTime = require('response-time')
+app.use(bodyParser.json());
+app.use(responseTime())
+
+app.use(responseTime((req, res, time) => {
+  console.log(req.method, req.url, time + 'ms');
+}));
 let persons = [
   { 
     "id": 1,
@@ -52,13 +57,23 @@ app.delete('/api/notes/:id', (request, response) => {
 
 
 app.post('/api/persons', (request, response) => {
+
     const persons = request.body  
     console.log(persons)  
     response.json(persons)
-    console.log(persons)  
-    
+   
   })
 
+
+  app.get('/api/info', (request, response) => {
+    responseTime =  request.responseTime
+    response.send(
+      '<p>Phonebook has info for '+ persons.length+' people</p>'+
+      '<p>Phonebook has info for '+ persons.length+' people</p>'
+    
+    )
+  })
+  
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
