@@ -49,17 +49,29 @@ app.get('/api/persons/:id', (request, response) => {
     if(person)
       response.json(person)
     else 
-     response.status(404).send("The note no exist")
+     response.status(404).send("The person no exist")
 })
 
-
+/*
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person  = persons.filter(person => person.id !== id)
-
-  response.status(204).end()
+  //persons.splice
+  response.status(204).send('<h1>Hello World!</h1>')
 })
-
+*/
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  const person = persons.findIndex(person => person.id === id)  
+  if(person !== -1){
+    const delPerson = persons.splice(person,1)
+    if(delPerson.map(del => del.id === id))
+      response.json(delPerson)
+    else
+      response.status(500).send('Internal Server Error')
+  }else
+    response.status(404).send('Not fund ')
+})
 
 app.post('/api/persons', (request, response) => {
 
