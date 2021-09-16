@@ -1,10 +1,21 @@
 const express = require('express')
+var morgan = require('morgan')
 const app = express()
 var bodyParser = require('body-parser');
 let responseTime = require('response-time')
 app.use(bodyParser.json());
 app.use(responseTime())
+app.use(morgan('combined'))
 
+
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path:  ', request.path)
+  console.log('Body:  ', request.body)
+  console.log('---')
+  next()
+}
+app.use(requestLogger)
 app.use(responseTime((req, res, time) => {
   console.log(req.method, req.url, time + 'ms');
 }));
@@ -35,6 +46,12 @@ let persons = [
     "number": "39-54-9854211"
   }
 ]
+
+morgan('/combined', {
+  skip: function (req, res) { return res.statusCode < 400 }
+})
+
+
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
@@ -62,7 +79,7 @@ app.delete('/api/persons/:id', (request, response) => {
     else
       response.status(500).send('Internal Server Error')
   }else
-    response.status(404).send('Not fund ')
+    response.status(404).send('Not fund')
 })
 
 app.post('/api/persons', (request, response) => {
@@ -94,7 +111,13 @@ app.get('/api/info', (request, response) => {
     '<p>'+dateFinal+' '+timeString+'</p>'    
   )
 })
-  
+
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' })
+}
+
+app.use(unknownEndpoint)
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
