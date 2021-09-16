@@ -38,19 +38,19 @@ app.get('/api/persons', (request, response) => {
   response.json(persons)
 })
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
-    const note = notes.find(note => note.id === id)
-    if(note)
-      response.json(note)
+    const person = persons.find(person => person.id === id)
+    if(person)
+      response.json(person)
     else 
      response.status(404).send("The note no exist")
 })
 
 
-app.delete('/api/notes/:id', (request, response) => {
+app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  notes = notes.filter(note => note.id !== id)
+  const person  = persons.filter(person => person.id !== id)
 
   response.status(204).end()
 })
