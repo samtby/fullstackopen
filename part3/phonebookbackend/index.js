@@ -52,14 +52,6 @@ app.get('/api/persons/:id', (request, response) => {
      response.status(404).send("The person no exist")
 })
 
-/*
-app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person  = persons.filter(person => person.id !== id)
-  //persons.splice
-  response.status(204).send('<h1>Hello World!</h1>')
-})
-*/
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person = persons.findIndex(person => person.id === id)  
@@ -74,12 +66,20 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons', (request, response) => {
-
-    const persons = request.body  
-    console.log(persons)  
-    response.json(persons)
-   
-  })
+  const personreq = request.body 
+  console.log(personreq.name.length*personreq.number.length)
+    if((personreq.name.length*personreq.number.length) !== 0){
+      const find = persons.find(person => person.name === personreq.name)
+      console.log(find)
+      if(find == undefined){
+        personreq.id=Math.floor(Math.random() * 14563)
+      if(persons.length - persons.push(personreq) == -1)
+        response.json(personreq)
+      }else
+        response.status(400).json({ error: 'name must be unique' })
+    }else
+    response.status(400).json({ error: 'The name or number is missing' })
+})
 
 app.get('/api/info', (request, response) => {
   responseTime =  request.responseTime
@@ -89,7 +89,6 @@ app.get('/api/info', (request, response) => {
   let dateFinal = date_ob.toLocaleString("en-US",options);
 
   let timeString =date_ob.toTimeString();
-  // current date
   response.send(
     '<p>Phonebook has info for '+ persons.length+' people</p>'+
     '<p>'+dateFinal+' '+timeString+'</p>'    
