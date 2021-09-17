@@ -153,7 +153,7 @@ let responseTime = require('response-time')
 ```
 * [A signale Part3 - Receiving data ](https://fullstackopen.com/en/part3/node_js_and_express#receiving-data)
 
-# morgan
+# Morgan
 
 ***HTTP request logger middleware for node.js***
 * [morgan](morganhttps://github.com/expressjs/morgan)
@@ -167,6 +167,11 @@ let responseTime = require('response-time')
 # Cors
 * [cors](https://github.com/expressjs/cors)
 ***CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.***
+
+heroku
+# Heroku
+* [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+***Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.***
 
 ## Debugging React applications
 
