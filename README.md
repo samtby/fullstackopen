@@ -179,6 +179,10 @@ heroku --version
 ```
 web: npm start
 ```
+"npm run dev-fontend | npm run dev"   
+# Serving static files in Express
+*[Static](http://expressjs.com/en/starter/static-files.html)
+***To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.***
 ## Debugging React applications
 
 * On application you can use instruction ```debugger``` 
@@ -262,6 +266,19 @@ Node applicaiton: Likewise, if we start working on the project on another comput
 
 ```
 npm install
+```
+
+## How to run multiple commands concurrently
+[Concurrently](https://www.npmjs.com/package/concurrently)
+***Run multiple commands concurrently. Like npm run watch-js & npm run watch-less but better.***
+
+* The tool is written in Node.js, but you can use it to run any commands.
+```
+npm install -g concurrently
+```
+* or if you are using it from npm scripts:
+```
+npm install concurrently --save
 ```
 ## Node App auto refresh with wsl2 
 
