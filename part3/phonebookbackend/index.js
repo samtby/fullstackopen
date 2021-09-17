@@ -1,33 +1,12 @@
-const express = require('express')
-var morgan = require('morgan')
-const app = express()
+const express = require('express');
+var morgan = require('morgan');
+const app = express();
 var bodyParser = require('body-parser');
-let responseTime = require('response-time')
 
-morgan.token('id',(req)=> req.params.id);
-morgan.token('body',(req)=> JSON.stringify(req.body))
+morgan.token('id',(req)=> req.body.id);
+morgan.token('body',(req)=> JSON.stringify(req.body));
 app.use(bodyParser.json());
-app.use(responseTime())
-//app.use(morgan(':id :url :method :body :status '))
 app.use(morgan('tiny'));
-const requestLogger = (request, response, next) => {
-  console.log('====Request=====')
-  console.log('Method:', request.method)
-  console.log('Path:  ', request.path)
-  console.log('Body:  ', request.body)
-  console.log('---')
-  console.log('====response=====')
-  console.log('Method:', response.method)
-  console.log('Path:  ', response.path)
-  console.log('Body:  ', response.body)
-  next()
-}
-//app.use(requestLogger)
-/*
-app.use(responseTime((req, res, time) => {
-  console.log(req.method, req.url, time + 'ms');
-}));
-*/
 
 let persons = [
   { 
@@ -56,63 +35,58 @@ let persons = [
     "number": "39-54-9854211"
   }
 ]
-/*
-morgan('tiny', {
-  skip: function (req, res) { return res.statusCode < 400 }
-})
-*/
 
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
+  response.send('<h1>Hello World!</h1>');
 })
 
 app.get('/api/persons', (request, response) => {
-  response.json(persons)
+  response.json(persons);
 })
 
 app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const person = persons.find(person => person.id === id)
+    const id = Number(request.params.id);
+    const person = persons.find(person => person.id === id);
     if(person)
-      response.json(person)
+      response.json(person);
     else 
-     response.status(404).send("The person no exist")
+     response.status(404).send("The person no exist");
 })
+
+//app.put('/api/persons/:id'),(request, response) => {}
 
 app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.findIndex(person => person.id === id)  
+  const id = Number(request.params.id);
+  const person = persons.findIndex(person => person.id === id);
   if(person !== -1){
-    const delPerson = persons.splice(person,1)
+    const delPerson = persons.splice(person,1);
     if(delPerson.map(del => del.id === id))
-      response.json(delPerson)
+      response.json(delPerson);
     else
-      response.status(500).send('Internal Server Error')
+      response.status(500).send('Internal Server Error');
   }else
-    response.status(404).send('Not fund')
+    response.status(404).send('Not fund');
 })
 
-app.post('/api/persons', (request, response) => {
-  const personreq = request.body 
+app.post('/api/persons',morgan(':method :url :status :res[content-length] :response-time ms :body'), (request, response) => {
+  const personreq = Object();
+   Object.assign(personreq ,request.body);
     if((personreq.name.length*personreq.number.length) !== 0){
-      const find = persons.find(person => person.name === personreq.name)
+      const find = persons.find(person => person.name === personreq.name);
       if(find == undefined){
-        personreq.id=Math.floor(Math.random() * 14563)
+        personreq.id=Math.floor(Math.random() * 14563);
       if(persons.length - persons.push(personreq) == -1)
-        response.json(personreq)
+        response.json(personreq);
       }else
-        response.status(400).json({ error: 'name must be unique' })
+        response.status(400).json({ error: 'name must be unique' });
     }else
-    response.status(400).json({ error: 'The name or number is missing' })
+    response.status(400).json({ error: 'The name or number is missing' });
 })
 
 app.get('/api/info', (request, response) => {
-  responseTime =  request.responseTime
 
   let date_ob = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let dateFinal = date_ob.toLocaleString("en-US",options);
-
+  let dateFinal = date_ob.toLocaleString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   let timeString =date_ob.toTimeString();
   response.send(
     '<p>Phonebook has info for '+ persons.length+' people</p>'+
@@ -121,12 +95,12 @@ app.get('/api/info', (request, response) => {
 })
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+  response.status(404).send({ error: 'unknown endpoint' });
 }
 
 app.use(unknownEndpoint)
 
-const PORT = 3001
+const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`);
 })
