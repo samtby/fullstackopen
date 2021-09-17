@@ -3,22 +3,32 @@ var morgan = require('morgan')
 const app = express()
 var bodyParser = require('body-parser');
 let responseTime = require('response-time')
+
+morgan.token('id',(req)=> req.params.id);
+morgan.token('body',(req)=> JSON.stringify(req.body))
 app.use(bodyParser.json());
 app.use(responseTime())
-app.use(morgan('combined'))
-
-
+//app.use(morgan(':id :url :method :body :status '))
+app.use(morgan('tiny'));
 const requestLogger = (request, response, next) => {
+  console.log('====Request=====')
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
   console.log('Body:  ', request.body)
   console.log('---')
+  console.log('====response=====')
+  console.log('Method:', response.method)
+  console.log('Path:  ', response.path)
+  console.log('Body:  ', response.body)
   next()
 }
-app.use(requestLogger)
+//app.use(requestLogger)
+/*
 app.use(responseTime((req, res, time) => {
   console.log(req.method, req.url, time + 'ms');
 }));
+*/
+
 let persons = [
   { 
     "id": 1,
@@ -46,11 +56,11 @@ let persons = [
     "number": "39-54-9854211"
   }
 ]
-
-morgan('/combined', {
+/*
+morgan('tiny', {
   skip: function (req, res) { return res.statusCode < 400 }
 })
-
+*/
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
@@ -84,10 +94,8 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const personreq = request.body 
-  console.log(personreq.name.length*personreq.number.length)
     if((personreq.name.length*personreq.number.length) !== 0){
       const find = persons.find(person => person.name === personreq.name)
-      console.log(find)
       if(find == undefined){
         personreq.id=Math.floor(Math.random() * 14563)
       if(persons.length - persons.push(personreq) == -1)
