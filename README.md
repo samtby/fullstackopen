@@ -168,11 +168,17 @@ let responseTime = require('response-time')
 * [cors](https://github.com/expressjs/cors)
 ***CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.***
 
-heroku
 # Heroku
 * [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 ***Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.***
-
+```
+sudo npm install -g heroku
+heroku --version
+```
+* Add a file called Procfile to the project's root to tell Heroku how to start the application.
+```
+web: npm start
+```
 ## Debugging React applications
 
 * On application you can use instruction ```debugger``` 
