@@ -206,13 +206,16 @@ heroku create
 Creating app... done, ⬢ thawing-inlet-61413
 https://thawing-inlet-61413.herokuapp.com/ | https://git.heroku.com/thawing-inlet-61413.git
 ```
-
+ tell you the difference between your branch and the remote one.
 ```
 git remote -v
 heroku  https://git.heroku.com/thawing-inlet-61413.git (fetch)
 heroku  https://git.heroku.com/thawing-inlet-61413.git (push)
 ```
 
+```
+git branch -u heroku/master
+```
 
 # Working with git remotes on Heroku
 

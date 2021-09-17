@@ -40,7 +40,7 @@ const App = () => {
 
   return(
     <div>
-    <h2>PhonebookProd</h2>
+    <h2>Phonebook</h2>
       <Notification message={errorMessage} />
       <Filter filter={newFilter} handle={handleFilterChange} />
     <h3>add a new</h3>

@@ -41,6 +41,16 @@ let persons = [
     "name": "Julien",
     "number": "9999",
     "id": 6
+  },
+  {
+    "name": "Nickita",
+    "number": "77777777",
+    "id": 7
+  },
+  {
+    "name": "Nora",
+    "number": "897654",
+    "id": 8
   }
 ]
 
