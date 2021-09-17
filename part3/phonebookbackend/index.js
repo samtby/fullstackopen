@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 morgan.token('id',(req)=> req.body.id);
 morgan.token('body',(req)=> JSON.stringify(req.body));
+app.use(express.static('build'))
 app.use(cors())
 app.use(bodyParser.json());
 app.use(morgan('tiny'));

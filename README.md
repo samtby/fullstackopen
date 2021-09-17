@@ -179,7 +179,105 @@ heroku --version
 ```
 web: npm start
 ```
-"npm run dev-fontend | npm run dev"   
+
+## Step 1 Deploying with Git
+* [Deploying with Git](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
+
+***Heroku manages app deployments with Git, the popular version control system. You definitely don’t need to be a Git expert to deploy code to Heroku, but it’s helpful to learn the basics.***
+```
+cd myapp
+
+git init
+Initialized empty Git repository in .git/
+
+git add .
+
+git commit -m "My first commit"
+Created initial commit 5df2d09: My first commit
+ 44 files changed, 8393 insertions(+), 0 deletions(-)
+ create mode 100644 README
+ create mode 100644 Procfile
+ create mode 100644 app/controllers/source_file
+...
+```
+
+```
+heroku create
+Creating app... done, ⬢ thawing-inlet-61413
+https://thawing-inlet-61413.herokuapp.com/ | https://git.heroku.com/thawing-inlet-61413.git
+```
+
+```
+git remote -v
+heroku  https://git.heroku.com/thawing-inlet-61413.git (fetch)
+heroku  https://git.heroku.com/thawing-inlet-61413.git (push)
+```
+
+
+# Working with git remotes on Heroku
+
+Generally, you will add a git remote for your Heroku app during the Heroku app creation process, i.e. `heroku create`. However, if you are working on an existing app and want to add git remotes to enable manual deploys, the following commands may be useful.
+
+## Adding a new remote
+
+### Add a remote for your Staging app and deploy
+Note that on Heroku, you must always use `master` as the destination branch on the remote. If you want to deploy a different branch, you can use the syntax `local_branch:destination_branch` seen below (in this example, we push the local `staging` branch to the `master` branch on heroku.
+```
+$ git remote add staging https://git.heroku.com/staging-app.git
+$ git push staging staging:master
+```
+In some cases, your local branch may be missing some commits that were already deployed to Heroku, resulting in an error. If you are **very sure** you want to proceed, add the `--force` (`-f`) flag.
+```
+$ git push staging staging:master -f
+```
+
+### Add a remote for your Production app and deploy
+By convention, the remote name "heroku" is typically used for the production application.
+```
+$ git remote add heroku https://git.heroku.com/app.git
+$ git push heroku master
+```
+
+### Add a remote via Heroku CLI
+As [@voke](https://gist.github.com/randallreedjr/aa89e069371d07371882eea2df15fb4d#gistcomment-3079752) points out, you can alternatively use a [Heroku CLI command](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote) to add your remote. However, it looks like this will always use the default remote name `heroku` for the remote. If you would like to use a different name for your remote, see the "Rename a remote" section below.
+```
+$ heroku git:remote -a staging-app
+```
+
+**Edit:** Thanks to [@nruth](https://gist.github.com/randallreedjr/aa89e069371d07371882eea2df15fb4d#gistcomment-3141611) for pointing out you can supply a remote name to this command with the `-r` flag.
+```
+$ heroku git:remote -a staging-app -r staging
+```
+
+### Add a remote using the SSH protocol
+As [@Saworieza](https://gist.github.com/randallreedjr/aa89e069371d07371882eea2df15fb4d#gistcomment-2784952) points out, all of the examples above use the https protocol for connecting to the remotes, but it is also possible to connect via ssh.
+```
+$ git remote add staging git@heroku.com:staging-app.git
+$ git remote add heroku git@heroku.com:app.git
+```
+
+## Other useful commands
+
+### List your git remotes
+
+The `-v` is the flag for "verbose" and includes the remote URL in addition to the remote name.
+
+```
+$ git remote -v
+```
+
+### Rename a remote
+```
+$ git remote rename heroku staging
+```
+
+### Change a remote URL or protocol
+If you have already created https remotes and want to switch them to use ssh, the following command can be used. This command can also be used to change the target URL without changing the protocol
+```
+$ git remote set-url staging git@heroku.com:staging-app.git
+$ git remote set-url heroku https://git.heroku.com/production-app.git
+```
+
 # Serving static files in Express
 *[Static](http://expressjs.com/en/starter/static-files.html)
 ***To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.***
