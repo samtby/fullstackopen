@@ -124,6 +124,9 @@ if (-Infinity)
 # Web
 * [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 * [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5)
+* [Same origin policy and CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+* [Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
+* [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 # Express
 
@@ -160,6 +163,10 @@ let responseTime = require('response-time')
 * [Use Hooks with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
 * [never mutate state directly in React!](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly)
 * [lists-and-keys](https://reactjs.org/docs/lists-and-keys.html#keys)
+
+# Cors
+* [cors](https://github.com/expressjs/cors)
+***CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.***
 
 ## Debugging React applications
 
