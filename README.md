@@ -98,7 +98,7 @@ When bugs occur, the worst of all possible strategies is to continue writing cod
 
 ## Jidoka - Build a culture of stopping to fix ….
 
-*** Construire une culture d'arrêt pour résoudre le problème, pour obtenir la bonne qualité du premier coup ***
+***Construire une culture d'arrêt pour résoudre le problème, pour obtenir la bonne qualité du premier coup***
 
 
 ![](.resources/jidoka.webp)
