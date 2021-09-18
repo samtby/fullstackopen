@@ -343,6 +343,55 @@ The most important snippet is the one for the console.log() command, for example
 Changes on the frontend have caused it to no longer work in development mode (when started with command ***npm start***), as the connection to the backend does not work. 
 
 ![](.resources/Proxy.png)
+
+# Mongoose
+
+* [Mongoose](https://www.npmjs.com/package/mongoose)
+
+***Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.***
+
+```
+npm install mongoose
+```
+# MongoDB
+
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+We will use [MongoDB](https://www.mongodb.com/) which is a so-called [document database](https://en.wikipedia.org/wiki/Document-oriented_database).
+
+Document databases differ from relational databases in how they organize data as well as the query languages they support. Document databases are usually categorized under the NoSQL umbrella term.
+
+Read now the chapters on [collections](https://docs.mongodb.com/manual/core/databases-and-collections/) and [documents](https://docs.mongodb.com/manual/core/document/) from the MongoDB manual to get a basic idea on how a document database stores data.
+
+* Connection
+NB: Please note the password is the password created for the database user, not your MongoDB Atlas password. Also, if you created password with special characters, then you'll need to [URL encode that password](https://docs.atlas.mongodb.com/troubleshoot-connection/#special-characters-in-connection-string-password).
+
+* Schema
+
+***After establishing the connection to the database, we define the schema for a note and the matching model:***
+
+``` 
+
+const noteSchema = new mongoose.Schema({
+  content: String,
+  date: Date,
+  important: Boolean,
+})
+
+const Note = mongoose.model('Note', noteSchema)
+```
+
+* Creating and saving objects
+
+***Next, the application creates a new note object with the help of the Note model:***
+
+```
+const note = new Note({
+  content: 'HTML is Easy',
+  date: new Date(),
+  important: false,
+})
+```
 # Useful libraries
 
 # Useful for VScode
@@ -352,6 +401,12 @@ Changes on the frontend have caused it to no longer work in development mode (wh
  [Instructions for creating snippets can be found here.](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_creating-your-own-snippets)
 
  [Useful, ready-made snippets can also be found as VS Code plugins, in the marketplace.](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
+
+
+# command-line parameters Node app
+
+***You can get the command-line parameters from the [process.argv](https://nodejs.org/docs/latest-v8.x/api/process.html#process_process_argv) variable.***
+
 # Problems on Code React 
 
 ## [Hoock with Array and Object](https://dev.to/brettblox/react-hooks-usestate-43en)
