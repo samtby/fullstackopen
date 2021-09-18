@@ -315,6 +315,12 @@ The most important snippet is the one for the console.log() command, for example
   }
 }
 ```
+
+# Proxy 
+
+Changes on the frontend have caused it to no longer work in development mode (when started with command ***npm start***), as the connection to the backend does not work. 
+
+![](.resources/Proxy.png)
 # Useful libraries
 
 # Useful for VScode
