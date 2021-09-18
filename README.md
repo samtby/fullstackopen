@@ -214,6 +214,7 @@ heroku  https://git.heroku.com/thawing-inlet-61413.git (push)
 ```
 
 ```
+git remmote add heroku https://git.heroku.com/infinite-sierra-55116.git
 git branch -u heroku/master
 ```
 
@@ -381,6 +382,21 @@ npm install -g concurrently
 ```
 npm install concurrently --save
 ```
+
+## Active Debugging Node applications
+
+### Chrome dev tools
+
+Debugging is also possible with the Chrome developer console by starting your application with the command:
+
+```
+node --inspect index.js
+```
+
+You can access the debugger by clicking the green icon - the node logo - that appears in the Chrome developer console:
+
+![](.resources/DebuggingChrome.png)
+
 ## Node App auto refresh with wsl2 
 
  * [nodemon](https://github.com/remy/nodemon) 
