@@ -95,6 +95,15 @@ The key is to be systemic. Since the problem can exist anywhere, you must questi
 
 When bugs occur, the worst of all possible strategies is to continue writing code. It will guarantee that your code will soon have even more bugs, and debugging them will be even more difficult. The stop and fix principle from Toyota Production Systems is very effective in this situation as well.
 
+
+##Jidoka - Build a culture of stopping to fix ….
+
+*** Construire une culture d'arrêt pour résoudre le problème, pour obtenir la bonne qualité du premier coup ***
+
+
+![](.resources/jidoka.webp)
+La méthode Jidoka consiste à arrêter le travail dès qu'un problème survient pour éviter de produire des éléments défectueux. Il s'agit ainsi de « construire la qualité dans le produit, en détectant les anomalies dans le processus
+
 ## JavaScript materials
 
 * In Js Toutes les valeurs sont vraies sauf si elles sont définies comme fausses (c'est-à-dire, à l'exception de faux, 0, -0, 0n, "", null, undefined et NaN). 
