@@ -10,9 +10,9 @@
     "dev-fontend": "cd ../../part2/phonebook/ && npm run start ",
     "dev-envdev": "concurrently --kill-others \"npm run dev-backend\" \"npm run dev-fontend\"",
     "build:ui": "rm -rf build && cd ../../part2/phonebook/ && npm run build --prod && cp -r build ../../part3/phonebookbackend/",
-    "deploy": "git push",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
-    "deploy:backend": "rm -rf build && git add . && git commit -m backendbuild && npm run deploy",
+    "deploy": "git push heroku",
+    "deploy:full": "npm run build:ui && git add build *.json *.js && git status && git commit -m uibuild && npm run deploy",
+    "deploy:backend": "rm -rf build && git add build *.json *.js && git commit -m backendbuild && npm run deploy",
     "logs:prod": "heroku logs --tail"
   },
   "keywords": [
