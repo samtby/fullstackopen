@@ -87,14 +87,14 @@ app.post('/api/persons',morgan(':method :url :status :res[content-length] :respo
    Object.assign(personreq ,request.body);
     if((personreq.name.length*personreq.number.length) !== 0){
       Persons.find({name:personreq.name}).then(person => {
-        if(person.length === 0){
+        //if(person.length === 0){
           const pers = new Persons({name: personreq.name, number: personreq.number })
           pers.save().then(result => {
             console.log("added "+result.name+" number "+result.number+" to phonebook");
             response.json(result)
           })
-        }else
-          response.status(400).json({ error: 'name must be unique' });
+      /*  }else
+          response.status(400).json({ error: 'name must be unique' });*/
       })          
     }else
       response.status(400).json({ error: 'The name or number is missing' });
