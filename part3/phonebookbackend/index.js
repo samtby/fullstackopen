@@ -23,25 +23,48 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
+
+
+
 app.get('/api/persons/:id', (request, response) => {    
+
+  //lenth 24
+  console.log(request.params.id.length)
+
+/*
+  var mongoose = require('mongoose');
+  var myId = new mongoose.Types.ObjectId(request.params.id)
   //var mongoose = require('mongoose');
   //let id = new mongoose.mongo.ObjectId(request.params.id);
-  Persons.findById(request.params.id, function (err, user) {   console.log('error :', err.message) } );
+  
+  Persons.find({_id:request.params.id}, function (err, user) {   console.log('error :', err.message) } );
+  */
+
+  //Good id
+  //53cb6b9b4f4ddef1ad47f94f
 /*
-    Persons.findById(request.params.id
-      function (err,content ){}
-      
-      )
-    .then(person =>{console.log(person)
-      if(person.length===0)
+  const mongoose = require('mongoose');
+const id = mongoose.Types.ObjectId (request.params.id)
+*/
+
+
+Persons.findById(request.params.id)    
+    .then(
+      person =>{console.log(person)
+      if(person === null)
         response.status(404).send("The person no exist")
       else
         response.json(person)
     })
     .catch(error => {
-      console.log('error :', error.message)
+      console.log(error)  
+      response.status(400).send({ error: 'malformatted id' })
+      //error.status(500).json({error: true, data: {message: "err.message"}});
+      //console.log('error :', error.message)
+      //response.status(500).json({error: true, data: {message: "err.message"}});
+      //app.use(unknownEndpoint)
     })
-    */
+    
 })
 /*
 //app.put('/api/persons/:id'),(request, response) => {}
@@ -63,7 +86,7 @@ app.post('/api/persons',morgan(':method :url :status :res[content-length] :respo
   const personreq = Object();
    Object.assign(personreq ,request.body);
     if((personreq.name.length*personreq.number.length) !== 0){
-      Persons.find({name:personreq.name}).then(person => { //Add person
+      Persons.find({name:personreq.name}).then(person => {
         if(person.length === 0){
           const pers = new Persons({name: personreq.name, number: personreq.number })
           pers.save().then(result => {
