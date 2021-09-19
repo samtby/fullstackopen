@@ -3,34 +3,33 @@ const express = require('express');
 const cors = require('cors')
 var morgan = require('morgan');
 const app = express();
-var bodyParser = require('body-parser');
+
 morgan.token('id',(req)=> req.body.id);
 morgan.token('body',(req)=> JSON.stringify(req.body));
 app.use(express.static('build'))
 app.use(cors())
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(morgan('tiny'));
 
 const Persons = require('./models/person.js')
+
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>');
 })
 
 app.get('/api/persons', (request, response) => {
-  Persons.find({}).then(person => {
+  Persons.find({})
+  .then(person => {
     response.json(person)
   })
+  .catch(error => next(error))
 })
 
 
 
 
-app.get('/api/persons/:id', (request, response) => {    
-
-  //lenth 24
-  console.log(request.params.id.length)
-
+app.get('/api/persons/:id', (request, response, next) => {    
 /*
   var mongoose = require('mongoose');
   var myId = new mongoose.Types.ObjectId(request.params.id)
@@ -47,7 +46,6 @@ app.get('/api/persons/:id', (request, response) => {
 const id = mongoose.Types.ObjectId (request.params.id)
 */
 
-
 Persons.findById(request.params.id)    
     .then(
       person =>{console.log(person)
@@ -56,15 +54,7 @@ Persons.findById(request.params.id)
       else
         response.json(person)
     })
-    .catch(error => {
-      console.log(error)  
-      response.status(400).send({ error: 'malformatted id' })
-      //error.status(500).json({error: true, data: {message: "err.message"}});
-      //console.log('error :', error.message)
-      //response.status(500).json({error: true, data: {message: "err.message"}});
-      //app.use(unknownEndpoint)
-    })
-    
+    .catch(error => next(error))    
 })
 /*
 //app.put('/api/persons/:id'),(request, response) => {}
@@ -89,10 +79,12 @@ app.post('/api/persons',morgan(':method :url :status :res[content-length] :respo
       Persons.find({name:personreq.name}).then(person => {
         //if(person.length === 0){
           const pers = new Persons({name: personreq.name, number: personreq.number })
-          pers.save().then(result => {
+          pers.save()
+          .then(result => {
             console.log("added "+result.name+" number "+result.number+" to phonebook");
             response.json(result)
           })
+          .catch(error => next(error))
       /*  }else
           response.status(400).json({ error: 'name must be unique' });*/
       })          
@@ -114,9 +106,17 @@ app.get('/api/info', (request, response) => {
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' });
 }
-
-
 app.use(unknownEndpoint)
+
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message)
+  if (error.name === 'CastError')
+    return response.status(400).send({ error: 'malformatted id' })
+  next(error)
+}
+
+// this has to be the last loaded middleware.
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

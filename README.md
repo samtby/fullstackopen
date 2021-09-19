@@ -159,21 +159,19 @@ route-parameters
 ```
 npm install express
 ```
-```
-npm install body-parser --save // On signale undefine ==>response.json(request.body)
-```
 On node app
 ```
 const express = require('express')
 const app = express()
-var bodyParser = require('body-parser');  // On signale  undefine ==>response.json(request.body)
-app.use(bodyParser.json()); // On signale undefine ==>response.json(request.body)
-```
-```
-npm install response-time
-let responseTime = require('response-time')
+app.use(express.json());
 ```
 * [A signale Part3 - Receiving data ](https://fullstackopen.com/en/part3/node_js_and_express#receiving-data)
+
+## Error Handling on Express
+
+***Error Handling refers to how Express catches and processes errors that occur both synchronously and asynchronously. Express comes with a default error handler so you don’t need to write your own to get started***
+
+* [Error Handling middleware](https://expressjs.com/en/guide/error-handling.html)
 
 # Morgan
 
