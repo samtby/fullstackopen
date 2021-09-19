@@ -497,6 +497,40 @@ npm install --save-dev nodemon
 // On package.json in   "scripts" section add 
 "dev": "nodemon -L index.js", -A signaler
 ```
+
+# define the value of an environment variable when the application is started:
+
+***Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.***
+
+* [the dotenv library](https://github.com/motdotla/dotenv#readme)
+
+```
+# with npm
+npm install dotenv
+
+# or with Yarn
+yarn add dotenv
+```
+As early as possible in your application, require and configure dotenv.
+```
+require('dotenv').config()
+```
+Create a .env file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE. For example:
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=s1mpl3
+```
+
+process.env now has the keys and values you defined in your .env file.
+```
+const db = require('db')
+db.connect({
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS
+})
+```
 ## React auto refresh with wsl2 
 
 ### Solution n°1
