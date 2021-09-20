@@ -79,6 +79,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
   .catch(error => next(error))
 })
 
+
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
 
@@ -94,6 +95,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
+
 app.get('/api/info', (request, response, next) => {
   Persons.find({})
   .then(persons => {    
@@ -107,6 +109,7 @@ app.get('/api/info', (request, response, next) => {
     )
   })
   .catch(error => next(error))
+  
 })
 
 const unknownEndpoint = (request, response) => {
