@@ -394,6 +394,8 @@ const note = new Note({
 
 ***One smarter way of validating the format of the data before it is stored in the database, is to use the validation functionality available in Mongoose.We can define specific validation rules for each field in the schema:***
 
+* [Validation Mongoose](https://mongoosejs.com/docs/validation.html)
+
 ```
 npm install --save mongoose-unique-validator --legacy-peer-deps
 ```
@@ -434,6 +436,8 @@ var userSchema = mongoose.Schema({
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(uniqueValidator);
 ```
+
+## Promises chaining
 
 # Useful libraries
 
