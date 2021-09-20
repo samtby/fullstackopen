@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors')
@@ -14,6 +15,8 @@ const errorHandler = (error, request, response, next) => {
   console.error(error.message)
   if (error.name === 'CastError')
     return response.status(400).send({ error: 'malformatted id' })
+  if (error.name === 'ValidationError') 
+    return response.status(400).json( {error: 'name must be unique' })
   next(error)
 }
 
@@ -47,6 +50,10 @@ Persons.findById(request.params.id)
 })
 
 app.post('/api/persons', (request, response, next) => {
+
+/*  const body = request.body
+  if (body.content === undefined) 
+    return response.status(400).json({ error: 'content missing' })   */    
   const personreq = Object();
    Object.assign(personreq ,request.body);
     if((personreq.name.length*personreq.number.length) !== 0){

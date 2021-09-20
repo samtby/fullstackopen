@@ -390,6 +390,51 @@ const note = new Note({
   important: false,
 })
 ```
+## Validation Mongoose
+
+***One smarter way of validating the format of the data before it is stored in the database, is to use the validation functionality available in Mongoose.We can define specific validation rules for each field in the schema:***
+
+```
+npm install --save mongoose-unique-validator --legacy-peer-deps
+```
+
+```
+const schema = new Schema({
+  name: {
+    type: String,
+    required: true
+  }
+});
+const Cat = db.model('Cat', schema);
+
+// This cat has no name :(
+const cat = new Cat();
+cat.save(function(error) {
+  assert.equal(error.errors['name'].message,
+    'Path `name` is required.');
+
+  error = cat.validateSync();
+  assert.equal(error.errors['name'].message,
+    'Path `name` is required.');
+});
+```
+
+Other example 
+```
+var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
+ 
+// Define your schema as normal.
+var userSchema = mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    email: { type: String, index: true, unique: true, required: true },
+    password: { type: String, required: true }
+});
+ 
+// Apply the uniqueValidator plugin to userSchema.
+userSchema.plugin(uniqueValidator);
+```
+
 # Useful libraries
 
 # Useful for VScode
