@@ -7,7 +7,7 @@ const app = express();
 
 morgan.token('id',(req)=> req.body.id);
 morgan.token('body',(req)=> JSON.stringify(req.body));
-app.use(express.static('build'))
+//app.use(express.static('build'))
 app.use(cors())
 app.use(express.json());
 
@@ -40,7 +40,7 @@ app.get('/api/persons', (request, response,next) => {
 app.get('/api/persons/:id', (request, response, next) => {    
 Persons.findById(request.params.id)    
     .then(
-      person =>{console.log(person)
+      person =>{//console.log(person)
       if(person === null)
         response.status(404).send("The person no exist")
       else

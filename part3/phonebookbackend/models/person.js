@@ -14,8 +14,8 @@ mongoose.connect(url)
 
 // Define your schema as normal.
 const personSchema = new mongoose.Schema({
-    name: { type: String, required: true, unique: true },
-    number: String
+    name: { type: String, required: true, unique: true,minlength: 3 },
+    number:{ type: String, required: true,minlength: 8 }
 })
 
 // Apply the uniqueValidator plugin to userSchema.
@@ -23,8 +23,6 @@ personSchema.plugin(uniqueValidator);
 
 personSchema.set('toJSON', {
     transform: (document, returnedObject) => {
-        console.log("toJSON document"+document)
-        console.log("toJSON returnedObject"+returnedObject)
         returnedObject.id = returnedObject._id.toString()
         delete returnedObject._id
         delete returnedObject.__v

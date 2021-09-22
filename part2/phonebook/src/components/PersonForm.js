@@ -40,6 +40,10 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
             handleSetName()
             handleSetNumber()
           })
+          .catch(error => {
+            console.log('fail')
+            messageNotification({status:`fail`,content:error})
+          })
         }
       }
     return (

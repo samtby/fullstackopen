@@ -10,6 +10,11 @@ const getAll = () => {
 const create = newObject => {
   const request = axios.post(baseUrl, newObject)
   return request.then(response => response.data)
+  .catch(error => 
+    function (error) {
+      return error
+    }
+  )  
 }
 
 const update = (id, newObject) => {

@@ -7,8 +7,8 @@ import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState('')
-  const [ newNumber, setNewNumber ] = useState('')
+  const [ newName, setNewName ] = useState('ju')
+  const [ newNumber, setNewNumber ] = useState('456544565465')
   const [ newFilter, setNewFilter ] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
  
