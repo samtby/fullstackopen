@@ -7,8 +7,8 @@ import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState('ju')
-  const [ newNumber, setNewNumber ] = useState('456544565465')
+  const [ newName, setNewName ] = useState('julien')
+  const [ newNumber, setNewNumber ] = useState(Math.floor(Math.random() * 100))
   const [ newFilter, setNewFilter ] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
  
@@ -37,7 +37,6 @@ const App = () => {
       setNewNumber(event.target.value)       
     console.log( event.target.name ,event.target.value)
   }
-
   return(
     <div>
     <h2>Phonebook</h2>

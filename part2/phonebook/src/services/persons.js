@@ -21,6 +21,7 @@ const create = newObject => {
 const update = (id, newObject) => {
   const request = axios.put(`${baseUrl}/${id}`, newObject)
   return request.then(response => response.data)
+  .catch(error => error.response.data)
 }
 
 const del = (id) => {

@@ -2,7 +2,6 @@
 
 ***Fullstack***
 
-[Phonebook full stack](https://infinite-sierra-55116.herokuapp.com/)
-
-heroku  https://git.heroku.com/infinite-sierra-55116.git (fetch)
-heroku  https://git.heroku.com/infinite-sierra-55116.git (push)
+[Phonebook full stack]
+* https://stormy-everglades-04761.herokuapp.com/
+* https://git.heroku.com/stormy-everglades-04761.git

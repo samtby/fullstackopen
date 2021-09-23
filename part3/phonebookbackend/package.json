@@ -12,8 +12,8 @@
     "dev-devenv": "concurrently --kill-others \"npm run dev-fontend\" \"npm run dev-backend\"",
     "build:ui": "rm -rf build && cd ../../part2/phonebook/ && npm run build --prod && cp -r build ../../part3/phonebookbackend/",
     "deploy": "git push heroku",
-    "deploy:full": "npm run build:ui && git add build *.json *.js && git status && git commit -m uibuild && npm run deploy",
-    "deploy:backend": "rm -rf build && git add build *.json *.js && git commit -m backendbuild && npm run deploy",
+    "deploy:full": "npm run build:ui && git add build models *.json *.js && git status && git commit -m uibuild && npm run deploy",
+    "deploy:backend": "rm -rf build && git add build models *.json *.js && git commit -m backendbuild && npm run deploy",
     "logs:prod": "heroku logs --tail"
   },
   "keywords": [

@@ -7,9 +7,10 @@ const app = express();
 
 morgan.token('id',(req)=> req.body.id);
 morgan.token('body',(req)=> JSON.stringify(req.body));
-//app.use(express.static('build'))
+app.use(express.static('build'))
 app.use(cors())
 app.use(express.json());
+const Persons = require('./models/person.js')
 
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
@@ -22,7 +23,7 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(morgan(':method :url :status :res[content-length] :response-time ms :body'));
 
-const Persons = require('./models/person.js')
+
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>');
