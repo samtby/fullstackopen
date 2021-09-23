@@ -7,8 +7,8 @@ import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
-  const [ newName, setNewName ] = useState('julien')
-  const [ newNumber, setNewNumber ] = useState(Math.floor(Math.random() * 100))
+  const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
  
