@@ -9,12 +9,13 @@ const getAll = () => {
 
 const create = newObject => {
   const request = axios.post(baseUrl, newObject)
+  console.log("Create")
+
   return request.then(response => response.data)
-  .catch(error => 
-    function (error) {
-     console.log(error)
-    }
-  )  
+  .catch(error => error.response.data)
+    // this is the way to access the error message
+    //console.log(error.response.data)
+
 }
 
 const update = (id, newObject) => {

@@ -34,11 +34,17 @@ const PersonForm = ({persons,name,number,handlePerson,handlePhone,handleSetPerso
         console.log("Object not found.")
         personService
           .create({ name , number })
-          .then(returnedPerson  => {handleSetPersons(persons.concat(returnedPerson))
-            console.log('success')
-            messageNotification({status:`success`,content:`Added ${name}`})
-            handleSetName()
-            handleSetNumber()
+          .then(returnedPerson  => {
+            if(returnedPerson.error !== undefined)
+              messageNotification({status:`fail`,content:returnedPerson.error})
+            else{
+              handleSetPersons(persons.concat(returnedPerson))  
+              console.log('success')
+              console.log(returnedPerson)
+              messageNotification({status:`success`,content:`Added ${name}`})
+              handleSetName()
+              handleSetNumber()
+            }
           })
           .catch(error => {
             console.log('fail')
