@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-fontend": "cd ../../part2/phonebook/ && npm run start ",
     "dev-envdev": "concurrently --kill-others \"npm run dev-backend\" \"npm run dev-fontend\"",
+    "dev-devenv": "concurrently --kill-others \"npm run dev-fontend\" \"npm run dev-backend\"",
     "build:ui": "rm -rf build && cd ../../part2/phonebook/ && npm run build --prod && cp -r build ../../part3/phonebookbackend/",
     "deploy": "git push heroku",
     "deploy:full": "npm run build:ui && git add build *.json *.js && git status && git commit -m uibuild && npm run deploy",

@@ -12,7 +12,7 @@ const create = newObject => {
   return request.then(response => response.data)
   .catch(error => 
     function (error) {
-      return error
+     console.log(error)
     }
   )  
 }
