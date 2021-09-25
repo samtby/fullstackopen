@@ -1,0 +1,24 @@
+{
+  "name": "bloglist",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon -L index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NoRoc",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cros": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "espress": "^0.0.0",
+    "express": "^4.17.1",
+    "logger": "^0.0.1",
+    "middleware": "^1.0.0",
+    "mongoose": "^6.0.7",
+    "nodemon": "^2.0.13"
+  }
+}
