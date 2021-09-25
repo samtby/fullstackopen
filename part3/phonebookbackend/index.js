@@ -5,8 +5,8 @@ const cors = require('cors')
 var morgan = require('morgan');
 const app = express();
 
-morgan.token('id',(req)=> req.body.id);
-morgan.token('body',(req)=> JSON.stringify(req.body));
+morgan.token('id',(req) => req.body.id);
+morgan.token('body',(req) => JSON.stringify(req.body))
 app.use(express.static('build'))
 app.use(cors())
 app.use(express.json());
@@ -14,14 +14,14 @@ const Persons = require('./models/person.js')
 
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
-  if (error.name === 'CastError')
+  if (error.name ==='CastError')
     return response.status(400).send({ error: 'malformatted id' })
-  if (error.name === 'ValidationError') 
-    return response.status(400).json( {error: error.message})
+  if (error.name ==='ValidationError')
+    return response.status(400).json({ error: error.message })
   next(error)
 }
 
-app.use(morgan(':method :url :status :res[content-length] :response-time ms :body'));
+app.use(morgan(':method :url :status :res[content-length] :response-time ms :body'))
 
 
 
@@ -38,47 +38,46 @@ app.get('/api/persons', (request, response,next) => {
   .catch(error => next(error))
 })
 
-app.get('/api/persons/:id', (request, response, next) => {    
-Persons.findById(request.params.id)    
+app.get('/api/persons/:id', (request, response, next) => {
+Persons.findById(request.params.id)
     .then(
-      person =>{//console.log(person)
+      person => {
       if(person === null)
         response.status(404).send("The person no exist")
       else
         response.json(person)
     })
-    .catch(error => next(error))    
+    .catch(error => next(error))
 })
 
 app.post('/api/persons', (request, response, next) => {
 
-/*  const body = request.body
-  if (body.content === undefined) 
-    return response.status(400).json({ error: 'content missing' })   */    
+  /*const body = request.body
+  if (body.content === undefined)
+    return response.status(400).json({ error: 'content missing' })*/
   const personreq = Object();
    Object.assign(personreq ,request.body);
     if((personreq.name.length*personreq.number.length) !== 0){
-      Persons.find({name:personreq.name})
+      Persons.find({ name:personreq.name })
       .then(person => {
         //if(person.length === 0){
-          const pers = new Persons({name: personreq.name, number: personreq.number })
-          pers.save()
+          person = new Persons({ name: personreq.name, number: personreq.number })
+          person.save()
           .then(result => {
-            console.log("added "+result.name+" number "+result.number+" to phonebook");
+            console.log("added "+result.name+" number "+result.number+" to phonebook")
             response.json(result)
           })
           .catch(error => next(error))
       })
-      .catch(error => next(error))         
+      .catch(error => next(error))
     }else
-      response.status(400).json({ error: 'The name or number is missing' });    
+      response.status(400).json({ error: 'The name or number is missing' })
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
-  const id = Number(request.params.id);
   Persons.findByIdAndRemove(request.params.id)
   .then(
-    person =>{console.log(person)
+    person => {console.log(person)
     if(person === null)
       response.status(404).send("The person no exist")
     else
@@ -106,22 +105,21 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.get('/api/info', (request, response, next) => {
   Persons.find({})
-  .then(persons => {    
+  .then(persons => {
     persons.length
     let date_ob = new Date();
-    let dateFinal = date_ob.toLocaleString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    let timeString =date_ob.toTimeString();
+    let dateFinal = date_ob.toLocaleString("en-US",{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    let timeString =date_ob.toTimeString()
     response.send(
       '<p>Phonebook has info for '+ persons.length+' people</p>'+
-      '<p>'+dateFinal+' '+timeString+'</p>'    
+      '<p>'+dateFinal+' '+timeString+'</p>'
     )
   })
   .catch(error => next(error))
-  
 })
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' });
+  response.status(404).send({ error: 'unknown endpoint' })
 }
 app.use(unknownEndpoint)
 // this has to be the last loaded middleware.
@@ -129,5 +127,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`)
 })
