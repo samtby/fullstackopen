@@ -28,10 +28,10 @@ describe('total likes', () => {
       likes: 6,
       __v: 0
     }
-*/
+*//*
   test('when list has only one blog, equals the likes of that', () => {
     const result = listHelper.totalLikes(listWithOneBlog)
     expect(result).toBe(5)
   })
-
+*/
 })

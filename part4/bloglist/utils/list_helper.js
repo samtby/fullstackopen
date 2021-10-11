@@ -11,16 +11,14 @@ const dummy = (blogs) => {
       countLikes =+ blogs[likes] 
     })*/
 
-    /*
+   
   for (var key in myObject) {
     if (myObject.hasOwnProperty(likes))
       countLikes += blogs[likes]
-  */
-
-    blogs.map(blog => countLikes += blogs.totalLikes)
+    //blogs.map(blog => countLikes += blogs.totalLikes)
   return countLikes
   }
   
   module.exports = {
-    dummy
+    dummy,totalLikes
   }
