@@ -16,6 +16,7 @@ const dummy = (blogs) => {
     if (myObject.hasOwnProperty(likes))
       countLikes += blogs[likes]
   
+      console.log(countLikes)
 
   //  blogs.map(blog => countLikes += blogs.totalLikes)
   return countLikes
