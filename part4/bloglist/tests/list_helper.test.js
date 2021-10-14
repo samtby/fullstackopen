@@ -70,6 +70,12 @@ describe('total likes', () => {
     }  
   ]
   
+  const favoriteBlog = {
+    title: "Canonical string reduction",
+    author: "Edsger W. Dijkstra",
+    likes: 12
+  }
+  
   test('of empty list is zero', () => {
     const result = listHelper.totalLikes([])
     expect(result).toBe(0)
@@ -84,5 +90,12 @@ describe('total likes', () => {
     const result = listHelper.totalLikes(blogs)
     console.log(result)
     expect(result).toBe(36)
+  })
+
+  test('Finds out which blog has most likes', () => {
+    const result = listHelper.favoriteBlog(blogs)
+    //console.log("favoriteBlog"+favoriteBlog)
+    //console.log("result"+result)
+    //expect(result).toEqual(favoriteBlog)
   })
 })
