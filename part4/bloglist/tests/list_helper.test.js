@@ -7,6 +7,7 @@ test('dummy returns one', () => {
   expect(result).toBe(1)
 })
 
+    
 
 describe('total likes', () => {
   const listWithOneBlog = [
@@ -28,10 +29,12 @@ describe('total likes', () => {
       likes: 6,
       __v: 0
     }
-*//*
+*/
+
   test('when list has only one blog, equals the likes of that', () => {
     const result = listHelper.totalLikes(listWithOneBlog)
+    console.log("Result Likes: ",result)
     expect(result).toBe(5)
   })
-*/
+
 })
