@@ -7,8 +7,6 @@ test('dummy returns one', () => {
   expect(result).toBe(1)
 })
 
-    
-
 describe('total likes', () => {
   const listWithOneBlog = [
     {
@@ -36,5 +34,4 @@ describe('total likes', () => {
     console.log("Result Likes: ",result)
     expect(result).toBe(5)
   })
-
 })

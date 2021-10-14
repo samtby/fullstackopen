@@ -2,7 +2,6 @@ const dummy = (blogs) => {
   // ...
   if(Array.isArray(blogs))
     return 1
-  //return 0
 }  
 
 
@@ -14,16 +13,13 @@ let countLikes = 0
   })*/
 
   
-for (var key in blogs) {
-  if (key.hasOwnProperty('likes'))
-    countLikes += key[likes]
-
+  for (var key in blogs) {
+    if (key.hasOwnProperty('likes'))
+      countLikes += key[likes]
     console.log(countLikes)
-
-//  blogs.map(blog => countLikes += blogs.totalLikes)
-
- return countLikes
-}
+    //  blogs.map(blog => countLikes += blogs.totalLikes)
+  return countLikes
+  }
 }
 
 
