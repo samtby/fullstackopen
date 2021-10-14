@@ -4,24 +4,14 @@ const dummy = (blogs) => {
     return 1
 }  
 
-
-
 const totalLikes = (blogs) => {
-let countLikes = 0
-  /*Object.keys(blogs).map(function(likes, index) {
-    countLikes =+ blogs[likes] 
-  })*/
-
-  
-  for (var key in blogs) {
-    if (key.hasOwnProperty('likes'))
-      countLikes += key[likes]
-    console.log(countLikes)
-    //  blogs.map(blog => countLikes += blogs.totalLikes)
+  let countLikes = 0 // if blogs.length == 0
+    if(blogs.length == 1)
+      blogs.map(blog => countLikes = blog.likes)
+    if(blogs.length > 1)
+      blogs.map(blog => countLikes += blog.likes)  
   return countLikes
-  }
 }
-
 
 module.exports = {
 dummy,totalLikes

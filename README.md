@@ -606,8 +606,6 @@ If there is something wrong in your configuration file, the lint plugin can beha
 
 Many companies define coding standards that are enforced throughout the organization through the ESlint configuration file. It is not recommended to keep reinventing the wheel over and over again, and it can be a good idea to adopt a ready-made configuration from someone else's project into yours. Recently many projects have adopted the Airbnb [Javascript style guide](https://github.com/airbnb/javascript) by taking Airbnb's [ESlint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) configuration into use.
 
-
- 
  # Jest 
 Jest est un framework de test JavaScript de qualité qui met l'accent sur la simplicité.
 
@@ -615,6 +613,12 @@ Il fonctionne avec les projets utilisant : Babel, TypeScript, Node, React, Angul
 ```
 npm install --save-dev jest
 ```
+
+Another way of running a single test (or describe block) is to specify the name of the test to be run with the -t flag:
+```
+npm test -- -t 'when list has only one blog, equals the likes of that'
+```
+
 ## Promises chaining
 
 # Useful libraries
