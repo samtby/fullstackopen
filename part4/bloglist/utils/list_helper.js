@@ -12,16 +12,16 @@ const dummy = (blogs) => {
     })*/
 
     
-  for (var key in myObject) {
-    if (myObject.hasOwnProperty(likes))
-      countLikes += blogs[likes]
+  for (var key in blogs) {
+    if (key.hasOwnProperty('likes'))
+      countLikes += key[likes]
   
       console.log(countLikes)
 
   //  blogs.map(blog => countLikes += blogs.totalLikes)
-  return countLikes
+
+   return countLikes
   }
-  
 }
 
 
