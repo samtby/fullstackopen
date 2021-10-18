@@ -14,14 +14,15 @@ const totalLikes = (blogs) => {
 }
 
 const favoriteBlog = (blogs) => {
-  let favoriteBlog = {}
-  countLikes = 0  
-//  Math.max.apply(Math, array.map(function(blog) { return blog.y; }))
-//  favoriteBlog = blogs.filter(blog => countLikes > blog.likes)
-//favoriteBlog = blogs.filter(blog => countLikes > blog.likes)
-favoriteBlog =  blogs.reduce((acc, blog) => acc = acc > blog.likes ? acc : blog.likes, 0);
-console.log("favoriteBlog")
- console.log(favoriteBlog)
+const favoriteBlog = blogs.reduce(function(prev, current) {
+  return (prev.likes > current.likes) ? prev : current
+}) //returns object
+console.log("favoriteBlog: ")
+console.log(favoriteBlog)
+
+console.log(favoriteBlog["title"])
+console.log(favoriteBlog["author"])
+console.log(favoriteBlog["likes"])
   return {title: favoriteBlog["title"], author: favoriteBlog["author"], likes: favoriteBlog["likes"]}
 }
 
