@@ -619,6 +619,10 @@ Another way of running a single test (or describe block) is to specify the name 
 npm test -- -t 'when list has only one blog, equals the likes of that'
 ```
 
+# Lodash 
+A modern JavaScript utility library delivering modularity, performance & extras.
+
+* [Why Lodash?](https://lodash.com/)
 ## Promises chaining
 
 # Useful libraries
