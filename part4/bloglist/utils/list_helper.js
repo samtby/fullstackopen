@@ -1,3 +1,6 @@
+// Load the full build.
+var _ = require('lodash')
+
 const dummy = (blogs) => {
   // ...
   if(Array.isArray(blogs))
@@ -26,6 +29,14 @@ console.log(favoriteBlog["likes"])
   return {title: favoriteBlog["title"], author: favoriteBlog["author"], likes: favoriteBlog["likes"]}
 }
 
+
+const mostBlogs = (blogs) => {
+  const mostBlog = _.countBy(['author'])
+  console.log("mostBlogs :", mostBlog)
+
+  return mostBlog
+}
+
 module.exports = {
-dummy,totalLikes,favoriteBlog
+dummy,totalLikes,favoriteBlog,mostBlogs
 }
