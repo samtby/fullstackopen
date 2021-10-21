@@ -32,9 +32,9 @@ const mostBlogs = (blogs) => {
   //arr2 = findOcc(blogs,"author");
   //New technical with 
   let mostBlog = _.countBy(blogs,"author")  
-  mostBlog.reduce(function(prev, current) {
+  /*mostBlog.reduce(function(prev, current) {
     return (prev.likes > current.likes) ? prev : current
-  }) //returns object  
+  }) //returns object  */
   //Old technical
   //const mostBlog = _.countBy(blogs,"author");
   console.log("countBy mostBlog: ",mostBlog)
