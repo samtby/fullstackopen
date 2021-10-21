@@ -4,7 +4,7 @@ const dummy = (blogs) => {
   // ...
   if(Array.isArray(blogs))
     return 1
-}  
+}
 
 const totalLikes = (blogs) => {
   let countLikes = 0 // if blogs.length == 0
@@ -14,6 +14,8 @@ const totalLikes = (blogs) => {
       blogs.map(blog => countLikes += blog.likes)  
   return countLikes
 }
+
+
 
 const favoriteBlog = (blogs) => {
 const favoriteBlog = blogs.reduce(function(prev, current) {
@@ -28,18 +30,60 @@ console.log(favoriteBlog["likes"])
   return {title: favoriteBlog["title"], author: favoriteBlog["author"], likes: favoriteBlog["likes"]}
 }
 
+// countBy mostBlog:  { 'Michael Chan': 1, 'Edsger W. Dijkstra': 2, 'Robert C. Martin': 3 }
 const mostBlogs = (blogs) => {
   //arr2 = findOcc(blogs,"author");
   //New technical with 
-  let mostBlog = _.countBy(blogs,"author")  
+  
+  let mostBlog = _.countBy(blogs,"author")
+  mostBlog = _.invert(mostBlog)
+  const max = Math.max.apply(null,Object.keys(mostBlog))
+  //mostBlog = Math.max(blogs)
+  
+/*
+  _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+  console.log(key);
+  value 
+});
+/*
+  _.forEach(mostBlog, function(prev, current) {
+    //return (prev > current) ? prev : current
+  //  Math.max(1, 3, 2)
+    //console.log("test");
+    console.log(prev,current);
+  });
+
+// { 'Michael Chan': 1, 'Edsger W. Dijkstra': 2, 'Robert C. Martin': 3 }
+
+
+
+  */ 
+  //mostBlog = _.findKey(mostBlog, function(o) { return  o === 3});
+
+  //let mostBlog = _.sumBy(_.countBy(blogs,"author"),"author")
+
+  //mostBlog = _.maxBy(mostBlog,mostBlog.property)
+  
+//  mostBlog.property
+    /*mostBlog = _.find(mostBlog, function(prev, current) {
+    return (prev > current) ? prev : current
+  });*/
+// => object for 'barney'
+  //_.maxBy(mostBlog)
   /*mostBlog.reduce(function(prev, current) {
     return (prev.likes > current.likes) ? prev : current
   }) //returns object  */
   //Old technical
+  
   //const mostBlog = _.countBy(blogs,"author");
-  console.log("countBy mostBlog: ",mostBlog)
+  //console.log("countBy mostBlog: ",mostBlog)
+  //console.log("Max: ",max,"mostBlog: ",mostBlog[max])
+
+   return { author: mostBlog[max], blogs: max }
+  
 }
 //Old technical
+/*
 function findOcc(arr, key){
   let arr2 = [];
   arr.forEach((x)=>{
@@ -64,6 +108,7 @@ function findOcc(arr, key){
   })
   return arr2
 }
+*/
 
 module.exports = {
   dummy,totalLikes,favoriteBlog,mostBlogs
