@@ -110,6 +110,17 @@ function findOcc(arr, key){
 }
 */
 
+// countBy mostBlog:  { 'Michael Chan': 1, 'Edsger W. Dijkstra': 2, 'Robert C. Martin': 3 }
+const mostLikes = (blogs) => {
+  //arr2 = findOcc(blogs,"author");
+  //New technical with 
+  
+  let mostBlog = _.countBy(blogs,"likes")
+  //mostBlog = _.invert(mostBlog)
+  //const max = Math.max.apply(null,Object.keys(mostBlog))
+  console.log("mostLikes: ", mostBlog);
+}
+
 module.exports = {
-  dummy,totalLikes,favoriteBlog,mostBlogs
+  dummy,totalLikes,favoriteBlog,mostBlogs,mostLikes
 }

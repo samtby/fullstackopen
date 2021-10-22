@@ -104,4 +104,9 @@ describe('total likes', () => {
     //expect(result).toEqual(favoriteBlog)
   })
   
+  test('The author who has the largest amount of likes', () => {
+    const result = listHelper.mostLikes(blogs)
+    console.log("mostLikes :",result)
+    //expect(result).toEqual(favoriteBlog)
+  })
 })
