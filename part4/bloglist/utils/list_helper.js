@@ -122,11 +122,25 @@ const mostLikes = (blogs) => {
     '2': 'Edsger W. Dijkstra',
     '3': 'Robert C. Martin'
   }*/
-  
-  _.forEach(mostBlog, function(author, key) { console.log("mostBlog author: ", author);    
+  let final ={author: '',likes : 0}
+  _.forEach(mostBlog, function(author, key) { //console.log("mostBlog author: ", author);    
 
     
-      result = author, _.filter(blogs,  function(o) { return o.author === author })
+      result.push(_.filter(blogs,  function(o) { return o.author === author }))
+      
+      let compteur = 0    
+      //const likesNunm =
+       result
+        _.forEach(result, function(value, key) {
+          compteur += value[0].likes
+          //console.log('value: ',value[0].likes)
+      }) //returns object      
+      console.log("mostBlog author: ", author);    
+      final = Object.assign(final,{author: author,likes :compteur});
+      
+      
+      console.log('compteur likes de',author, ': ',compteur)
+      //console.log('likesNunm: ',likesNunm)
       //"author"))
   //result.push(_.filter(blogs,author))
     /*_.forEach(blogs, function(value, key) { console.log("blogs: ",value);
@@ -134,11 +148,11 @@ const mostLikes = (blogs) => {
     
      });*/
   });
-
+    console.log('final: ',final)
    //mostBlog = _.filter(blogs,"author")
   //mostBlog = _.invert(mostBlog)
   //const max = Math.max.apply(null,Object.keys(mostBlog))
-  console.log("mostLikesTest: ", result);
+  //console.log("mostLikesTest: ", result);
 }
 
 module.exports = {
