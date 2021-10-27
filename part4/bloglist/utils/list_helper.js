@@ -109,7 +109,8 @@ function findOcc(arr, key){
 // countBy mostBlog:  { 'Michael Chan': 1, 'Edsger W. Dijkstra': 2, 'Robert C. Martin': 3 }
 const mostLikes = (blogs) => {
   
-  const result = []
+  
+  const final = []
   //arr2 = findOcc(blogs,"author");
   //New technical with 
 
@@ -122,24 +123,33 @@ const mostLikes = (blogs) => {
     '2': 'Edsger W. Dijkstra',
     '3': 'Robert C. Martin'
   }*/
-  let final ={author: '',likes : 0}
-  _.forEach(mostBlog, function(author, key) { //console.log("mostBlog author: ", author);    
-
+  //let final ={author: '',likes : 0}
+  let final_final = {}
+  console.log("mostBlog : ", mostBlog);    
+  _.forEach(mostBlog, function(author, key) { 
+      let result = []
     
       result.push(_.filter(blogs,  function(o) { return o.author === author }))
-      
-      let compteur = 0    
+      console.log('###############################################')
+      console.log(' result: ', result)      
+      let compteur = 0 
+      console.log('compteur :', compteur )
       //const likesNunm =
-       result
-        _.forEach(result, function(value, key) {
-          compteur += value[0].likes
-          //console.log('value: ',value[0].likes)
-      }) //returns object      
-      console.log("mostBlog author: ", author);    
-      final = Object.assign(final,{author: author,likes :compteur});
+       
+        _.forEach(result, function(value, key) { // [_.filter(blogs,  function(o) { return o.author === author })]
+          console.log('=================Likes=================')
+          _.forEach(value, function(value, key) {
+            console.log('value.likes: ',value.likes)
+            compteur += value.likes
+        })
+      })
+      console.log("mostBlog author: ",  author, 'likes: ',compteur);    
+      //let objetcMostLikes ={author: author,likes :compteur}
+      final.push({author: author,likes :compteur})
+       //_.unionWith(final_final,objetcMostLikes );
       
       
-      console.log('compteur likes de',author, ': ',compteur)
+      //console.log('compteur likes de',author, ': ',compteur)
       //console.log('likesNunm: ',likesNunm)
       //"author"))
   //result.push(_.filter(blogs,author))
@@ -148,6 +158,18 @@ const mostLikes = (blogs) => {
     
      });*/
   });
+/*
+  var object = {
+    { 'b': 2 }
+  };
+   
+  var other = {
+    { 'c': 3 }
+  };
+  */
+  // _.union(object, other);
+  // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+    //console.log('final: ',final_final)
     console.log('final: ',final)
    //mostBlog = _.filter(blogs,"author")
   //mostBlog = _.invert(mostBlog)
