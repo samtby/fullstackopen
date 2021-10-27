@@ -108,8 +108,8 @@ function findOcc(arr, key){
 
 // countBy mostBlog:  { 'Michael Chan': 1, 'Edsger W. Dijkstra': 2, 'Robert C. Martin': 3 }
 const mostLikes = (blogs) => {
-
-  let result = 0
+  
+  const result = []
   //arr2 = findOcc(blogs,"author");
   //New technical with 
 
@@ -123,16 +123,22 @@ const mostLikes = (blogs) => {
     '3': 'Robert C. Martin'
   }*/
   
-  _.forEach(mostBlog, function(value, key) { console.log("mostBlog; ", key,value);    
-    _.forEach(blogs, function(author, key) { console.log("blogs: ", key,value);      
-    result,_.countBy(blogs,_.filter(mostBlog,author),"likes")
-     });
+  _.forEach(mostBlog, function(author, key) { console.log("mostBlog author: ", author);    
+
+    
+      result = author, _.filter(blogs,  function(o) { return o.author === author })
+      //"author"))
+  //result.push(_.filter(blogs,author))
+    /*_.forEach(blogs, function(value, key) { console.log("blogs: ",value);
+    //result = _.countBy(blogs,_.filter(mostBlog,author),"likes")
+    
+     });*/
   });
 
    //mostBlog = _.filter(blogs,"author")
   //mostBlog = _.invert(mostBlog)
   //const max = Math.max.apply(null,Object.keys(mostBlog))
-  console.log("mostLikes: ", result);
+  console.log("mostLikesTest: ", result);
 }
 
 module.exports = {
