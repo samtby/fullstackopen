@@ -36,9 +36,21 @@ const mostBlogs = (blogs) => {
   //New technical with 
   
   let mostBlog = _.countBy(blogs,"author")
+  console.log(mostBlog)
   mostBlog = _.invert(mostBlog)
+  console.log(mostBlog)
   const max = Math.max.apply(null,Object.keys(mostBlog))
-  //mostBlog = Math.max(blogs)
+
+/*
+  let mostBlog =_.reduce(blogs,function(mem, next){
+    author = next.author;
+    let existingObj = _.find(mem, function(item) { return item.author === author; })
+    existingObj ? existingObj.count++ : mem.push(_.extend(next, {count: 1}))
+    return mem
+  }, [])
+  */
+  
+  // => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
   
 /*
   _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
@@ -74,9 +86,8 @@ const mostBlogs = (blogs) => {
   //const mostBlog = _.countBy(blogs,"author");
   //console.log("countBy mostBlog: ",mostBlog)
   //console.log("Max: ",max,"mostBlog: ",mostBlog[max])
-
+   
    return { author: mostBlog[max], blogs: max }
-  
 }
 //Old technical
 /*
