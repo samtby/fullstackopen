@@ -25,7 +25,7 @@ describe('total likes', () => {
       title: "React patterns",
       author: "Michael Chan",
       url: "https://reactpatterns.com/",
-      likes: 50,
+      likes: 7,
       __v: 0
     },
     {
@@ -33,7 +33,7 @@ describe('total likes', () => {
       title: "Go To Statement Considered Harmful",
       author: "Edsger W. Dijkstra",
       url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
-      likes: 6,
+      likes: 5,
       __v: 0
     },
     {
@@ -41,7 +41,7 @@ describe('total likes', () => {
       title: "Canonical string reduction",
       author: "Edsger W. Dijkstra",
       url: "http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html",
-      likes: 6,
+      likes: 12,
       __v: 0
     },
     {
@@ -49,7 +49,7 @@ describe('total likes', () => {
       title: "First class tests",
       author: "Robert C. Martin",
       url: "http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll",
-      likes: 5,
+      likes: 10,
       __v: 0
     },
     {
@@ -57,7 +57,7 @@ describe('total likes', () => {
       title: "TDD harms architecture",
       author: "Robert C. Martin",
       url: "http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html",
-      likes: 5,
+      likes: 0,
       __v: 0
     },
     {
@@ -65,7 +65,7 @@ describe('total likes', () => {
       title: "Type wars",
       author: "Robert C. Martin",
       url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-      likes: 5,
+      likes: 2,
       __v: 0
     }  
   ]
@@ -101,12 +101,12 @@ describe('total likes', () => {
   test('The author who has the largest amount of blogs', () => {
     const result = listHelper.mostBlogs(blogs)
     console.log("resultFinal :",result)
-    //expect(result).toEqual(favoriteBlog)
+    expect(result).toEqual( { author: "Robert C. Martin", blogs: 3 })
   })
   
   test('The author who has the largest amount of likes', () => {
     const result = listHelper.mostLikes(blogs)
     console.log("mostLikes :",result)
-    expect(result).toEqual({ author: 'Michael Chan', likes: 50 })
+    expect(result).toEqual({ author: 'Edsger W. Dijkstra', likes: 17 })
   })
 })
