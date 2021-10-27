@@ -171,10 +171,14 @@ const mostLikes = (blogs) => {
   // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
     //console.log('final: ',final_final)
     console.log('final: ',final)
+    console.log('On boit une biere')
+        
    //mostBlog = _.filter(blogs,"author")
   //mostBlog = _.invert(mostBlog)
   //const max = Math.max.apply(null,Object.keys(mostBlog))
   //console.log("mostLikesTest: ", result);
+
+ return _.maxBy(final,'likes') 
 }
 
 module.exports = {
