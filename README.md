@@ -623,6 +623,28 @@ npm test -- -t 'when list has only one blog, equals the likes of that'
 A modern JavaScript utility library delivering modularity, performance & extras.
 
 * [Why Lodash?](https://lodash.com/)
+
+# cross-env
+cross-env makes it so you can have a single command without worrying about setting or using the environment variable properly for the platform. Just set it like you would if it's running on a POSIX system, and cross-env will take care of setting it properly.
+
+
+* [cross-env](https://www.npmjs.com/package/cross-env)
+```
+npm install --save-dev cross-env
+```
+
+# supertest
+
+The motivation with this module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
+
+* [supertest](https://github.com/visionmedia/supertest)
+
+```
+npm install supertest --save-dev
+```
+
+
+
 ## Promises chaining
 
 # Useful libraries
