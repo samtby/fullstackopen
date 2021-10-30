@@ -643,7 +643,17 @@ The motivation with this module is to provide a high-level abstraction for testi
 npm install supertest --save-dev
 ```
 
+# Testing Mongoose with Jest
 
+*[Testing Mongoose with Jest](https://mongoosejs.com/docs/jest.html)
+
+To change your ```testEnvironment``` to Node.js, add ```testEnvironment``` to your ```jest.config.js``` file:
+
+```
+module.exports = {
+  testEnvironment: 'node'
+};
+```
 
 ## Promises chaining
 
