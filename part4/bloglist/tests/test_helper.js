@@ -1,4 +1,4 @@
-const Note = require('../models/note')
+const Blog = require('../models/blog')
 
 const initialNotes = [
   {
@@ -32,7 +32,7 @@ const initialBlogs = [
     }
   ]
 const nonExistingId = async () => {
-  const note = new Note({ content: 'willremovethissoon', date: new Date() })
+  const note = new Blog({ content: 'willremovethissoon', date: new Date() })
   await note.save()
   await note.remove()
 
