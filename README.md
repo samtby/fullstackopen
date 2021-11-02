@@ -655,6 +655,11 @@ module.exports = {
 };
 ```
 
+```
+npm test -- tests/note_api.test.js
+npm test -- -t "a specific note is within the returned notes"
+npm test -- -t 'notes'
+```
 ## Promises chaining
 
 # Useful libraries
