@@ -133,7 +133,7 @@ test('a valid blog can be added', async () => {
   const contents = response.body.map(r => r.title)
 
   expect(response.body).toHaveLength(initialTowBlogs.length + 1)
-  expect(contents).toContain(  'async/await simplifies making async calls')
+  expect(contents).toContain('async/await simplifies making async calls')
 })
 
 test('blog without content is not added', async () => {
@@ -151,7 +151,6 @@ test('blog without content is not added', async () => {
     .expect(400)
 
   const response = await api.get('/api/notes')
-
   expect(response.body).toHaveLength(initialNotes.length)
 })
 
