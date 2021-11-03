@@ -1,18 +1,5 @@
 const Blog = require('../models/blog')
 
-const initialNotes = [
-  {
-    content: 'HTML is easy',
-    date: new Date(),
-    important: false
-  },
-  {
-    content: 'Browser can execute only Javascript',
-    date: new Date(),
-    important: true
-  }
-]
-
 const initialBlogs = [
     {
       _id: "5a422a851b54a676234d17f7",
@@ -32,18 +19,24 @@ const initialBlogs = [
     }
   ]
 const nonExistingId = async () => {
-  const note = new Blog({ content: 'willremovethissoon', date: new Date() })
-  await note.save()
-  await note.remove()
+  const blog = new Blog({
+    title: "async/await simplifies making async calls",
+    author: "Robert C. Martin",
+    url: "https://javascript.info/async-await",
+    likes: 0,
+  }
+  )
+  await blog.save()
+  await blog.remove()
 
-  return note._id.toString()
+  return blog._id.toString()
 }
 
-const notesInDb = async () => {
-  const notes = await Note.find({})
-  return notes.map(note => note.toJSON())
+const blogInDb = async () => {
+  const blogs = await Blog.find({})
+  return blogs.map(blog => blog.toJSON())
 }
 
 module.exports = {
-    initialBlogs, nonExistingId, notesInDb
+  initialBlogs, nonExistingId, blogInDb
 }
