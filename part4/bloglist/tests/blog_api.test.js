@@ -16,7 +16,7 @@ beforeEach(async () => {
   console.log("blogObject 2:",blogObject)
   await blogObject.save()
   })
-
+// 4.8: Blog list tests, step1
 test('blogs are returned as json', async () => {
   const respons = await api
     .get('/api/blogs')
