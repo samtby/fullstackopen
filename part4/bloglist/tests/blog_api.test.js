@@ -61,34 +61,32 @@ test('a valid blog can be added', async () => {
   await api
     .post('/api/blogs')
     .send(newBlog)
-    .expect(201)
+    .expect(200)
     .expect('Content-Type', /application\/json/)
 
   const response = await api.get('/api/blogs')
 
-  const contents = response.body.map(r => r.title)
-
-  expect(response.body).toHaveLength(helper.initialBlogs.length + 1)
-  const title =. map(n => n.title
-  expect(contents).toContain.map(n => n.title'async/await simplifies making async calls')
+  const blogsAtEnd = await helper.blogInDb()
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
+  
+  const title = response.body.map(n => n.title)
+  expect(title).toContain(
+    'React patterns'
+    )
 })
 
 test('blog without content is not added', async () => {
   const newBlog = {
-    title: "async/await simplifies making async calls",
-    author: "Robert C. Martin",
-    url: "https://javascript.info/async-await",
     likes: 0,
   }
 
-
   await api
-    .post('/api/notes')
-    .send(newNote)
-    .expect(400)
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
 
-  const response = await api.get('/api/notes')
-  expect(response.body).toHaveLength(initialNotes.length)
+  const blogsAtEnd = await helper.blogInDb()
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
 })
 
 afterAll(() => {
