@@ -26,6 +26,14 @@ test('blogs are returned as json', async () => {
   }
 ,100000)
 
+// 4.8: Blog list tests, step1
+test('all blogs are returned', async () => {
+  const response = await api.get('/api/blogs')
+  .expect(200)
+  .expect('Content-Type', /application\/json/)
+  expect(response.body).toHaveLength(helper.initialBlogs.length)
+},100000)
+
 test('a specific blog is within the returned blogs', async () => {
   const response = await api.get('/api/blogs')
   const contents = response.body.map(r => r.url)  
@@ -33,14 +41,6 @@ test('a specific blog is within the returned blogs', async () => {
     'https://reactpatterns.com/'
   )
 })
-
-// 4.8: Blog list tests, step1
-test('all blogs are returned in the JSON format', async () => {
-  const response = await api.get('/api/blogs')
-  .expect(200)
-  .expect('Content-Type', /application\/json/)
-  expect(response.body).toHaveLength(helper.initialBlogs.length)
-},100000)
 
 test('verifies that the unique identifier property of the blog posts is named id', async () => {
   const response = await api.get('/api/blogs')
@@ -61,7 +61,7 @@ test('a valid blog can be added', async () => {
   await api
     .post('/api/blogs')
     .send(newBlog)
-    .expect(200)
+    .expect(201)
     .expect('Content-Type', /application\/json/)
 
   const response = await api.get('/api/blogs')
