@@ -89,6 +89,27 @@ test('blog without content is not added', async () => {
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
 })
 
+
+test('verifies that if the likes property is missing from the request', async () => {
+  const newBlog = {
+    test: 0
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+
+  const blogsAtEnd = await helper.blogInDb()
+  
+  if(!blogsAtEnd.likes){ // not likes property
+    blogsAtEnd.likes = 0
+    console.log('Pas de likes: ',blogsAtEnd)
+  }
+  
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
