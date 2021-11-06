@@ -18,11 +18,11 @@ schema.pre('update', setRunValidators);
 });
 
 // Define your schema as normal.
-const blogSchema = new mongoose.Schema({
+const blogSchema = new  mongoose.Schema({
   title: { type: String, unique: true},required: false,
   author: { type: String,unique: false,required: false},
   url: { type: String },
-  likes:{ type: Number }
+  likes:{ type: Number ,default: 0}
 })
 
 blogSchema.set('toJSON', {
@@ -32,6 +32,7 @@ blogSchema.set('toJSON', {
       delete returnedObject.__v
   }
 })
+
 
 
 module.exports = mongoose.model('Blog', blogSchema)
