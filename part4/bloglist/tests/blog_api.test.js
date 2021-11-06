@@ -92,21 +92,24 @@ test('blog without content is not added', async () => {
 
 test('verifies that if the likes property is missing from the request', async () => {
   const newBlog = {
-    test: 0
+    title: "The witcher",
+    author: "Andrzej Sapkowski",
+    url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111",
   }
-
   await api
     .post('/api/blogs')
     .send(newBlog)
     .expect(201)
 
   const blogsAtEnd = await helper.blogInDb()
-  
-  if(!blogsAtEnd.likes){ // not likes property
-    blogsAtEnd.likes = 0
-    console.log('Pas de likes: ',blogsAtEnd)
+  console.log('Avant likes: ',blogsAtEnd)
+  blogsAtEnd.map(function(blog) {
+    if (!blog.likes) {
+      blog.likes = 0
   }
-  
+})
+console.log('Pas de likes: ',blogsAtEnd)
+
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
 })
 
