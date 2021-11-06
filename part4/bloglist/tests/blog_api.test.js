@@ -91,9 +91,7 @@ test('blog without content is not added', async () => {
 
 test('verifies that if the likes property is missing from the request', async () => {
   const newBlog = {
-    title: "The witcher",
-    author: "Andrzej Sapkowski",
-    url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111"
+    author: "Andrzej Sapkowski"
   }
 
   const blogsAtEnd = await api
@@ -103,6 +101,15 @@ test('verifies that if the likes property is missing from the request', async ()
 
   console.log('body: ',blogsAtEnd.body)
   expect(blogsAtEnd.body).toHaveProperty('likes')
+})
+
+await api.post('/api/blogs', async (request, response) => {
+  const blog = await Blog.findById(response.body.id)
+  if (blog) {
+    response.json(blog)
+  } else {
+    response.status(400).end()
+  }
 })
 
 afterAll(() => {

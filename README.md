@@ -173,7 +173,14 @@ app.use(express.json());
 
 * [Error Handling middleware](https://expressjs.com/en/guide/error-handling.html)
 
+# ExpressJS Async Errors
+
+```
+https://github.com/davidbanham/express-async-errors
+```
 # Morgan
+
+npm install express-async-errors --save
 
 ***HTTP request logger middleware for node.js***
 * [morgan](morganhttps://github.com/expressjs/morgan)
