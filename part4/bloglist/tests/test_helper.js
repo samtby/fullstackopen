@@ -20,11 +20,11 @@ const initialBlogs = [
   ]
 const nonExistingId = async () => {
   const blog = new Blog({
-    title: "async/await simplifies making async calls",
-    author: "Robert C. Martin",
-    url: "https://javascript.info/async-await",
-    likes: 0,
-  }
+      title: "async/await simplifies making async calls",
+      author: "Robert C. Martin",
+      url: "https://javascript.info/async-await",
+      likes: 0,
+    }
   )
   await blog.save()
   await blog.remove()

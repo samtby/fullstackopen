@@ -5,7 +5,6 @@ const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
-const blog = require('../models/blog')
 
 
 beforeEach(async () => {  
@@ -20,12 +19,12 @@ beforeEach(async () => {
 // 4.8: Blog list tests, step1
 describe('when there is initially some blogs saved', () => {
   test('blogs are returned as json', async () => {
-    const respons = await api
+    const response = await api
       .get('/api/blogs')
       .expect(200)
       .expect('Content-Type', /application\/json/)
       expect(response.body).toHaveLength(helper.initialBlogs.length)
-      console.log("respons body return as json :",respons.body)
+      console.log("respons body return as json :",response.body)
     }
   ,100000)
 
@@ -49,7 +48,7 @@ describe('when there is initially some blogs saved', () => {
   })
 */
 })
-
+/*
 test('a valid blog can be added', async () => {
   const newBlog = {
     title: "async/await simplifies making async calls",
@@ -73,7 +72,7 @@ test('a valid blog can be added', async () => {
     'React patterns'
     )
 })
-
+*/
 describe('addition of a new blog', () => {
   test('succeeds with a valid data', async () => {
     let newBlog = {
@@ -95,51 +94,66 @@ describe('addition of a new blog', () => {
     expect(newBlog.author).toContain('Andrzej Sapkowski')
     expect(newBlog.url).toContain('https://www.babelio.com/auteur/Andrzej-Sapkowski/5111')    
   })
-})
-test('verifies that if the likes property is missing from the request', async () => {
-  const newBlog = {
-    title: "Le dernier voeu",
-    author: "Andrzej Sapkowski",
-    url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111"
-  }
 
-  const blogsAtEnd = await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(201)
+  test('verifies that if the likes property is missing from the request', async () => {
+    const newBlog = {
+      title: "Le dernier voeu",
+      author: "Andrzej Sapkowski",
+      url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111"
+    }
 
-  //console.log('body: ',blogsAtEnd.body)
-  expect(blogsAtEnd.body).toHaveProperty('likes')
-})
+    const blogsAtEnd = await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
 
-test('verifies that if the title and url properties are missing from the request data', async () => {
-  const newBlog = { author: "Andrzej Sapkowski" }
-  const response =  await api.post('/api/blogs')            
-  //console.log("response.status: ", response.status, response.body)
-  expect(response.status).toBe(400)
-})
-/*
-describe('deletion of a blog', () => {
-  test('succeeds with status code 204 if id is valid', async () => {
-    const notesAtStart = await helper.notesInDb()
-    const noteToDelete = notesAtStart[0]
+    //console.log('body: ',blogsAtEnd.body)
+    expect(blogsAtEnd.body).toHaveProperty('likes')
+  })
 
-    await api
-      .delete(`/api/notes/${noteToDelete.id}`)
-      .expect(204)
-
-    const notesAtEnd = await helper.notesInDb()
-
-    expect(notesAtEnd).toHaveLength(
-      helper.initialNotes.length - 1
-    )
-
-    const contents = notesAtEnd.map(r => r.content)
-
-    expect(contents).not.toContain(noteToDelete.content)
+  test('verifies that if the title and url properties are missing from the request data', async () => {
+    const newBlog = { author: "Andrzej Sapkowski" }
+    const response =  await api.post('/api/blogs')            
+    //console.log("response.status: ", response.status, response.body)
+    expect(response.status).toBe(400)
   })
 })
-*/
+
+describe('deletion of a blog', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const blogsAtStart = await helper.blogInDb()
+    const blogToDelete = blogsAtStart[0]
+    console.log("blogToDelete: ",blogToDelete)
+    await api
+      .delete(`/api/blogs/${blogToDelete.id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogInDb()
+
+    expect(blogsAtEnd).toHaveLength(
+      helper.initialBlogs.length - 1
+    )
+
+    const title = blogsAtEnd.map(r => r.title)
+    expect(title).not.toContain(blogToDelete.title)
+  })
+})
+
+  test('succeeds with a valid id', async () => {
+    const blogsAtStart = await helper.blogInDb()
+
+    const blogToView = blogsAtStart[0]
+
+    const resultBlog = await api
+      .get(`/api/blogs/${blogToView.id}`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+      
+    const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
+
+    expect(resultBlog.body).toEqual(processedBlogToView)
+  })
+
 afterAll(() => {
   mongoose.connection.close()
 })
