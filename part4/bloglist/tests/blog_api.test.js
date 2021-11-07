@@ -112,15 +112,13 @@ test('verifies that if the likes property is missing from the request', async ()
   expect(blogsAtEnd.body).toHaveProperty('likes')
 })
 
-test('fails with status code 400 if data invalid', async () => {
+test('verifies that if the title and url properties are missing from the request data', async () => {
   const newBlog = { author: "Andrzej Sapkowski" }
   const response =  await api.post('/api/blogs')            
-  console.log("response.status: ", response.status)
-      expect(response.status).toBe(400)
+  //console.log("response.status: ", response.status, response.body)
+  expect(response.status).toBe(400)
 })
-
-
-
+/*
 describe('deletion of a blog', () => {
   test('succeeds with status code 204 if id is valid', async () => {
     const notesAtStart = await helper.notesInDb()
@@ -141,7 +139,7 @@ describe('deletion of a blog', () => {
     expect(contents).not.toContain(noteToDelete.content)
   })
 })
-
+*/
 afterAll(() => {
   mongoose.connection.close()
 })
