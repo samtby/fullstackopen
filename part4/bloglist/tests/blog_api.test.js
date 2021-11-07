@@ -5,6 +5,7 @@ const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+const blog = require('../models/blog')
 
 
 beforeEach(async () => {  
@@ -27,7 +28,7 @@ describe('when there is initially some blogs saved', () => {
       console.log("respons body return as json :",respons.body)
     }
   ,100000)
-  
+
   test('verifies that the unique identifier property of the blog posts is named id', async () => {
     const response = await api.get('/api/blogs')
     .expect(200)
@@ -64,7 +65,6 @@ test('a valid blog can be added', async () => {
     .expect('Content-Type', /application\/json/)
 
   const response = await api.get('/api/blogs')
-
   const blogsAtEnd = await helper.blogInDb()
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
   
@@ -74,20 +74,28 @@ test('a valid blog can be added', async () => {
     )
 })
 
-test('blog without content is not added', async () => {
-  const newBlog = {
-    likes: 0
-  }
+describe('addition of a new blog', () => {
+  test('succeeds with a valid data', async () => {
+    let newBlog = {
+      title: "Le dernier voeu",
+      author: "Andrzej Sapkowski",
+      url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111",
+      likes: 0,
+    }
 
-  await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(201)
+    newBlog = await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
 
-  const blogsAtEnd = await helper.blogInDb()
-  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
+    const blogsAtEnd = await helper.blogInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length +1 )
+    newBlog = blogsAtEnd.find(blog => blog.id === newBlog.body.id )
+    expect(newBlog.title).toContain('Le dernier voeu')
+    expect(newBlog.author).toContain('Andrzej Sapkowski')
+    expect(newBlog.url).toContain('https://www.babelio.com/auteur/Andrzej-Sapkowski/5111')    
+  })
 })
-
 test('verifies that if the likes property is missing from the request', async () => {
   const newBlog = {
     author: "Andrzej Sapkowski"
@@ -96,7 +104,7 @@ test('verifies that if the likes property is missing from the request', async ()
   const blogsAtEnd = await api
     .post('/api/blogs')
     .send(newBlog)
-    .expect(201)
+    .expect(400)
 
   console.log('body: ',blogsAtEnd.body)
   expect(blogsAtEnd.body).toHaveProperty('likes')
