@@ -98,15 +98,17 @@ describe('addition of a new blog', () => {
 })
 test('verifies that if the likes property is missing from the request', async () => {
   const newBlog = {
-    author: "Andrzej Sapkowski"
+    title: "Le dernier voeu",
+    author: "Andrzej Sapkowski",
+    url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111"
   }
 
   const blogsAtEnd = await api
     .post('/api/blogs')
     .send(newBlog)
-    .expect(400)
+    .expect(201)
 
-  console.log('body: ',blogsAtEnd.body)
+  //console.log('body: ',blogsAtEnd.body)
   expect(blogsAtEnd.body).toHaveProperty('likes')
 })
 
