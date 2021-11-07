@@ -4,8 +4,8 @@ const helper = require('./test_helper')
 
 const app = require('../app')
 const api = supertest(app)
-
 const Blog = require('../models/blog')
+
 
 beforeEach(async () => {  
   await Blog.deleteMany({})  
@@ -17,37 +17,36 @@ beforeEach(async () => {
   await blogObject.save()
   })
 // 4.8: Blog list tests, step1
-test('blogs are returned as json', async () => {
-  const respons = await api
-    .get('/api/blogs')
+describe('when there is initially some blogs saved', () => {
+  test('blogs are returned as json', async () => {
+    const respons = await api
+      .get('/api/blogs')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+      expect(response.body).toHaveLength(helper.initialBlogs.length)
+      console.log("respons body return as json :",respons.body)
+    }
+  ,100000)
+  
+  test('verifies that the unique identifier property of the blog posts is named id', async () => {
+    const response = await api.get('/api/blogs')
     .expect(200)
     .expect('Content-Type', /application\/json/)
-    console.log("respons body return as json :",respons.body)
-  }
-,100000)
+    response.body.forEach(blog => {
+      expect(blog.id).toBeDefined();
+    })
+  })
 
-// 4.8: Blog list tests, step1
-test('all blogs are returned', async () => {
-  const response = await api.get('/api/blogs')
-  .expect(200)
-  .expect('Content-Type', /application\/json/)
-  expect(response.body).toHaveLength(helper.initialBlogs.length)
-},100000)
-
-test('a specific blog is within the returned blogs', async () => {
-  const response = await api.get('/api/blogs')
-  const contents = response.body.map(r => r.url)  
-  expect(contents).toContain(
-    'https://reactpatterns.com/'
-  )
-})
-
-test('verifies that the unique identifier property of the blog posts is named id', async () => {
-  const response = await api.get('/api/blogs')
-  .expect(200)
-  .expect('Content-Type', /application\/json/)
-  expect('id').toBeDefined()
-  console.log("response.body :",response.body)
+/*
+ test('a specific blog is within the returned blogs', async () => {
+      const response = await api.get('/api/blogs')
+      const contents = response.body.map(r => r.url)  
+      expect(contents).toContain(
+        'https://reactpatterns.com/'
+      )
+    })
+  })
+*/
 })
 
 test('a valid blog can be added', async () => {
@@ -103,13 +102,34 @@ test('verifies that if the likes property is missing from the request', async ()
   expect(blogsAtEnd.body).toHaveProperty('likes')
 })
 
-await api.post('/api/blogs', async (request, response) => {
-  const blog = await Blog.findById(response.body.id)
-  if (blog) {
-    response.json(blog)
-  } else {
-    response.status(400).end()
-  }
+test('fails with status code 400 if data invalid', async () => {
+  const newBlog = { author: "Andrzej Sapkowski" }
+  const response =  await api.post('/api/blogs')            
+  console.log("response.status: ", response.status)
+      expect(response.status).toBe(400)
+})
+
+
+
+describe('deletion of a blog', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const notesAtStart = await helper.notesInDb()
+    const noteToDelete = notesAtStart[0]
+
+    await api
+      .delete(`/api/notes/${noteToDelete.id}`)
+      .expect(204)
+
+    const notesAtEnd = await helper.notesInDb()
+
+    expect(notesAtEnd).toHaveLength(
+      helper.initialNotes.length - 1
+    )
+
+    const contents = notesAtEnd.map(r => r.content)
+
+    expect(contents).not.toContain(noteToDelete.content)
+  })
 })
 
 afterAll(() => {

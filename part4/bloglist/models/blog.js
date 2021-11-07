@@ -19,9 +19,9 @@ schema.pre('update', setRunValidators);
 
 // Define your schema as normal.
 const blogSchema = new  mongoose.Schema({
-  title: { type: String, unique: true},required: false,
+  title: { type: String, unique: true,required: true},
   author: { type: String,unique: false,required: false},
-  url: { type: String },
+  url: { type: String , required: true},
   likes:{ type: Number ,default: 0}
 })
 
