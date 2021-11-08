@@ -8,7 +8,7 @@ const Blog = require('../models/blog')
 
 
 beforeEach(async () => {  
-  app.connection
+  app.connection()
   await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
@@ -20,7 +20,8 @@ beforeEach(async () => {
   })
 
 
-  afterAll(() => {
+  afterEach(() => {
+    console.log("afterEach")
 
   })
 // 4.8: Blog list tests, step1
