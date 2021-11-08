@@ -36,11 +36,11 @@ blogsRouter.post('/', async (request, response, next) => {
       
       const blogSave = await blog.save()
       console.log("blog.id: ", blogSave.id)
-      if (blogSave) {
+      if (blogSave) 
         response.status(201).json(blogSave)
-      } else {
-        response.status(404).end()
-      }
+      
+      //  response.status(404).end()
+      
     } catch(exception) {
       next(exception)
     }
