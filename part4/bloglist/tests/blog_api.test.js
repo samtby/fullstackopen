@@ -8,6 +8,7 @@ const Blog = require('../models/blog')
 
 
 beforeEach(async () => {  
+  app.connection
   await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
@@ -15,14 +16,21 @@ beforeEach(async () => {
   blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
   await blogObject.save()
+  
+  })
+
+
+  afterAll(() => {
+
   })
 // 4.8: Blog list tests, step1
-describe('when there is initially some blogs saved', () => {
+//describe('when there is initially some blogs saved', () => {
   test('blogs are returned as json', async () => {
     const response = await api
       .get('/api/blogs')
       .expect(200)
       .expect('Content-Type', /application\/json/)
+      
       expect(response.body).toHaveLength(helper.initialBlogs.length)
       console.log("respons body return as json :",response.body)
     }
@@ -47,7 +55,7 @@ describe('when there is initially some blogs saved', () => {
     })
   })
 */
-})
+//})
 /*
 test('a valid blog can be added', async () => {
   const newBlog = {
@@ -73,7 +81,7 @@ test('a valid blog can be added', async () => {
     )
 })
 */
-describe('addition of a new blog', () => {
+//describe('addition of a new blog', () => {
   test('succeeds with a valid data', async () => {
     let newBlog = {
       title: "Le dernier voeu",
@@ -117,9 +125,9 @@ describe('addition of a new blog', () => {
     //console.log("response.status: ", response.status, response.body)
     expect(response.status).toBe(400)
   })
-})
+//})
 
-describe('deletion of a blog', () => {
+//describe('deletion of a blog', () => {
   test('succeeds with status code 204 if id is valid', async () => {
     const blogsAtStart = await helper.blogInDb()
     const blogToDelete = blogsAtStart[0]
@@ -137,7 +145,7 @@ describe('deletion of a blog', () => {
     const title = blogsAtEnd.map(r => r.title)
     expect(title).not.toContain(blogToDelete.title)
   })
-})
+//})
 
   test('succeeds with a valid id', async () => {
     const blogsAtStart = await helper.blogInDb()
