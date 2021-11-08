@@ -8,7 +8,6 @@ const Blog = require('../models/blog')
 
 
 beforeEach(async () => {  
-  app.connection()
   await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
@@ -16,24 +15,42 @@ beforeEach(async () => {
   blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
   await blogObject.save()
+  })
+
   
+async function dropAllCollections () {
+  const collections = Object.keys(mongoose.connection.collections)
+  for (const collectionName of collections) {
+    const collection = mongoose.connection.collections[collectionName]
+    try {
+      await collection.drop()
+    } catch (error) {
+      // Sometimes this error happens, but you can safely ignore it
+      if (error.message === 'ns not found') return
+      // This error occurs when you use it.todo. You can
+      // safely ignore this error too
+      if (error.message.includes('a background operation is currently running')) return
+      console.log(error.message)
+    }
+  }
+}
+// https://zellwk.com/blog/jest-and-mongoose/
+  afterAll(async () => {
+    await dropAllCollections()
+    // Closes the Mongoose connection
+    await mongoose.connection.close()
   })
 
-
-  afterEach(() => {
-    console.log("afterEach")
-
-  })
 // 4.8: Blog list tests, step1
-//describe('when there is initially some blogs saved', () => {
+describe('when there is initially some blogs saved', () => {
   test('blogs are returned as json', async () => {
     const response = await api
       .get('/api/blogs')
       .expect(200)
       .expect('Content-Type', /application\/json/)
-      
       expect(response.body).toHaveLength(helper.initialBlogs.length)
       console.log("respons body return as json :",response.body)
+      
     }
   ,100000)
 
@@ -56,7 +73,7 @@ beforeEach(async () => {
     })
   })
 */
-//})
+})
 /*
 test('a valid blog can be added', async () => {
   const newBlog = {
@@ -82,7 +99,7 @@ test('a valid blog can be added', async () => {
     )
 })
 */
-//describe('addition of a new blog', () => {
+describe('addition of a new blog', () => {
   test('succeeds with a valid data', async () => {
     let newBlog = {
       title: "Le dernier voeu",
@@ -126,9 +143,9 @@ test('a valid blog can be added', async () => {
     //console.log("response.status: ", response.status, response.body)
     expect(response.status).toBe(400)
   })
-//})
+})
 
-//describe('deletion of a blog', () => {
+describe('deletion of a blog', () => {
   test('succeeds with status code 204 if id is valid', async () => {
     const blogsAtStart = await helper.blogInDb()
     const blogToDelete = blogsAtStart[0]
@@ -146,7 +163,7 @@ test('a valid blog can be added', async () => {
     const title = blogsAtEnd.map(r => r.title)
     expect(title).not.toContain(blogToDelete.title)
   })
-//})
+})
 
   test('succeeds with a valid id', async () => {
     const blogsAtStart = await helper.blogInDb()
