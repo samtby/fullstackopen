@@ -72,8 +72,19 @@ blogsRouter.get('/:id', async (request, response, next) => {
 })
 })*/
 
+blogsRouter.put('/:id', async (request, response, next) => {
+  try {
+    await Blog.findByIdAndUpdate(request.params.id)
+    response.status(204).end()
+  } catch (exception) {
+    next(exception)
+  }
+})
+
+
 blogsRouter.delete('/:id', async (request, response, next) => {
     try {
+      console.log("delete api")
       await Blog.findByIdAndRemove(request.params.id)
       response.status(204).end()
     } catch (exception) {

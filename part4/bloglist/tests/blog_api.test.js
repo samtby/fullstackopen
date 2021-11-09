@@ -8,20 +8,20 @@ const Blog = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
-beforeEach(async (done) => {  
-  server = app.listen(4000, (err) => {
+beforeEach(() => {  
+  /*server = app.listen(4000, (err) => {
     if (err) return done(err);
 
      agent = request.agent(server); // since the application is already listening, it should use the allocated port
      done();
-  })
-  await Blog.deleteMany({})  
+  })*/
+   Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
-  await blogObject.save() 
+   blogObject.save() 
   blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
-  await blogObject.save()
+   blogObject.save()
   })
 
   
@@ -43,21 +43,21 @@ async function dropAllCollections () {
 }
 // https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 // https://zellwk.com/blog/jest-and-mongoose/
-  afterAll(async () => {
+/*  afterAll(async () => {
     await dropAllCollections()
     // Closes the Mongoose connection
     await mongoose.connection.close()
   })
-
+*/
 // 4.8: Blog list tests, step1
 describe('when there is initially some blogs saved', () => {
-      beforeAll(() => {
+  /*    beforeAll(() => {
         mongoose.connect()
       })
       afterAll((done) => {
         mongoose.disconnect(done);
      })
-
+*/
   test('blogs are returned as json', async () => {
     const response = await api
       .get('/api/blogs')
@@ -193,6 +193,22 @@ describe('deletion of a blog', () => {
     const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
 
     expect(resultBlog.body).toEqual(processedBlogToView)
+  })
+
+  test('updating the information of an individual blog post', async () => {
+    const blogsAtStart = await helper.blogInDb()
+    const blogToModified = blogsAtStart[0]
+    blogToModified.title = 'fullstackopen'
+    console.log("blogToDelete: ",blogToModified)
+    
+    await api
+      .put(`/api/blogs/${blogToModified.id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogInDb()
+    const title = blogsAtEnd.map(r => r.title)
+    console.log("blogsAtEnd: ",blogsAtEnd)
+    expect(title).toContain(blogToModified.title)
   })
 
 afterAll(() => {
