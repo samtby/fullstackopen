@@ -1,20 +1,14 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
 const helper = require('./test_helper')
-
 const app = require('../app')
 const api = supertest(app)
+
 const Blog = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
 beforeEach(() => {  
-  /*server = app.listen(4000, (err) => {
-    if (err) return done(err);
-
-     agent = request.agent(server); // since the application is already listening, it should use the allocated port
-     done();
-  })*/
    Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
@@ -24,6 +18,9 @@ beforeEach(() => {
    blogObject.save()
   })
 
+  afterEach(() => {
+    //server.close()
+  });
   
 async function dropAllCollections () {
   const collections = Object.keys(mongoose.connection.collections)

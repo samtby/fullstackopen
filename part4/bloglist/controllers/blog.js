@@ -73,6 +73,8 @@ blogsRouter.get('/:id', async (request, response, next) => {
 })*/
 
 blogsRouter.put('/:id', async (request, response, next) => {
+
+  console.log("put request")
   try {
     await Blog.findByIdAndUpdate(request.params.id)
     response.status(204).end()
@@ -80,7 +82,6 @@ blogsRouter.put('/:id', async (request, response, next) => {
     next(exception)
   }
 })
-
 
 blogsRouter.delete('/:id', async (request, response, next) => {
     try {

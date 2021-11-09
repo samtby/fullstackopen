@@ -1,13 +1,4 @@
 const mongoose = require('mongoose')
-const config = require('../utils/config')
-
-const mongoUrl = config.MONGODB_URI
-
-mongoose.connect(mongoUrl)
-.then(console.log('connected to MongoDB ',mongoUrl))
-.catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-})
 
 function setRunValidators() {
   this.setOptions({ runValidators: true });
