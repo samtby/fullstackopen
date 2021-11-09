@@ -12,7 +12,7 @@ const api = supertest(app)
 
 logger.info('connecting to', config.MONGODB_URI)
 
-mongoose.connect(config.MONGODB_URI)
+mongoose.connect(config.MONGODB_URI,{ keepAlive: true, keepAliveInitialDelay: 300000 })
   .then(() => {
     logger.info('connected to MongoDB :',MONGODB_URI)
   })
