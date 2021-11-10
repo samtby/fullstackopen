@@ -8,14 +8,14 @@ const Blog = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
-beforeEach(() => {  
-   Blog.deleteMany({})  
-  let blogObject = new Blog(helper.initialBlogs[0])
+beforeEach(async () => {  
+  await Blog.deleteMany({})  
   console.log("blogObject 1:",blogObject)
-   blogObject.save() 
-  blogObject = new Blog(helper.initialBlogs[1])
+  let blogObject = new Blog(helper.initialBlogs[0])
+  await blogObject.save()    
+  let blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
-   blogObject.save()
+  await blogObject.save()
   })
 
   afterEach(() => {
