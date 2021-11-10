@@ -8,6 +8,7 @@ const Blog = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 // https://sammeechward.com/testing-an-express-app-with-supertest-and-jest/
+// https://stackoverflow.com/questions/51968480/jest-detects-open-handle-with-express-app
 beforeEach(async () => {
   await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
