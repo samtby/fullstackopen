@@ -1,27 +1,25 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
 const helper = require('./test_helper')
+
 const app = require('../app')
 const api = supertest(app)
-
 const Blog = require('../models/blog')
+const { deleteOne } = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
-beforeEach(() => {  
-   Blog.deleteMany({})  
+beforeEach(async () => {
+  await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
-   blogObject.save() 
+  await blogObject.save() 
   blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
-   blogObject.save()
+  await blogObject.save()
   })
 
-  afterEach(() => {
-    //server.close()
-  });
-  
+  /*
 async function dropAllCollections () {
   const collections = Object.keys(mongoose.connection.collections)
   for (const collectionName of collections) {
@@ -40,7 +38,7 @@ async function dropAllCollections () {
 }
 // https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 // https://zellwk.com/blog/jest-and-mongoose/
-/*  afterAll(async () => {
+  /*afterAll(async () => {
     await dropAllCollections()
     // Closes the Mongoose connection
     await mongoose.connection.close()
@@ -48,13 +46,13 @@ async function dropAllCollections () {
 */
 // 4.8: Blog list tests, step1
 describe('when there is initially some blogs saved', () => {
-  /*    beforeAll(() => {
+   /*   beforeAll(() => {
         mongoose.connect()
       })
       afterAll((done) => {
         mongoose.disconnect(done);
-     })
-*/
+     })*/
+
   test('blogs are returned as json', async () => {
     const response = await api
       .get('/api/blogs')
@@ -186,28 +184,15 @@ describe('deletion of a blog', () => {
       .get(`/api/blogs/${blogToView.id}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
-      
     const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
 
     expect(resultBlog.body).toEqual(processedBlogToView)
   })
-
-  test('updating the information of an individual blog post', async () => {
-    const blogsAtStart = await helper.blogInDb()
-    const blogToModified = blogsAtStart[0]
-    blogToModified.title = 'fullstackopen'
-    console.log("blogToDelete: ",blogToModified)
-    
-    await api
-      .put(`/api/blogs/${blogToModified.id}`)
-      .expect(204)
-
-    const blogsAtEnd = await helper.blogInDb()
-    const title = blogsAtEnd.map(r => r.title)
-    console.log("blogsAtEnd: ",blogsAtEnd)
-    expect(title).toContain(blogToModified.title)
-  })
-
+/*
 afterAll(() => {
   mongoose.connection.close()
-})
+})*/
+afterAll(() =>{
+  mongoose.disconnect()  
+  //app.server.close()
+});
