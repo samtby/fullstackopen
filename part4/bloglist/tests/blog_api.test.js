@@ -8,23 +8,36 @@ const Blog = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
-beforeEach(async () => {
-  
-  await Blog.deleteMany({})  
+beforeEach(() => {  
+   Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
   console.log("blogObject 1:",blogObject)
-  await blogObject.save() 
+   blogObject.save() 
   blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
-  await blogObject.save()
+   blogObject.save()
   })
 
-afterEach(function(done) {
-  mongoose.disconnect();
-  return done();
-});
-
+  afterEach(() => {
+    //server.close()
+  });
   
+async function dropAllCollections () {
+  const collections = Object.keys(mongoose.connection.collections)
+  for (const collectionName of collections) {
+    const collection = mongoose.connection.collections[collectionName]
+    try {
+      await collection.drop()
+    } catch (error) {
+      // Sometimes this error happens, but you can safely ignore it
+      if (error.message === 'ns not found') return
+      // This error occurs when you use it.todo. You can
+      // safely ignore this error too
+      if (error.message.includes('a background operation is currently running')) return
+      console.log(error.message)
+    }
+  }
+}
 // https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 // https://zellwk.com/blog/jest-and-mongoose/
 /*  afterAll(async () => {
@@ -195,13 +208,6 @@ describe('deletion of a blog', () => {
     expect(title).toContain(blogToModified.title)
   })
 
-  /*
 afterAll(() => {
-  mongoose.connection.close
-  //app.listeners.cal
+  mongoose.connection.close()
 })
-*/
-
-afterAll(done => {
-  return done();
-});

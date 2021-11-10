@@ -11,70 +11,53 @@ blogsRouter.get('/', async (request, response,next) => {
     })
     .catch(error => next(error))
 */
-const blogs = await Blog.find({})
-if (blogs) {
-  response.status(200).json(blogs)
-} else {
-  response.status(404).end()
-}
-})
-  /*
-blogsRouter.post('/', (request, response,next) => {
-const blog = new Blog(request.body)
-
-blog
-    .save()
-    .then(result => {
-    response.status(201).json(result)
-    })
-    .catch(error => next(error))
-})
-*/
-blogsRouter.post('/', async (request, response, next) => {
-  const blog = new Blog(request.body)
+console.log("get request")
   try{
-      
-      const blogSave = await blog.save()
-      console.log("blog.id: ", blogSave.id)
-      if (blogSave) 
-        response.status(201).json(blogSave)
-      
-      //  response.status(404).end()
-      
+      const blogs = await Blog.find({})
+      if (blogs)
+        response.status(200).json(blogs)
     } catch(exception) {
       next(exception)
     }
 })
- /*
-  
 
+/*
 blogsRouter.get('/:id', async (request, response, next) => {
-    try{
-        
-        const blog = await Blog.findById(request.params.id)
-        console.log("blog.id: ", blog.id)
-        if (blog) {
-          response.json(blog)
-        } else {
-          response.status(404).end()
-        }
-      } catch(exception) {
-        next(exception)
-      }
-   /*
-    blog.findById(request.params.id)
-   .then(result => {
-    if (result.body)
-        response.json(result)
-    else
-        response.status(404).end()
-    
+  console.log("get id request")
+  try{        
+      const blog = await Blog.findById(request.params.id)        
+      if (blog)
+      response.status(200).json(blog)  
+    } catch(exception) {
+      next(exception)
+    }    
 })
-})*/
+
+*/
+blogsRouter.get('/:id', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  if (blog) {
+    response.json(blog)
+  } else {
+    response.status(404).end()
+  }
+})
+
+blogsRouter.post('/', async (request, response, next) => {
+  console.log("post request")
+  const blog = new Blog(request.body)
+  try{      
+      const blogSave = await blog.save()
+      console.log("blog.id: ", blogSave.id)
+      if (blogSave) 
+        response.status(201).json(blogSave)
+    } catch(exception) {
+      next(exception)
+    }
+})
 
 blogsRouter.put('/:id', async (request, response, next) => {
-
-  console.log("put request")
+  console.log("put id request")
   try {
     await Blog.findByIdAndUpdate(request.params.id)
     response.status(204).end()
@@ -84,13 +67,9 @@ blogsRouter.put('/:id', async (request, response, next) => {
 })
 
 blogsRouter.delete('/:id', async (request, response, next) => {
-    try {
-      console.log("delete api")
-      await Blog.findByIdAndRemove(request.params.id)
-      response.status(204).end()
-    } catch (exception) {
-      next(exception)
-    }
-  })
+    console.log("delete api")
+    await Blog.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+})
 
 module.exports = blogsRouter
