@@ -5,10 +5,9 @@ const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
-const { deleteOne } = require('../models/blog')
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
-
+// https://sammeechward.com/testing-an-express-app-with-supertest-and-jest/
 beforeEach(async () => {
   await Blog.deleteMany({})  
   let blogObject = new Blog(helper.initialBlogs[0])
@@ -193,6 +192,6 @@ afterAll(() => {
   mongoose.connection.close()
 })*/
 afterAll(() =>{
-  mongoose.disconnect()  
+  mongoose.disconnect()    
   //app.server.close()
 });

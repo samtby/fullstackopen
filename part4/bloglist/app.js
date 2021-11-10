@@ -33,8 +33,8 @@ app.use('/api/blogs', blogsRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
-
-app.listen(config.PORT, () => {
+let server
+server = app.listen(config.PORT, () => {
   logger.info(`Server running on port ${config.PORT}`)
 })
 
