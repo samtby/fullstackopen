@@ -1,43 +1,29 @@
-const supertest = require('supertest')
 const mongoose = require('mongoose')
-const helper = require('./test_helper')
+const supertest = require('supertest')
 const app = require('../app')
 const api = supertest(app)
-
 const Blog = require('../models/blog')
+const helper = require('./test_helper')
+
 
 // Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
-beforeEach(async () => {  
-  await Blog.deleteMany({})  
-  console.log("blogObject 1:",blogObject)
+
+/*  console.log("blogObject 1:",blogObject)
   let blogObject = new Blog(helper.initialBlogs[0])
   await blogObject.save()    
-  let blogObject = new Blog(helper.initialBlogs[1])
+  blogObject = new Blog(helper.initialBlogs[1])
   console.log("blogObject 2:",blogObject)
-  await blogObject.save()
-  })
+*/
 
-  afterEach(() => {
-    //server.close()
-  });
+beforeEach(async () => {
+  await Blog.deleteMany({})
+  const blogObject = helper.initialBlogs.map(blog => new Blog(blog))
+  const promiseArray = blogObject.map(blog => blog.save())
+  await Promise.all(promiseArray)
+})
+
   
-async function dropAllCollections () {
-  const collections = Object.keys(mongoose.connection.collections)
-  for (const collectionName of collections) {
-    const collection = mongoose.connection.collections[collectionName]
-    try {
-      await collection.drop()
-    } catch (error) {
-      // Sometimes this error happens, but you can safely ignore it
-      if (error.message === 'ns not found') return
-      // This error occurs when you use it.todo. You can
-      // safely ignore this error too
-      if (error.message.includes('a background operation is currently running')) return
-      console.log(error.message)
-    }
-  }
-}
 // https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 // https://zellwk.com/blog/jest-and-mongoose/
 /*  afterAll(async () => {
@@ -47,26 +33,31 @@ async function dropAllCollections () {
   })
 */
 // 4.8: Blog list tests, step1
-describe('when there is initially some blogs saved', () => {
-  /*    beforeAll(() => {
-        mongoose.connect()
-      })
-      afterAll((done) => {
-        mongoose.disconnect(done);
-     })
+/*
+  beforeEach(async () => {  
+    await Blog.deleteMany({}) 
+    console.log('cleared') 
+    helper.initialBlogs.forEach(async (blog) => {
+      let blogObject = new Note(blog)
+      await blogObject.save()
+      console.log('saved')
+    })
+  await blogObject.save()
+  })
 */
+
   test('blogs are returned as json', async () => {
+    console.log('entered test')
     const response = await api
       .get('/api/blogs')
       .expect(200)
       .expect('Content-Type', /application\/json/)
       expect(response.body).toHaveLength(helper.initialBlogs.length)
       console.log("respons body return as json :",response.body)
-      
-    }
-  ,100000)
+    })
 
   test('verifies that the unique identifier property of the blog posts is named id', async () => {
+    console.log('entered test')
     const response = await api.get('/api/blogs')
     .expect(200)
     .expect('Content-Type', /application\/json/)
@@ -75,7 +66,7 @@ describe('when there is initially some blogs saved', () => {
     })
   })
 
-/*
+
  test('a specific blog is within the returned blogs', async () => {
       const response = await api.get('/api/blogs')
       const contents = response.body.map(r => r.url)  
@@ -83,10 +74,8 @@ describe('when there is initially some blogs saved', () => {
         'https://reactpatterns.com/'
       )
     })
-  })
-*/
-})
-/*
+  
+
 test('a valid blog can be added', async () => {
   const newBlog = {
     title: "async/await simplifies making async calls",
@@ -110,7 +99,8 @@ test('a valid blog can be added', async () => {
     'React patterns'
     )
 })
-*/
+
+
 describe('addition of a new blog', () => {
   test('succeeds with a valid data', async () => {
     let newBlog = {
@@ -208,6 +198,7 @@ describe('deletion of a blog', () => {
     expect(title).toContain(blogToModified.title)
   })
 
-afterAll(() => {
+  
+afterAll(()=> {
   mongoose.connection.close()
 })

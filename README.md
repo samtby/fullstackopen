@@ -628,7 +628,9 @@ Another way of running a single test (or describe block) is to specify the name 
 ```
 npm test -- -t 'when list has only one blog, equals the likes of that'
 ```
-
+```
+npm test -- tests/blog_api.test.js 
+```
 # Lodash 
 A modern JavaScript utility library delivering modularity, performance & extras.
 
@@ -653,6 +655,14 @@ The motivation with this module is to provide a high-level abstraction for testi
 npm install supertest --save-dev
 ```
 
+# Install the package as a developpement dependency:
+
+* supertest or express-async-errors
+
+```
+npm install supertest --save-dev
+npm install --save-dev express-async-errors
+```
 # Testing Mongoose with Jest
 
 *[Testing Mongoose with Jest](https://mongoosejs.com/docs/jest.html)
@@ -822,6 +832,11 @@ db.connect({
   password: process.env.DB_PASS
 })
 ```
+## Jest has detected the following 1 open handle potentially keeping Jest from exiting:
+
+### Solution n°1
+
+
 ## React auto refresh with wsl2 
 
 ### Solution n°1

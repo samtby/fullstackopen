@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const config = require('../utils/config')
 
 function setRunValidators() {
   this.setOptions({ runValidators: true });
@@ -24,6 +25,12 @@ blogSchema.set('toJSON', {
   }
 })
 
+//--useFindAndModify: false,
+const mongoUrl = config.MONGODB_URI
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 
 module.exports = mongoose.model('Blog', blogSchema)

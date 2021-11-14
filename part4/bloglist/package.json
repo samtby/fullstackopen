@@ -7,28 +7,29 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test-echo": "echo \"Error: no test specified\" && exit 1",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --verbose --runInBand"
+    "test-tst": "cross-env NODE_ENV=test jest  --forceExit --detectOpenHandles --verbose --runInBand",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "author": "NoRoc",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "cros": "^1.0.1",
-    "dotenv": "^10.0.0",
     "espress": "^0.0.0",
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
     "http": "^0.0.1-security",
     "lodash": "^4.17.21",
     "logger": "^0.0.1",
     "middleware": "^1.0.0",
-    "mongoose": "^6.0.7",
     "nodemon": "^2.0.13"
   },
   "devDependencies": {
+    "cros": "^1.0.1",
     "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "jest": "^27.2.4",
+    "mongoose": "^6.0.12",
     "supertest": "^6.1.6"
   },
   "jest": {
