@@ -185,7 +185,6 @@ describe('deletion of a blog', () => {
     expect(title).toContain('fullstackopen')
   })
 
-  
 afterAll(()=> {
   mongoose.connection.close()
 })
