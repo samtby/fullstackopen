@@ -45,7 +45,7 @@ beforeEach(async () => {
   await blogObject.save()
   })
 */
-
+describe('when there is initially som blogs saved', () => {
   test('blogs are returned as json', async () => {
     console.log('entered test')
     const response = await api
@@ -63,9 +63,8 @@ beforeEach(async () => {
     .expect('Content-Type', /application\/json/)
     response.body.forEach(blog => {
       expect(blog.id).toBeDefined();
-    })
+    })  
   })
-
 
  test('a specific blog is within the returned blogs', async () => {
       const response = await api.get('/api/blogs')
@@ -73,16 +72,17 @@ beforeEach(async () => {
       expect(contents).toContain(
         'https://reactpatterns.com/'
       )
-    })
-  
+  })
+})
 
-test('a valid blog can be added', async () => {
-  const newBlog = {
-    title: "async/await simplifies making async calls",
-    author: "Robert C. Martin",
-    url: "https://javascript.info/async-await",
-    likes: 0,
-  }
+describe('addition of a new blog', () => {
+  test('a valid blog can be added', async () => {
+    const newBlog = {
+      title: "async/await simplifies making async calls",
+      author: "Robert C. Martin",
+      url: "https://javascript.info/async-await",
+      likes: 0,
+    }
 
   await api
     .post('/api/blogs')
@@ -98,10 +98,8 @@ test('a valid blog can be added', async () => {
   expect(title).toContain(
     'React patterns'
     )
-})
+  })
 
-
-describe('addition of a new blog', () => {
   test('succeeds with a valid data', async () => {
     let newBlog = {
       title: "Le dernier voeu",
@@ -166,21 +164,6 @@ describe('deletion of a blog', () => {
     expect(title).not.toContain(blogToDelete.title)
   })
 })
-
-  test('succeeds with a valid id', async () => {
-    const blogsAtStart = await helper.blogInDb()
-
-    const blogToView = blogsAtStart[0]
-
-    const resultBlog = await api
-      .get(`/api/blogs/${blogToView.id}`)
-      .expect(200)
-      .expect('Content-Type', /application\/json/)
-      
-    const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
-
-    expect(resultBlog.body).toEqual(processedBlogToView)
-  })
 
   test('updating the information of an individual blog post', async () => {
     const blogsAtStart = await helper.blogInDb()

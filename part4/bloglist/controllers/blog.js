@@ -12,13 +12,9 @@ blogsRouter.get('/', async (request, response,next) => {
     .catch(error => next(error))
 */
 console.log("get request")
-  try{
       const blogs = await Blog.find({})
       if (blogs)
         response.status(200).json(blogs)
-    } catch(exception) {
-      next(exception)
-    }
 })
 
 /*
@@ -36,36 +32,31 @@ blogsRouter.get('/:id', async (request, response, next) => {
 */
 blogsRouter.get('/:id', async (request, response) => {
   const blog = await Blog.findById(request.params.id)
-  if (blog) {
+  if (blog)
     response.json(blog)
-  } else {
+  else
     response.status(404).end()
-  }
 })
 
 blogsRouter.post('/', async (request, response, next) => {
   console.log("post request")
   const blog = new Blog(request.body)
-  try{      
-      const blogSave = await blog.save()
-      console.log("blog.id: ", blogSave.id)
-      if (blogSave) 
-        response.status(201).json(blogSave)
-    } catch(exception) {
-      next(exception)
-    }
+  const blogSave = await blog.save()
+  console.log("blog.id: ", blogSave.id)
+    if (blogSave) 
+      response.status(201).json(blogSave)
 })
 
 blogsRouter.put('/:id', async (request, response, next) => {
   console.log("put id request")
-    await Blog.findByIdAndUpdate(request.params.id)
-    response.status(204).end()
+  await Blog.findByIdAndUpdate(request.params.id)
+  response.status(204).end()
 })
 
 blogsRouter.delete('/:id', async (request, response, next) => {
-    console.log("delete api")
-    await Blog.findByIdAndRemove(request.params.id)
-    response.status(204).end()
+  console.log("delete api")
+  await Blog.findByIdAndRemove(request.params.id)
+  response.status(204).end()
 })
 
 module.exports = blogsRouter
