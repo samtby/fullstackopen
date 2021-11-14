@@ -48,14 +48,14 @@ blogsRouter.post('/', async (request, response, next) => {
 })
 
 blogsRouter.put('/:id', async (request, response, next) => {
-  console.log("put id request")
-  await Blog.findByIdAndUpdate(request.params.id)
+  console.log("put id request body", request.body)
+  await Blog.findByIdAndUpdate(request.params.id,request.body,{ new: true })
   response.status(204).end()
 })
 
 blogsRouter.delete('/:id', async (request, response, next) => {
   console.log("delete api")
-  await Blog.findByIdAndRemove(request.params.id)
+  await Blog.findByIdAndRemove(request.params.id,)
   response.status(204).end()
 })
 
