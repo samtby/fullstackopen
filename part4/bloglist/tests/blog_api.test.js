@@ -137,11 +137,12 @@ describe('addition of a new blog', () => {
       expect(blogCreated.likes).toBe(0)
   })
 
-  test('verifies that if the title and url properties are missing from the request data', async () => {
-    const newBlog = { author: "Andrzej Sapkowski" }
-    const response =  await api.post('/api/blogs')            
-    //console.log("response.status: ", response.status, response.body)
-    expect(response.status).toBe(400)
+  test('verifies that if the title and url properties are missing from the request data', async () => { // 4.12*: Blog list tests, step5
+    const newBlog = {author: "Andrzej Sapkowski" }
+    const response =  await api.post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+    console.log("response.status: ", response.status, response.body)
   })
 })
 
@@ -170,6 +171,7 @@ describe('deletion of a blog', () => {
     const blogToModified = blogsAtStart[0]
     
     blogToModified.title = 'fullstackopen'
+    blogToModified.likes = 2
     console.log("blogToDelete: ",blogToModified)
     
     await api
