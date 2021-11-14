@@ -832,6 +832,21 @@ db.connect({
   password: process.env.DB_PASS
 })
 ```
+
+
+## Bcrypt
+
+*** A library to help you hash passwords. ***
+
+* [Bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+
+```
+npm install bcrypt
+```
+
+## storing passwords
+* [How To Safely Store A Password](https://codahale.com/how-to-safely-store-a-password/)
+
 ## Jest has detected the following 1 open handle potentially keeping Jest from exiting:
 
 ### Solution n°1
