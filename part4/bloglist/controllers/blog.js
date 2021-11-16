@@ -1,6 +1,7 @@
 const express = require('express')
 require('express-async-errors')
 const Blog = require('../models/blog')
+const User = require('../models/user')
 
 const blogsRouter = express();
 
@@ -39,9 +40,17 @@ blogsRouter.get('/:id', async (request, response) => {
 })
 
 blogsRouter.post('/', async (request, response, next) => {
+
+  const user = await User.findById(body.userId)
+  
   console.log("post request")
+  const user = await User.findById(body.userId)
+  request.body.user = user._id
   const blog = new Blog(request.body)
   const blogSave = await blog.save()
+
+  user.blogs = user.blogs.concat(blogSave._id)  
+  await user.save()
   console.log("blog.id: ", blogSave.id)
     if (blogSave) 
       response.status(201).json(blogSave)
