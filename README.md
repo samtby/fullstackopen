@@ -43,6 +43,8 @@ npm start
 * [Install JSON Server](https://github.com/typicode/json-server#getting-started)
 * [Using Concurrently with json-server and your React App](https://medium.com/@joelazarz/using-concurrently-with-json-server-and-your-react-app-3d07487acc50)
 * [React Filter](https://sebhastian.com/react-filter/)
+* [Tips Reac Patterns - Get the latest React patterns, tips, and tricks right to your inbox.](https://reactpatterns.com/)
+
 ```
 npm install -g json-server
 ```
