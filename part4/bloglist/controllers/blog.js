@@ -40,14 +40,18 @@ blogsRouter.get('/:id', async (request, response) => {
 })
 
 blogsRouter.post('/', async (request, response, next) => {
-
-  const user = await User.findById(body.userId)
+  const body = request.body
+  const user = await User.findById(request.body.userId)
   
-  console.log("post request")
-  request.body.user = user._id
-  const blog = new Blog(request.body)
-  const blogSave = await blog.save()
+  const blog = new Blog({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes:  body.likes === undefined ? false : body.likes,
+    user: user._id  
+  })
 
+  const blogSave = await blog.save()
   user.blogs = user.blogs.concat(blogSave._id)  
   await user.save()
   console.log("blog.id: ", blogSave.id)
