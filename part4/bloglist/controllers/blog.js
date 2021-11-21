@@ -41,9 +41,11 @@ blogsRouter.get('/:id', async (request, response) => {
 
 blogsRouter.post('/', async (request, response, next) => {
   const body = request.body
+  console.log("userId :", body.userId)
+  const user = await User.findById(body.userId)
+  //.countDocuments((err, count) => {  resolve(count === 0);  });
   
-  const user = await User.findById(request.body.userId)
-  
+  console.log("user: ", user)
   const blog = new Blog({
     title: body.title,
     author: body.author,
@@ -53,7 +55,8 @@ blogsRouter.post('/', async (request, response, next) => {
   })
 
   const blogSave = await blog.save()
-  user.blogs = user.blogs.concat(blogSave._id)  
+  user
+  user.blogs = user.blogs.concat(blogSave._id)
   await user.save()
   console.log("blog.id: ", blogSave.id)
     if (blogSave) 
