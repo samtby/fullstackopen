@@ -11,14 +11,19 @@ const userSchema = new mongoose.Schema({
     blogs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Blog',
-        index: true,
-        required: true,
-        unique: true,
-        uniqueCaseInsensitive: true
+        ref: 'Blog'
       }
     ]
   })
+
+
+  /*
+  
+          index: true,
+        required: true,
+        unique: true,
+        uniqueCaseInsensitive: true
+  */
   userSchema.index({})
   userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
