@@ -467,6 +467,24 @@ personSchema.pre('findOneAndUpdate', function(next) {
     next();
   });
 
+# Populate
+
+*** The Mongoose join is done with the populate method. *** 
+
+* [Populate](https://mongoosejs.com/docs/c.html)
+* [The selection of fields is done with the Mongo syntax:](https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/#return-the-specified-fields-and-the-id-field-only)
+
+https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/#return-the-specified-fields-and-the-id-field-only
+
+```
+usersRouter.get('/', async (request, response) => {
+  const users = await User
+    .find({}).populate('notes', { content: 1, date: 1 })
+
+  response.json(users)
+});
+```
+
 # Lint
 
 Before we move onto the next part, we will take a look at an important tool called lint. Wikipedia says the following about lint:
