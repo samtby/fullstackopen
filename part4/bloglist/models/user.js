@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
-
+// https://www.npmjs.com/package/mongoose-unique-validator
 const userSchema = new mongoose.Schema({
     username: {
       type: String,
@@ -10,13 +10,16 @@ const userSchema = new mongoose.Schema({
     passwordHash: String,
     blogs: [
       {
-        unique: false,
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Blog'
+        ref: 'Blog',
+        index: true,
+        required: true,
+        unique: true,
+        uniqueCaseInsensitive: true
       }
     ]
   })
-  
+  userSchema.index({})
   userSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
