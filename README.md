@@ -467,7 +467,7 @@ personSchema.pre('findOneAndUpdate', function(next) {
     next();
   });
 
-# Populate
+#  Mongoose Populate
 
 *** The Mongoose join is done with the populate method. *** 
 
@@ -479,12 +479,21 @@ https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/#retu
 ```
 usersRouter.get('/', async (request, response) => {
   const users = await User
-    .find({}).populate('notes', { content: 1, date: 1 })
+    .find({}).populate('blogs',{title: 1,author: 1})
 
   response.json(users)
 });
 ```
 
+ # Jsonwebtoken Token based authentication
+
+ * [Token based authentication ](https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based-authentication#toc-how-token-based-works)
+
+* [JSON web tokens](https://jwt.io/)
+
+*** The principles of token based authentication are depicted in the following sequence diagram:  ***
+
+![](.resources/token_authentication.png)
 # Lint
 
 Before we move onto the next part, we will take a look at an important tool called lint. Wikipedia says the following about lint:
