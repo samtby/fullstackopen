@@ -2,6 +2,7 @@ const express = require('express')
 require('express-async-errors')
 const Blog = require('../models/blog')
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 const blogsRouter = express();
 
@@ -10,6 +11,7 @@ const getTokenFrom = request => {  const authorization = request.get('authorizat
     return authorization.substring(7) 
   return null
 }
+
 blogsRouter.get('/', async (request, response,next) => {
 /*Blog.find({})
     .then(blogs => {
@@ -69,7 +71,7 @@ blogsRouter.post('/', async (request, response, next) => {
   // console.log("blog.id: ", blogSave.id)
   //   if (blogSave) 
   // response.status(201).json(blogSave)
-  response.status.json(blogSave)
+  response.json(blogSave)
 })
 
 blogsRouter.put('/:id', async (request, response, next) => {
