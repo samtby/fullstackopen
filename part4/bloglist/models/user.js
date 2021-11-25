@@ -4,17 +4,22 @@ const uniqueValidator = require('mongoose-unique-validator')
 const userSchema = new mongoose.Schema({
     username: {
       type: String,
-      unique: true 
+      unique: true,
+      required: true
     },
     name: String,
-    passwordHash: String,
+    passwordHash: {
+      type: String ,
+      minLength: 3,
+      required: true
+    },
     blogs: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Blog'
       }
     ]
-  })
+  }) 
 
 
   /*
@@ -34,6 +39,10 @@ const userSchema = new mongoose.Schema({
       delete returnedObject.passwordHash
     }
   })
+
+  userSchema.path('passwordHash').validate(function(v) {
+    return v.length > 3;
+  });
 
   userSchema.plugin(uniqueValidator)
   
