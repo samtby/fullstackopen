@@ -178,6 +178,30 @@ app.use(express.json());
 
 * [Error Handling middleware](https://expressjs.com/en/guide/error-handling.html)
 
+## Middleware function
+
+***The app now uses the requestTime middleware function. Also, the callback function of the root path route uses the property that the middleware function adds to req (the request object)***
+
+```
+var express = require('express')
+var app = express()
+
+var requestTime = function (req, res, next) {
+  req.requestTime = Date.now()
+  next()
+}
+
+app.use(requestTime)
+
+app.get('/', function (req, res) {
+  var responseText = 'Hello World!<br>'
+  responseText += '<small>Requested at: ' + req.requestTime + '</small>'
+  res.send(responseText)
+})
+
+app.listen(3000)
+```
+
 # ExpressJS Async Errors
 
 ```
