@@ -7,7 +7,6 @@ usersRouter.get('/', async (request, response) => {
   response.json(users)
 })
 
-
 usersRouter.get('/:id', async (request, response) => {
   const users = await User.findById(request.params.id)
   if (users)
@@ -18,9 +17,12 @@ usersRouter.get('/:id', async (request, response) => {
 
 usersRouter.post('/', async (request, response) => {
   const body = request.body
-
   const saltRounds = 10
-  const passwordHash = await bcrypt.hash(body.password, saltRounds)
+  let passwordHash 
+  if(body.password.length > 3)
+    passwordHash = await bcrypt.hash(body.password, saltRounds)
+  else
+    response.status(400).send({ error: 'User validation failed: password: Path `password` (`'+body.password+'`) is shorter than the minimum allowed length ('+body.password.length+').'})
 
   const user = new User({
     username: body.username,
