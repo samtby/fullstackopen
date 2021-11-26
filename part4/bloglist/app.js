@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     console.log("req.token",req.token)
     next()
 })
+// https://stackoverflow.com/questions/37118070/adding-property-to-the-request-using-node-and-express
 
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
