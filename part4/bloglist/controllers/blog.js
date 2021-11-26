@@ -13,14 +13,8 @@ const getTokenFrom = request => {  const authorization = request.get('authorizat
 }
 
 blogsRouter.get('/', async (request, response,next) => {
-/*Blog.find({})
-    .then(blogs => {
-      response.status(200).json(blogs)
-    })
-    .catch(error => next(error))
-*/
-console.log("get request")
-      const blogs = await Blog.find({})
+      //const blogs = await Blog.find({})
+      const blogs = await Blog.find({}).populate('user',{username: 1,name: 1})
       if (blogs)
         response.status(200).json(blogs)
 })

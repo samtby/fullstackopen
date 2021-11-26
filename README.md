@@ -872,6 +872,12 @@ db.connect({
 ```
 npm install bcrypt
 ```
+### On Postman
+
+*** Autorization Header  bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ ***
+
+![](.resources/AutorizationBearer.png)
+
 
 ## storing passwords
 * [How To Safely Store A Password](https://codahale.com/how-to-safely-store-a-password/)
