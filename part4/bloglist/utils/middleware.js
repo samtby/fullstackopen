@@ -24,7 +24,6 @@ const tokenExtractor = function (request, response, next) {
   // code that extracts the token
   console.error("tokenExtractor")
   request.token =  getTokenFrom(request)
-  console.log("request.token",request.token)
   next()
 }
 

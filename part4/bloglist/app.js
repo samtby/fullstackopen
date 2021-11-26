@@ -13,6 +13,11 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 //4.20*: bloglist expansion, step8
 app.use(middleware.tokenExtractor)
+app.use((req, res, next) => {
+    console.log("req.token",req.token)
+    next()
+})
+
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/blogs', blogsRouter)
