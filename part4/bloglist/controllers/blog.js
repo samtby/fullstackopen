@@ -2,7 +2,6 @@ const express = require('express')
 require('express-async-errors')
 const Blog = require('../models/blog')
 const User = require('../models/user')
-const jwt = require('jsonwebtoken')
 
 const blogsRouter = express();
 
@@ -36,13 +35,15 @@ blogsRouter.get('/:id', async (request, response) => {
 
 blogsRouter.post('/', async (request, response, next) => {
   const body = request.body
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  console.log("decodedToken: ",decodedToken)
-  if (!request.token || !decodedToken.id) 
-    return response.status(401).json({ error: 'token missing or invalid' })
 
-  //const user = await User.findById(body.userId)
-  const user = await User.findById(decodedToken.id)
+  // const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  // if (!request.token || !decodedToken.id) 
+  //   return response.status(401).json({ error: 'token missing or invalid' })
+
+  //const user = await User.findById(decodedToken.id) // old
+  // get user from request object
+  const user = request.user
+  
   const blog = new Blog({
     title: body.title,
     author: body.author,
@@ -67,12 +68,16 @@ blogsRouter.put('/:id', async (request, response, next) => {
 blogsRouter.delete('/:id', async (request, response, next) => {
   console.log("delete api")
 
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  if (!request.token || !decodedToken.id) 
-    return response.status(401).json({ error: 'token missing or invalid' })
   
+  // const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  // if (!request.token || !decodedToken.id) 
+  //   return response.status(401).json({ error: 'token missing or invalid' })
+
+  // get user from request object
+  const user = request.user
+
   //Blog that if you fetch a blog from the database,
-  const userid = decodedToken.id
+  const userid = user
   const blog = await Blog.findById(request.params.id)  
   
   //The id(blog.user) fetched from the database must be parsed into a string first

@@ -190,7 +190,40 @@ app.use(express.json());
 
 * [Error Handling middleware](https://expressjs.com/en/guide/error-handling.html)
 
-## Middleware function
+## Middleware
+
+
+### Middleware Use
+
+*** Les fonctions de middleware sont des fonctions qui peuvent accéder à l’objet Request (req), l’objet response (res) et à la fonction middleware suivant dans le cycle demande-réponse de l’application. La fonction middleware suivant est couramment désignée par une variable nommée next. ***
+
+* [using-middleware](https://expressjs.com/fr/guide/using-middleware.html)
+
+Note that it is possible to register a middleware only for a specific set of routes. So instead of using userExtractor with all the routes
+```
+// use the middleware in all routes
+app.use(userExtractor)
+app.use('/api/blogs', blogsRouter)  
+app.use('/api/users', usersRouter)
+app.use('/api/login', loginRouter)
+```
+
+we could register it to be only executed with path /api/blogs routes: 
+
+```
+// use the middleware only in /api/blogs routes
+app.use('/api/blogs', userExtractor, blogsRouter)
+```
+
+As can be seen, this happens by chaining multiple middlewares as the parameter of function use. It would also be possible to register a middleware only for a specific operation:
+
+```
+router.post('/', userExtractor, async (request, response) => {
+  // ...
+}
+```
+
+### Middleware function
 
 ***The app now uses the requestTime middleware function. Also, the callback function of the root path route uses the property that the middleware function adds to req (the request object)***
 
