@@ -40,7 +40,7 @@ blogsRouter.post('/', async (request, response, next) => {
   // if (!request.token || !decodedToken.id) 
   //   return response.status(401).json({ error: 'token missing or invalid' })
 
-  //const user = await User.findById(decodedToken.id) // old
+  //const user
   // get user from request object
   const user = request.user
   
@@ -49,13 +49,14 @@ blogsRouter.post('/', async (request, response, next) => {
     author: body.author,
     url: body.url,
     likes:  body.likes === undefined ? false : body.likes,
-    user: user._id  
+    user: user  
   })
-
+  userFind = await User.findById(user) // old
   const blogSave = await blog.save()
-  
-  user.blogs = user.blogs.concat(blogSave._id)
-  await user.save()
+  console.log(blogSave.id)
+  console.log(blogSave)
+  userFind.blogs = userFind.blogs.concat(blogSave._id)
+  await userFind.save()
   response.json(blogSave)
 })
 
@@ -74,19 +75,20 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   //   return response.status(401).json({ error: 'token missing or invalid' })
 
   // get user from request object
-  const user = request.user
-
+  const userid = request.user
+  
   //Blog that if you fetch a blog from the database,
-  const userid = user
   const blog = await Blog.findById(request.params.id)  
   
   //The id(blog.user) fetched from the database must be parsed into a string first
   if(!blog)
     response.status(404).send({ message: 'Blog Not Found, this blog was deleted' }).end()
+  //else if (!user)
+    //response.status(404).send({ message: 'Blog Not Found, this blog was deleted' }).end()
   else if ( blog.user.toString() === userid.toString())
     await Blog.findByIdAndRemove(request.params.id)
   else 
-    return response.status(400).json({ error: 'Impossible to delete the blog besause because this blog is not created by '+decodedToken.username})
+    return response.status(400).json({ error: 'Impossible to delete the blog besause this blog is not created by '+request.username})
   response.status(204).end()
 })
 

@@ -34,6 +34,7 @@ const userExtractor = function (request, response, next) {
   if (!request.token || !decodedToken.id) 
     return response.status(401).json({ error: 'token missing or invalid' })
     request.user = decodedToken.id
+    request.username = decodedToken.username
   next()
 }
 

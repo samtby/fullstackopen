@@ -563,6 +563,13 @@ usersRouter.get('/', async (request, response) => {
 *** The principles of token based authentication are depicted in the following sequence diagram:  ***
 
 ![](.resources/token_authentication.png)
+
+
+## For test with supertest and Token based authentication 
+
+*** Set Authorization header to post request ***
+
+[This is most likely useful when doing the fix.](https://github.com/visionmedia/supertest/issues/398)
 # Lint
 
 Before we move onto the next part, we will take a look at an important tool called lint. Wikipedia says the following about lint:
