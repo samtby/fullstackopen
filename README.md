@@ -152,6 +152,18 @@ if (-Infinity)
 * [Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)
 * [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
+
+# Rest
+
+Let's expand our application so that it provides the same RESTful HTTP API as json-server.
+
+Representational State Transfer, aka REST, was introduced in 2000 in Roy Fielding's dissertation. REST is an architectural style meant for building scalable web applications.
+
+* [json-server](https://github.com/typicode/json-server#routes)
+* [Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+
+![](.resources/rest.png)
+
 # Express
 
 * [HTTP Status Codes](https://httpstatuses.com/)

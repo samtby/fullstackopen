@@ -31,7 +31,7 @@ blogsRouter.get('/:id', async (request, response) => {
   if (blog)
     response.json(blog)
   else
-    response.status(404).end()
+    response.status(404).send({ message: 'Blog Not Found' }).end()
 })
 
 blogsRouter.post('/', async (request, response, next) => {
@@ -55,9 +55,6 @@ blogsRouter.post('/', async (request, response, next) => {
   
   user.blogs = user.blogs.concat(blogSave._id)
   await user.save()
-  // console.log("blog.id: ", blogSave.id)
-  //   if (blogSave) 
-  // response.status(201).json(blogSave)
   response.json(blogSave)
 })
 
@@ -74,15 +71,17 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   if (!request.token || !decodedToken.id) 
     return response.status(401).json({ error: 'token missing or invalid' })
   
+  //Blog that if you fetch a blog from the database,
   const userid = decodedToken.id
   const blog = await Blog.findById(request.params.id)  
   
-  console.log("userid.toString(): ",userid.toString())
-  console.log("blog.user.toString()",blog.user.toString())
-  if ( blog.user.toString() === userid.toString())
+  //The id(blog.user) fetched from the database must be parsed into a string first
+  if(!blog)
+    response.status(404).send({ message: 'Blog Not Found, this blog was deleted' }).end()
+  else if ( blog.user.toString() === userid.toString())
     await Blog.findByIdAndRemove(request.params.id)
   else 
-    return response.status(400).json({ error: 'This blog is not created by '+decodedToken.username})
+    return response.status(400).json({ error: 'Impossible to delete the blog besause because this blog is not created by '+decodedToken.username})
   response.status(204).end()
 })
 
