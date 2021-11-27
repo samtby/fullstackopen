@@ -88,7 +88,7 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   else if ( blog.user.toString() === userid.toString())
     await Blog.findByIdAndRemove(request.params.id)
   else 
-    return response.status(400).json({ error: 'Impossible to delete the blog besause this blog is not created by '+request.username})
+    return response.status(401).json({ error: 'Unauthorized: Impossible to delete the blog besause this blog is not created by '+request.username})
   response.status(204).end()
 })
 
