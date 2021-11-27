@@ -149,7 +149,7 @@ describe('addition of a new blog', () => {
   test('verifies that if the title and url properties are missing from the request data', async () => { // 4.12*: Blog list tests, step5
     const newBlog = {
       title: "",
-      author: "Jean-marc Jancovici",
+      author: "Jean-marc.jancovici@m4x.org",
       url: "https://jancovici.com/"
     }
     const response =  await api.post('/api/blogs')
