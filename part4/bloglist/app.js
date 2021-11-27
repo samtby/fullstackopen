@@ -13,10 +13,14 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 //4.20*: bloglist expansion, step8
 app.use(middleware.tokenExtractor)
-app.use((req, res, next) => {
-    console.log("req.token",req.token)
-    next()
-})
+// app.get('*', (req, res) => {
+//     req.yourProperty = 'yourPropertytest'
+// })
+
+// app.use((req, res, next) => {
+//    // console.log("req.token",req.token)
+//     next()
+// })
 // https://stackoverflow.com/questions/37118070/adding-property-to-the-request-using-node-and-express
 
 app.use('/api/login', loginRouter)
