@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const bcrypt = require('bcrypt')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const helper = require('./test_helper')
 
 
@@ -17,10 +19,20 @@ const helper = require('./test_helper')
 */
 
 beforeEach(async () => {
+/*  await User.deleteOne({name: "userTest"})
+  const userTest = {
+      username: "userTest",
+      name: "userTest",
+      password: "userTest"
+  }
+  const userTestObject = new User(userTest)
+  userTestObject.save()*/
+  //await Promise.all(userTestObject)
   await Blog.deleteMany({})
   const blogObject = helper.initialBlogs.map(blog => new Blog(blog))
   const promiseArray = blogObject.map(blog => blog.save())
   await Promise.all(promiseArray)
+ 
 })
 
   
