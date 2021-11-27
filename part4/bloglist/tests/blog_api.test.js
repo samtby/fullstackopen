@@ -144,6 +144,19 @@ describe('addition of a new blog', () => {
     .expect(400)
     console.log("response.status: ", response.status, response.body)
   })
+  //Test to ensure adding a blog fails with the proper status code 401 Unauthorized if a token is not provided
+  
+  test('verifies that if the title and url properties are missing from the request data', async () => { // 4.12*: Blog list tests, step5
+    const newBlog = {
+      title: "",
+      author: "Jean-marc Jancovici",
+      url: "https://jancovici.com/"
+    }
+    const response =  await api.post('/api/blogs')
+    .send(newBlog)
+    .expect(401)
+    console.log("response.status: ", response.status, response.body)
+  })
 })
 
 describe('deletion of a blog', () => {
