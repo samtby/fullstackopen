@@ -27,7 +27,7 @@ blogsRouter.get('/:id', async (request, response, next) => {
 
 */
 blogsRouter.get('/:id', async (request, response) => {
-  const blog = await Blog.findById(request.params.id)
+  const blog = await Blog.findById(request.params.id).populate('user',{username: 1,name: 1, id: 1})
   if (blog)
     response.json(blog)
   else
@@ -69,15 +69,20 @@ blogsRouter.put('/:id', async (request, response, next) => {
 
 blogsRouter.delete('/:id', async (request, response, next) => {
   console.log("delete api")
+
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  console.log("decodedToken: ",decodedToken)
   if (!request.token || !decodedToken.id) 
     return response.status(401).json({ error: 'token missing or invalid' })
-
-  //const user = await User.findById(body.userId)
-  const user = await User.findById(decodedToken.id)
   
-  await Blog.findByIdAndRemove(request.params.id,)
+  const userid = decodedToken.id
+  const blog = await Blog.findById(request.params.id)  
+  
+  console.log("userid.toString(): ",userid.toString())
+  console.log("blog.user.toString()",blog.user.toString())
+  if ( blog.user.toString() === userid.toString())
+    await Blog.findByIdAndRemove(request.params.id)
+  else 
+    return response.status(400).json({ error: 'This blog is not created by '+decodedToken.username})
   response.status(204).end()
 })
 
