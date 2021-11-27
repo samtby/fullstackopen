@@ -146,7 +146,7 @@ describe('addition of a new blog', () => {
   })
   //Test to ensure adding a blog fails with the proper status code 401 Unauthorized if a token is not provided
   
-  test('verifies that if the title and url properties are missing from the request data', async () => { // 4.12*: Blog list tests, step5
+  test('verifies to ensure adding a blog fails with the proper status code 401 Unauthorized if a token is not provided', async () => { // 4.12*: Blog list tests, step5
     const newBlog = {
       title: "",
       author: "Jean-marc.jancovici@m4x.org",

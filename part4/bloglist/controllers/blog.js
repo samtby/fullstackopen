@@ -2,7 +2,7 @@ const express = require('express')
 require('express-async-errors')
 const Blog = require('../models/blog')
 const User = require('../models/user')
-
+const middleware = require('../utils/middleware')
 const blogsRouter = express();
 
 blogsRouter.get('/', async (request, response,next) => {
@@ -33,7 +33,7 @@ blogsRouter.get('/:id', async (request, response) => {
     response.status(404).send({ message: 'Blog Not Found' }).end()
 })
 
-blogsRouter.post('/', async (request, response, next) => {
+blogsRouter.post('/',middleware.userExtractor, async (request, response, next) => {
   const body = request.body
 
   // const decodedToken = jwt.verify(request.token, process.env.SECRET)
@@ -66,7 +66,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
   response.status(204).end()
 })
 
-blogsRouter.delete('/:id', async (request, response, next) => {
+blogsRouter.delete('/:id', middleware.userExtractor,async (request, response, next) => {
   console.log("delete api")
 
   
