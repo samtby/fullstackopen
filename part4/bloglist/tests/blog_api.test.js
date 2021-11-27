@@ -88,6 +88,33 @@ describe('when there is initially som blogs saved', () => {
 })
 
 describe('addition of a new blog', () => {
+
+  const getLogin = async()  =>{
+    const user = { username: 'root', password: 'sekret'}
+    const reponse  = await api.post('/api/login').send(user)
+    console.log("reponse: ", reponse.body)
+    return reponse.body
+  }
+
+  beforeEach(async () => {
+     await User.deleteMany({})
+     const reponse = await User.find({})
+
+    console.log("find",reponse.body)
+
+    const finds = await api.get('/api/users')
+    console.log("finds",finds.body)
+    const passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ username: 'root', passwordHash, namee: 'root' })
+
+    await user.save()
+  })
+/*
+  afterEach(async ()=>{
+    await User.deleteMany({})
+  })
+  */
+
   test('a valid blog can be added', async () => { //4.10: Blog list tests, step3
     const newBlog = {
       title: "async/await simplifies making async calls",
@@ -95,21 +122,24 @@ describe('addition of a new blog', () => {
       url: "https://javascript.info/async-await",
       likes: 0,
     }
-
-  await api
-    .post('/api/blogs')
-    .send(newBlog)
-    .expect(201)
-    .expect('Content-Type', /application\/json/)
-
-  const response = await api.get('/api/blogs')
-  const blogsAtEnd = await helper.blogInDb()
-  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
   
-  const title = response.body.map(n => n.title)
-  expect(title).toContain(
-    'async/await simplifies making async calls'
-    )
+    const login = getLogin()
+    
+    await api
+      .post('/api/blogs')
+      .set('Authorization', 'Bearer '+login.token) // Works.
+      .send(newBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+    const blogsAtEnd = await helper.blogInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
+    
+    const title = response.body.map(n => n.title)
+    expect(title).toContain(
+      'async/await simplifies making async calls'
+      )
   })
 
   // test('succeeds with a valid data', async () => {
@@ -140,9 +170,12 @@ describe('addition of a new blog', () => {
       url: "https://www.babelio.com/auteur/Andrzej-Sapkowski/5111"
     }
 
+    const login = getLogin()
+
     const reponse = await api
       .post('/api/blogs')
       .send(newBlog)
+      .set('Authorization', 'Bearer '+login.token) // Works.
       .expect(201)
       const blogCreated = (await helper.blogInDb()).reduce((r, blog) => blog.title === 'epee de la providence' ? blog : undefined)
       console.log('blogCreated: ',blogCreated)
@@ -151,7 +184,12 @@ describe('addition of a new blog', () => {
 
   test('verifies that if the title and url properties are missing from the request data', async () => { // 4.12*: Blog list tests, step5
     const newBlog = {author: "Andrzej Sapkowski" }
-    const response =  await api.post('/api/blogs')
+    
+    const login = getLogin()    
+
+    const response =  await api
+    .post('/api/blogs')
+    .set('Authorization', 'Bearer '+login.token) // Works.
     .send(newBlog)
     .expect(400)
     console.log("response.status: ", response.status, response.body)
@@ -164,7 +202,8 @@ describe('addition of a new blog', () => {
       author: "Jean-marc.jancovici@m4x.org",
       url: "https://jancovici.com/"
     }
-    const response =  await api.post('/api/blogs')
+    const response =  await api
+    .post('/api/blogs')
     .send(newBlog)
     .expect(401)
     console.log("response.status: ", response.status, response.body)
