@@ -8,8 +8,8 @@ const App = () => {
   const [newBlog, setNewBlog] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('mluukkai')
+  const [password, setPassword] = useState('salainen') 
   const [user, setUser] = useState(null)
 
 
@@ -20,7 +20,7 @@ const App = () => {
       const user = await loginService.login({
         username, password,
       }) 
-      
+      console.log(user)
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -90,15 +90,10 @@ const App = () => {
   if (user === null) {
     return (
       <div>
-        <h2>blogs</h2>
+        <h2>log in to application</h2>
         <Notification message={errorMessage} />
-        {user === null ?
-        loginForm() :
-        <div>
-          <p>{user.name} logged-in</p>
-          {blogForm()}
-        </div>
-        }
+        {loginForm()}
+        {/*user === null && loginForm()*/}
     </div>
     )
   }
@@ -106,6 +101,13 @@ const App = () => {
   return(
     <div>
       <h2>Blogs</h2>
+      {
+        <div>
+          <p>{user.name} logged-in</p>
+          {/*user && blogForm()*/}
+          
+      </div>
+      }
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
