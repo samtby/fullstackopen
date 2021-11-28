@@ -45,6 +45,40 @@ npm start
 * [React Filter](https://sebhastian.com/react-filter/)
 * [Tips Reac Patterns - Get the latest React patterns, tips, and tricks right to your inbox.](https://reactpatterns.com/)
 
+  ## React trick
+* [React trick](https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator)
+
+```
+{
+  user === null && loginForm()
+}
+
+return (
+  <div>
+    <h1>Notes</h1>
+
+    <Notification message={errorMessage}/>
+
+    {user === null ?
+      loginForm() :
+      noteForm()
+    }
+
+    <h2>Notes</h2>
+
+    // ...
+
+  </div>
+)
+
+```
+
+* [Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+
+* [Truthy, In JavaScript, a truthy value is a value that is considered true](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
+
+## App React wirh API Rest Server Json 
+
 ```
 npm install -g json-server
 ```
@@ -858,6 +892,13 @@ And then, in your repository :  npm-check -u (-u options activate the interactiv
 ```
 npm-check -u
 ```
+# If install a application, but you have to install its dependencies first: 
+
+```
+npm install
+```
+
+
 * [How to efficiently update your npm dependencies ?](https://code-trotter.com/web/how-to-efficiently-update-your-npm-dependencies/)
 ## How to run multiple commands concurrently
 [Concurrently](https://www.npmjs.com/package/concurrently)

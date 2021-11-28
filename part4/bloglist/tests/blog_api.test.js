@@ -115,7 +115,7 @@ describe('addition of a new blog', () => {
     // console.log("reponse login: ", login)
     await api
       .post('/api/blogs')
-      .set('Authorization', 'Bearer '+login.token) // Works.
+      .set('Authorization', 'Bearer '+login.token) // Works.`bearer ${newToken}`
       .send(newBlog)
       .expect(201)
       .expect('Content-Type', /application\/json/)
