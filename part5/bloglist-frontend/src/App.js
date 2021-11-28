@@ -20,7 +20,9 @@ const App = () => {
       const user = await loginService.login({
         username, password,
       }) 
-      console.log(user)
+      window.localStorage.setItem(
+        'loggedBlogappUser', JSON.stringify(user)
+      ) // You can view localstorage by console 'window.localStorage'
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -41,6 +43,19 @@ const App = () => {
   }, [])
 
 
+
+  useEffect(() => {  
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
+      setUsername('')
+      setPassword('')
+    }  
+  }, [])
+
+
   const addBlog = (event) => {    
     event.preventDefault()
 
@@ -52,6 +67,18 @@ const App = () => {
     console.log( event.target.name ,event.target.value)
   }
   
+
+  
+  const logout = (event) => {    
+    event.preventDefault()
+    window.localStorage.removeItem('loggedBlogappUser')
+    setUser(null)
+    setUsername('')
+    setPassword('')
+
+    //Or
+    //window.localStorage.clear()
+  }
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
@@ -76,6 +103,9 @@ const App = () => {
       <button type="submit">login</button>
     </form>      
   )
+
+
+
 
   const blogForm = () => (
     <form onSubmit={addBlog}>
@@ -103,7 +133,7 @@ const App = () => {
       <h2>Blogs</h2>
       {
         <div>
-          <p>{user.name} logged-in</p>
+          <p>{user.name} logged-in<button type="button" onClick={logout}>logout</button></p>
           {/*user && blogForm()*/}
           
       </div>
