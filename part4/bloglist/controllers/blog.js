@@ -48,7 +48,7 @@ blogsRouter.post('/',middleware.userExtractor, async (request, response, next) =
     title: body.title,
     author: body.author,
     url: body.url,
-    likes:  body.likes === undefined ? false : body.likes,
+    likes:  body.likes === undefined ? '0' : body.likes,
     user: user  
   })
   userFind = await User.findById(user) // old
@@ -57,7 +57,7 @@ blogsRouter.post('/',middleware.userExtractor, async (request, response, next) =
   console.log(blogSave)
   userFind.blogs = userFind.blogs.concat(blogSave._id)
   await userFind.save()
-  response.json(blogSave)
+  response.status(201).json(blogSave)
 })
 
 blogsRouter.put('/:id', async (request, response, next) => {
