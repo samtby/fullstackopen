@@ -16,14 +16,20 @@ const create = async newObject => {
   const config = {
     headers: { Authorization: token },  
   }
-
-  const response = await axios.post(baseUrl, newObject, config)
-  return response.data
+  try {
+    const response = await axios.post(baseUrl, newObject, config)
+    return response.data  
+  }catch(error) {
+  console.log("error", error);
+  return error.data
+  // appropriately handle the error
+  }
 }
 
 const update = (id, newObject) => {
   const request = axios.put(`${ baseUrl } /${id}`, newObject)
   return request.then(response => response.data)
+  .catch(error => error.response.data)
 }
 
 

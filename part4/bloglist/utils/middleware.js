@@ -43,7 +43,6 @@ const errorHandler = (error, request, response, next) => {
     logger.info("log: ",error)
     logger.info("=================")
     logger.info(error.message,error.name)  
-    error
     if (error.name ==='CastError')
       return response.status(400).send({ error: 'malformatted id' })
     if (error.name ==='ValidationError')
@@ -52,6 +51,8 @@ const errorHandler = (error, request, response, next) => {
       return response.status(401).json({ error: 'invalid token' })
     if (error.name === 'TokenExpiredError')
       return response.status(401).json({ error: 'token expired' })
+    if (error.name === 'MongoError')
+      return response.status(401).json({ error:  error.message })
     next(error)
 }
 
