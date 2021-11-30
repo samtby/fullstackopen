@@ -13,15 +13,17 @@ const getAll = () => {
 }
 
 const create = async newObject => {
+console.log("token create: ",token)
+
   const config = {
     headers: { Authorization: token },  
   }
   try {
     const response = await axios.post(baseUrl, newObject, config)
-    return response.data  
+    console.log("response.data : ")
+    //return response.data 
   }catch(error) {
-  console.log("error", error);
-  return error.data
+    return Promise.reject(error)
   // appropriately handle the error
   }
 }

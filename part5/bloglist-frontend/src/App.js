@@ -10,14 +10,15 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('mluukkai')
   const [password, setPassword] = useState('salainen') 
-  const [title, setTitle] = useState('Kaamelott premier Volet') 
-  const [author, setAuthor] = useState('Alexandre Astier') 
-  const [url, setUrl] = useState('https://www.kaamelott.com/') 
+  const [title, setTitle] = useState('premier Volet') 
+  const [author, setAuthor] = useState('Astier') 
+  const [url, setUrl] = useState('https://www.lott.com/') 
   const [user, setUser] = useState(null)
 
 
     
   const messageNotification = (message) =>{
+    console.log("messageNotification: ")
     setErrorMessage(message)
     setTimeout(() => {
       setErrorMessage(null)
@@ -41,7 +42,7 @@ const App = () => {
       setPassword('')
     } catch (exception) {      
 
-      messageNotification({status:`failed`,content:`Wrong username or password`})
+      setErrorMessage({status:`failed`,content:`Wrong username or password`})
       /*
       setErrorMessage({status:`failed`,content:`Wrong username or password`})
       setTimeout(() => {
@@ -91,19 +92,21 @@ const App = () => {
         })
         .then(returnedBlog  => {
           console.log("returnedBlog: ",returnedBlog)
-          if(returnedBlog !== undefined)
-            messageNotification({status:`fail`,content:returnedBlog.error})
-          else{
+
             //handleSetPersons(persons.concat(returnedPerson))  
-            // console.log('success')
-            // console.log(returnedBlog)
-            // messageNotification({status:`success`,content:`a new blog You're NOT gonna need it! by ${username} add `})
-            // setAuthor('')
-            // setTitle('')
-            // setUrl('')
-          }
+            /*console.log('success: ', username)
+            console.log(returnedBlog)*/
+            messageNotification({status:`success`,content:`a new blog You're NOT gonna need it! by ${user.name} add `})
+            setAuthor('')
+            setTitle('')
+            setUrl('')
+          
         }).catch(errorMessage => {
-          console.log("errorMessage catch: ", errorMessage)
+          /*console.log(errorMessage.response.data)
+          console.log(errorMessage.response.data.error)
+          console.log("errorMessage catch: ", errorMessage)*/
+          //messageNotification({status:`fail`,content:errorMessage.response.data.error})
+          messageNotification({status:`fail`,content:`Error impossible adding, try again or with other value`})
         })
     }
 
@@ -202,6 +205,7 @@ const App = () => {
   return(
     <div>
       <h2>Blogs</h2>
+      <Notification message={errorMessage} />
       {
         <div>
           <p>{user.name} logged-in<button type="button" onClick={logout}>logout</button></p>
