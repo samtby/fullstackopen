@@ -127,6 +127,15 @@ return (
 
 * [Truthy, In JavaScript, a truthy value is a value that is considered true](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
 
+* [References to components with ref](https://reactjs.org/docs/refs-and-the-dom.html)
+* [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+* [React.forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref)
+* [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html)
+## useImperativeHandle
+
+***To recap, the useImperativeHandle function is a React hook, that is used for defining functions in a component which can be invoked from outside of the component.***
+* [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+
 ## App React wirh API Rest Server Json 
 
 ```

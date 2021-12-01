@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
@@ -14,13 +14,13 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('mluukkai')
   const [password, setPassword] = useState('salainen') 
-  const [title, setTitle] = useState('premier Volet') 
-  const [author, setAuthor] = useState('Astier') 
-  const [url, setUrl] = useState('https://www.lott.com/') 
+  const [title, setTitle] = useState('') 
+  const [author, setAuthor] = useState('') 
+  const [url, setUrl] = useState('') 
   const [user, setUser] = useState(null)
 
+  const blogFormRef = useRef()
 
-    
   const messageNotification = (message) =>{
     console.log("messageNotification: ")
     setErrorMessage(message)
@@ -57,19 +57,11 @@ const App = () => {
   }
  }
 
- /*
- 
- setErrorMessage({status:`success`,content:`a new blog You're NOT gonna need it! by ${username}`})
-      setTimeout(() => {
-      setErrorMessage(null)
-      },
-    5000)
- */
-
   useEffect(() => {
-    blogService.getAll().then(blogs =>
+    blogService.getAll().then(blogs =>      
       setBlogs( blogs )
-    )  
+    ) 
+    console.log("blogs: ", blogs) 
   }, [])
 
 
@@ -89,6 +81,7 @@ const App = () => {
   const addBlog = (event) => {      
     event.preventDefault()
 
+    blogFormRef.current.toggleVisibility()
         blogService.create({
           title: title,
           author: author,
@@ -143,18 +136,18 @@ const App = () => {
   const blogForm = () => {
     return (
       <div>
-        <Togglable buttonLabel='create new blog'>
-        <BlogForm
-          titleBlogCreatelog='create new'
-          handleButtonSubmit='create'
-          title={title}
-          author={author}
-          url={url}
-          handleSubmit={addBlog}
-          handleTitleChange={({ target }) => setTitle(target.value)}
-          handleAuthorChange={({ target }) =>setAuthor(target.value)}
-          handleUrlChange={({ target }) => setUrl(target.value)}
-        />
+        <Togglable buttonLabel='create new blog' ref={blogFormRef}>
+          <BlogForm
+            titleBlogCreatelog='create new'
+            handleButtonSubmit='create'
+            title={title}
+            author={author}
+            url={url}
+            handleSubmit={addBlog}
+            handleTitleChange={({ target }) => setTitle(target.value)}
+            handleAuthorChange={({ target }) =>setAuthor(target.value)}
+            handleUrlChange={({ target }) => setUrl(target.value)}
+          />
         </Togglable>
       </div>
     )
