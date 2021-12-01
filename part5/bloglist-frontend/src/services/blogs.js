@@ -21,9 +21,11 @@ console.log("token create: ",token)
   try {
     const response = await axios.post(baseUrl, newObject, config)
     console.log("response.data : ")
-    //return response.data 
+    return response.data 
   }catch(error) {
-    return Promise.reject(error)
+    console.log("error: ",error.response.data)
+    return error.response.data
+    //return Promise.reject(error)
   // appropriately handle the error
   }
 }

@@ -90,9 +90,13 @@ const App = () => {
           author: author,
           url: url
         })
-        .then(returnedBlog  => {
-          console.log("returnedBlog: ",returnedBlog)
+        .then(response => {
 
+          if(response.error !== undefined){
+            messageNotification({status:`fail`,content:`Error impossible adding, try again or with other value`})
+          }else{
+          console.log("response : ",response)
+            setBlogs(blogs.concat(response))
             //handleSetPersons(persons.concat(returnedPerson))  
             /*console.log('success: ', username)
             console.log(returnedBlog)*/
@@ -100,13 +104,13 @@ const App = () => {
             setAuthor('')
             setTitle('')
             setUrl('')
-          
+          }
         }).catch(errorMessage => {
           /*console.log(errorMessage.response.data)
           console.log(errorMessage.response.data.error)
           console.log("errorMessage catch: ", errorMessage)*/
           //messageNotification({status:`fail`,content:errorMessage.response.data.error})
-          messageNotification({status:`fail`,content:`Error impossible adding, try again or with other value`})
+          //messageNotification({status:`fail`,content:`Error impossible adding, try again or with other value`})
         })
     }
 
