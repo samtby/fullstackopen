@@ -1,7 +1,7 @@
 # fullstackopen 2021
-*Deep Dive Into Modern Web Development*
+****Deep Dive Into Modern Web Development**
 
-#### The course of full stack open 2021
+# The course of full stack open 2021
 
 * part0 Fundamentals of Web apps
 * part1 Introduction to React
@@ -44,6 +44,56 @@ npm start
 * [Using Concurrently with json-server and your React App](https://medium.com/@joelazarz/using-concurrently-with-json-server-and-your-react-app-3d07487acc50)
 * [React Filter](https://sebhastian.com/react-filter/)
 * [Tips Reac Patterns - Get the latest React patterns, tips, and tricks right to your inbox.](https://reactpatterns.com/)
+
+
+* [Inline styles](https://react-cn.github.io/react/tips/inline-styles.html)
+*** inline style ***
+
+The visibility of the component is defined by giving the component an inline style rule, where the value of the display property is none if we do not want the component to be displayed:
+
+```
+const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+const showWhenVisible = { display: loginVisible ? '' : 'none' }
+
+<div style={hideWhenVisible}>
+  // button
+</div>
+
+<div style={showWhenVisible}>
+  // button
+</div>
+```
+
+* [props.children](https://reactjs.org/docs/glossary.html#propschildren)
+
+```
+import React, { useState } from 'react'
+
+const Togglable = (props) => {
+  const [visible, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const toggleVisibility = () => {
+    setVisible(!visible)
+  }
+
+  return (
+    <div>
+      <div style={hideWhenVisible}>
+        <button onClick={toggleVisibility}>{props.buttonLabel}</button>
+      </div>
+      <div style={showWhenVisible}>
+        {props.children}
+        <button onClick={toggleVisibility}>cancel</button>
+      </div>
+    </div>
+  )
+}
+
+export default Togglable
+```
 
   ## React trick
 * [React trick](https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator)

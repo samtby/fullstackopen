@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
+import BlogForm from './components/BlogForm'
+import Togglable  from './components/Togglable '
 import blogService from './services/blogs'
 import loginService from './services/login'
 const App = () => {
@@ -137,72 +139,55 @@ const App = () => {
     //window.localStorage.clear()
   }
 
-  const loginForm = () => {
-    const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-    const showWhenVisible = { display: loginVisible ? '' : 'none' }
-
+  
+  const blogForm = () => {
     return (
       <div>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setLoginVisible(true)}>log in</button>
-        </div>
-          <div style={showWhenVisible}>
-            <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          /> 
-          <button onClick={() => setLoginVisible(false)}>cancel</button>
-        </div>
+        <Togglable buttonLabel='create new blog'>
+        <BlogForm
+          titleBlogCreatelog='create new'
+          handleButtonSubmit='create'
+          title={title}
+          author={author}
+          url={url}
+          handleSubmit={addBlog}
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleAuthorChange={({ target }) =>setAuthor(target.value)}
+          handleUrlChange={({ target }) => setUrl(target.value)}
+        />
+        </Togglable>
       </div>
     )
 }
 
-
-
-
-  const blogForm = () => (
-    <form onSubmit={addBlog}>
-      <div>
-        title
-          <input
-          type="text"
-          value={title}
-          name="title"
-          onChange={({ target }) => setTitle(target.value)}
-        />
-      </div>
-      <div>
-        author
-          <input
-          type="text"
-          value={author}
-          name="author"
-          onChange={({ target }) =>setAuthor(target.value)}
-        />
-      </div>
-      <div>
-        url
-          <input
-          type="text"
-          value={url}
-          name="url"
-          onChange={({ target }) => setUrl(target.value)}
-        />
-      </div>
-      <button type="submit">save</button>
-    </form>  
+/*
+const loginForm = (
+          <LoginForm
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+        /> 
+      
   )
+
+*/
 
   if (user === null) {
     return (
       <div>
         <h2>log in to application</h2>
         <Notification message={errorMessage} />
-        {loginForm()}
-        {/*user === null && loginForm()*/}
+
+        <LoginForm
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+        />
+        
     </div>
     )
   }
@@ -214,9 +199,10 @@ const App = () => {
       {
         <div>
           <p>{user.name} logged-in<button type="button" onClick={logout}>logout</button></p>
-          {user && blogForm()}          
+          {/* {user && blogForm()}           */}
       </div>
       }
+      {blogForm()}
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
