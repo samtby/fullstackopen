@@ -58,8 +58,9 @@ const App = () => {
  }
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>      
-      setBlogs( blogs )
+    blogService.getAll().then(blogs =>
+      
+      setBlogs(blogs.sort((a, b) => (a.likes > b.likes) ? 1 : -1))
     ) 
     console.log("blogs: ", blogs) 
   }, [])
