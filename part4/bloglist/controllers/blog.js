@@ -63,7 +63,7 @@ blogsRouter.post('/',middleware.userExtractor, async (request, response, next) =
 blogsRouter.put('/:id', async (request, response, next) => {
   console.log("put id request body", request.body)
   await Blog.findByIdAndUpdate(request.params.id,request.body,{ new: true })
-  response.status(204).end()
+  response.status(201).end()
 })
 
 blogsRouter.delete('/:id', middleware.userExtractor,async (request, response, next) => {
