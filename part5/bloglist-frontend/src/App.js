@@ -98,7 +98,7 @@ const App = () => {
             //handleSetPersons(persons.concat(returnedPerson))  
             /*console.log('success: ', username)
             console.log(returnedBlog)*/
-            messageNotification({status:`success`,content:`a new blog You're NOT gonna need it! by ${user.name} add `})
+            messageNotification({status:`success`,content:`a new blog ${title} by ${author} add `})
             setAuthor('')
             setTitle('')
             setUrl('')
