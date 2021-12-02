@@ -22,7 +22,7 @@ const Blog = ({ blog }) => {
       </div>
       <div style={showWhenVisible}>
       <div>{blog.url}</div>
-      <div> likes {blog.likes}</div>
+      <div> likes {blog.likes}<button> like</button></div>
       <div>{blog.user.name}</div>
     </div>
   </div>
