@@ -1,6 +1,12 @@
 import React, { useState} from 'react'
-const Blog = ({ blog }) => {
+const Blog = ({ blog,handleLike }) => {
   const [visible, setVisible] = useState(false)
+    //const deletePerson = (id,name) 
+    const addLike = (blog) => {      
+      //event.preventDefault()
+      //blogService.update()
+      console.log('addLike =', blog)
+    }
 
   const blogStyle = {
     paddingTop: 10,
@@ -22,7 +28,7 @@ const Blog = ({ blog }) => {
       </div>
       <div style={showWhenVisible}>
       <div>{blog.url}</div>
-      <div> likes {blog.likes}<button> like</button></div>
+      <div> likes {blog.likes}<button >like</button></div>
       <div>{blog.user.name}</div>
     </div>
   </div>
