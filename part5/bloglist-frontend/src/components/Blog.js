@@ -1,4 +1,5 @@
 import React, { useState} from 'react'
+import Like from '../components/Like'
 const Blog = ({ blog,handleLike }) => {
   const [visible, setVisible] = useState(false)
     //const deletePerson = (id,name) 
@@ -21,6 +22,11 @@ const Blog = ({ blog,handleLike }) => {
     setVisible(!visible)
   }
 
+  
+  const majLike = () => {
+
+  }
+
   return (
     <div style={blogStyle}>
       <div>
@@ -28,7 +34,7 @@ const Blog = ({ blog,handleLike }) => {
       </div>
       <div style={showWhenVisible}>
       <div>{blog.url}</div>
-      <div> likes {blog.likes}<button >like</button></div>
+      <Like blog={blog}/>
       <div>{blog.user.name}</div>
     </div>
   </div>
