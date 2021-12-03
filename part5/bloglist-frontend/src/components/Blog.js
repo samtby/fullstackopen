@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import Like from '../components/Like'
 import blogService from '../services/blogs'
 
-const Blog = ({ blog,handleLike }) => {
+const Blog = ({ user,blog,handleLike }) => {
   const [visible, setVisible] = useState(false)
     //const deletePerson = (id,name) 
     const addLike = (blog) => {      
@@ -24,21 +24,13 @@ const Blog = ({ blog,handleLike }) => {
     setVisible(!visible)
   }
 
-  
-  
-  const handLike = async (event) => { 
-    try { 
-    const blogLilke = await blogService.update(blog.id,{ likes: likes+1})
-    console.log("blogLilke: ",blogLilke)
-    setLike(likes+1)
-    } catch (exception) {     
-  }
-}
   const deleteBlog = async () => {    
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author} ?`)){
       try { 
         //personService.del(id).then(response =>{response.status === 200?handleSetPersons():console.log(response.status)})        
         const response = await blogService.del(blog.id)
+        console.log("user: ",user)
+        setVisible(!visible)
       } catch (exception) { }
     }
 }
