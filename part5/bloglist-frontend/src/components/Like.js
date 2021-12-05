@@ -19,7 +19,6 @@ const Like = ({ blog }) => {
   return (
     <div>
       <div>{likes}<button onClick={handLike} >like</button></div>
-      <div>{blog.user.name}</div>
     </div>
 )}
 

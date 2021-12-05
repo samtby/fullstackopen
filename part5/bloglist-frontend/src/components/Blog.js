@@ -22,7 +22,7 @@ const Blog = ({ user,blog,handleSetBlog }) => {
   const showWhenVisible = { display: visible ? '' : 'none' }
 
   const toggleVisibility = () => {
-    console.log('addLike =', user)
+    console.log('addLike blog.user =', blog.user)
     setVisible(!visible)
   }
 
