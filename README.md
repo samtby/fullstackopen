@@ -125,6 +125,13 @@ return (
 )
 
 ```
+## prop-types
+
+***Runtime type checking for React props and similar objects.***
+
+You can use prop-types to document the intended types of properties passed to components. React (and potentially other libraries—see the checkPropTypes() reference below) will check props passed to your components against those definitions, and warn in development if they don’t match.
+
+* [prop-types](https://github.com/facebook/prop-types)
 
 * [Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
 

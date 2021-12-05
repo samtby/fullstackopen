@@ -47,6 +47,7 @@ const Blog = ({ user,blog,handleSetBlog }) => {
       <div>{blog.url}</div>
       <Like blog={blog}/>
       <div>{blog.user.name}</div> 
+      <div>{console.log(blog.user.name)}</div> 
       { blog.user.id === user.id && <div><button onClick={deleteBlog}>remove</button></div>}
     </div>
   </div>
