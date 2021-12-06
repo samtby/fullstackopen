@@ -7,10 +7,10 @@ import Togglable  from './components/Togglable '
 import blogService from './services/blogs'
 import loginService from './services/login'
 const App = () => {
-  const [loginVisible, setLoginVisible] = useState(false)
+  //const [loginVisible, setLoginVisible] = useState(false)
   const [blogs, setBlogs] = useState([]) 
-  const [newBlog, setNewBlog] = useState()
-  const [showAll, setShowAll] = useState(true)
+  //const [newBlog, setNewBlog] = useState()
+  //const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('mluukkai')
   const [password, setPassword] = useState('salainen') 
