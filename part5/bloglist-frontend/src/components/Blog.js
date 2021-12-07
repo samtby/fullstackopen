@@ -32,16 +32,18 @@ const Blog = ({ user,blog,handleSetBlog }) => {
 
   return (
     <div style={blogStyle}>
-      <div>
-        {blog.title} {blog.author}<button onClick={toggleVisibility}>{visible ? 'hide' : 'view'}</button>
-      </div>
-      <div style={showWhenVisible}>
-        <div>{blog.url}</div>
-        <Like blog={blog}/>
-        <div>{blog.user.name}</div>
-        <div>{console.log(blog.user.name)}</div>
-        { blog.user.id === user.id && <div><button onClick={deleteBlog}>remove</button></div>}
-      </div>
+      <li className='blog'>
+        <div>
+          {blog.title} {blog.author}<button onClick={toggleVisibility}>{visible ? 'hide' : 'view'}</button>
+        </div>
+        <div style={showWhenVisible}>
+          <div>{blog.url}</div>
+          <Like blog={blog}/>
+          <div>{blog.user.name}</div>
+          <div>{console.log(blog.user.name)}</div>
+          { blog.user.id === user.id && <div><button onClick={deleteBlog}>remove</button></div>}
+        </div>
+      </li>
     </div>
   )
 }
