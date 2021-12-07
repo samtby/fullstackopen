@@ -41,7 +41,11 @@
       "last 1 safari version"
     ]
   },
-  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
   "proxy": "http://localhost:3001",
   "devDependencies": {
     "@types/react": "^17.0.37",
