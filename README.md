@@ -975,10 +975,28 @@ npm test -- -t 'when list has only one blog, equals the likes of that'
 ```
 npm test -- tests/blog_api.test.js 
 ```
+
+
+# Test
+
+https://github.com/testing-library/react-testing-library
+
+
+# Testing React apps
+
+* [Jest](https://jestjs.io/)
+* [ react-testing-library](https://github.com/testing-library/react-testing-library)
+
+```
+npm install --save-dev @testing-library/react @testing-library/jest-dom
+```
+
+
 # Lodash 
 A modern JavaScript utility library delivering modularity, performance & extras.
 
 * [Why Lodash?](https://lodash.com/)
+
 
 # cross-env
 cross-env makes it so you can have a single command without worrying about setting or using the environment variable properly for the platform. Just set it like you would if it's running on a POSIX system, and cross-env will take care of setting it properly.
