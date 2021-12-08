@@ -69,7 +69,7 @@ const showWhenVisible = { display: loginVisible ? '' : 'none' }
 
 * [props.children](https://reactjs.org/docs/glossary.html#propschildren)
 
-```
+```TS
 import React, { useState } from 'react'
 
 const Togglable = (props) => {
@@ -101,7 +101,7 @@ export default Togglable
   ## React trick
 * [React trick](https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator)
 
-```
+```TS
 {
   user === null && loginForm()
 }
@@ -206,7 +206,8 @@ Let's extend our application so that it saves the details of a logged-in user to
 Values saved to the storage are DOMstrings, so we cannot save a JavaScript object as is. The object has to be parsed to JSON first, with the method JSON.stringify. Correspondingly, when a JSON object is read from the local storage, it has to be parsed back to JavaScript with JSON.parse.
 
 Changes to the login method are as follows: 
-```
+
+```TS
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -237,7 +238,7 @@ The right way to do this is with an [effect hook](https://reactjs.org/docs/hooks
 
 We can have multiple effect hooks, so let's create a second one to handle the first loading of the page:
 
-```
+```TS
 const App = () => {
   const [notes, setNotes] = useState([]) 
   const [newNote, setNewNote] = useState('')
@@ -271,13 +272,13 @@ Now a user stays logged-in in the application forever. We should probably add a 
 
 It's possible to log out a user using the console, and that is enough for now. You can log out with the command:
 
-```
+```JS
 window.localStorage.removeItem('loggedNoteappUser')
 ```
 
 or with the command which empties localstorage completely: 
 
-```
+```JS
 window.localStorage.clear()
 ```
 
@@ -343,7 +344,8 @@ La méthode Jidoka consiste à arrêter le travail dès qu'un problème survient
 ## JavaScript materials
 
 * In Js Toutes les valeurs sont vraies sauf si elles sont définies comme fausses (c'est-à-dire, à l'exception de faux, 0, -0, 0n, "", null, undefined et NaN). 
-```
+
+```TS
 //Truthy
 if (true)
 if ({})
@@ -434,7 +436,8 @@ app.use(express.json());
 * [using-middleware](https://expressjs.com/fr/guide/using-middleware.html)
 
 Note that it is possible to register a middleware only for a specific set of routes. So instead of using userExtractor with all the routes
-```
+
+```TS
 // use the middleware in all routes
 app.use(userExtractor)
 app.use('/api/blogs', blogsRouter)  
@@ -444,7 +447,7 @@ app.use('/api/login', loginRouter)
 
 we could register it to be only executed with path /api/blogs routes: 
 
-```
+```TS
 // use the middleware only in /api/blogs routes
 app.use('/api/blogs', userExtractor, blogsRouter)
 ```
@@ -461,7 +464,7 @@ router.post('/', userExtractor, async (request, response) => {
 
 ***The app now uses the requestTime middleware function. Also, the callback function of the root path route uses the property that the middleware function adds to req (the request object)***
 
-```
+```TS
 var express = require('express')
 var app = express()
 
@@ -612,6 +615,7 @@ $ git remote rename heroku staging
 
 ### Change a remote URL or protocol
 If you have already created https remotes and want to switch them to use ssh, the following command can be used. This command can also be used to change the target URL without changing the protocol
+
 ```
 $ git remote set-url staging git@heroku.com:staging-app.git
 $ git remote set-url heroku https://git.heroku.com/production-app.git
@@ -988,6 +992,57 @@ https://github.com/testing-library/react-testing-library
 * [ react-testing-library](https://github.com/testing-library/react-testing-library)
 * [testing-library](https://testing-library.com/docs/react-testing-library/api/#render)
 
+## Rendering the component for tests
+
+
+We will write our test in the src/components/Note.test.js file, which is in the same directory as the component itself.
+
+The first test verifies that the component renders the contents of the note:
+
+```TS
+import React from 'react'
+import '@testing-library/jest-dom/extend-expect'
+import { render } from '@testing-library/react'
+import Note from './Note'
+
+
+test('renders content', () => {
+  const note = {
+    content: 'Component testing is done with react-testing-library',
+    important: true
+  }
+
+  const component = render(
+    <Note note={note} />
+  )
+
+  expect(component.container).toHaveTextContent(
+    'Component testing is done with react-testing-library'
+  )
+})
+```
+
+
+After the initial configuration, the test renders the component with the render method provided by the react-testing-library:
+
+```TS
+const component = render(
+  <Note note={note} />
+)
+```
+
+
+Normally React components are rendered to the DOM. The render method we used renders the components in a format that is suitable for tests without rendering them to the DOM.
+
+render returns an object that has several properties. One of the [properties](https://testing-library.com/docs/react-testing-library/api/#render-result) is called container, and it contains all of the HTML rendered by the component.
+
+In the expectation, we verify that the component renders the correct text, which in this case is the content of the note:
+
+```TS
+expect(component.container).toHaveTextContent(
+  'Component testing is done with react-testing-library'
+)
+```
 
 Run test
 If you want to run tests "normally", you can do so with the command:
@@ -1006,6 +1061,13 @@ Instructions for installing Watchman on different operating systems can be found
 npm install --save-dev @testing-library/react @testing-library/jest-dom
 ```
 
+## Test file location
+
+In React there are (at least) [two different conventions](https://medium.com/@JeffLombardJr/organizing-tests-in-jest-17fc431ff850) for the test file's location. We created our test files according to the current standard by placing them in the same directory as the component being tested.
+
+The other convention is to store the test files "normally" in their own separate directory. Whichever convention we choose, it is almost guaranteed to be wrong according to someone's opinion.
+
+Personally, I do not like this way of storing tests and application code in the same directory. The reason we choose to follow this convention is that it is configured by default in applications created by create-react-app.
 
 # Lodash 
 A modern JavaScript utility library delivering modularity, performance & extras.
@@ -1208,7 +1270,7 @@ DB_PASS=s1mpl3
 ```
 
 process.env now has the keys and values you defined in your .env file.
-```
+```TS
 const db = require('db')
 db.connect({
   host: process.env.DB_HOST,
