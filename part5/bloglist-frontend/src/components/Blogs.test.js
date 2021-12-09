@@ -14,11 +14,11 @@ test('renders content', async () => {
     const responseLogin = await loginService.login({
       username: 'mluukkai',
       password: 'salainen'
-    })
-
-    responseLogin.then(function(result) {
+    }).then(function(result) {
       console.log('responseLogin: ',result) // "Some User token"
-   })
+   }).catch((exception) => {
+    console.error('Do that ', exception);
+})
     //console.log('responseLogin: ' ,responseLogin)
     /*window.localStorage.setItem(
       'loggedBlogappUser', JSON.stringify(user)
