@@ -16,6 +16,8 @@ test('renders content', async () => {
       password: 'salainen'
     }).then(function(result) {
       console.log('responseLogin: ',result) // "Some User token"
+      user = result
+      blogService.setToken(result.token)
    }).catch((exception) => {
     console.error('Do that ', exception);
 })
@@ -23,16 +25,19 @@ test('renders content', async () => {
     /*window.localStorage.setItem(
       'loggedBlogappUser', JSON.stringify(user)
     ) // You can view localstorage by console 'window.localStorage'*/
-     blogService.setToken(responseLogin.token)
+     
 
 
   const blog = {
     title: 'async/await simplifies making async calls',
-    author: 'Robert C. Martin'
+    author: 'Robert C. Martin',
+    user: {
+    name: 'TOTO'
+    }
   }
 
   const component = render(
-    <Blog blog={blog}user={responseLogin} />
+    <Blog blog={blog}user={user} />
   )
 
   expect(component.container).toHaveTextContent(
