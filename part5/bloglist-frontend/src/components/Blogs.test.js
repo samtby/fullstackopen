@@ -82,7 +82,10 @@ test('renders content', async () => {
 
   const blog = {
     title: 'async/await simplifies making async calls',
-    author: 'Robert C. Martin'
+    author: 'Robert C. Martin',
+    user: {
+    name: 'TOTO'
+    }
   }
 
   
