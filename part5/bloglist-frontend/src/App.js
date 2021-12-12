@@ -9,8 +9,8 @@ import loginService from './services/login'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('mluukkai')
+  const [password, setPassword] = useState('salainen')
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -86,7 +86,7 @@ const App = () => {
         }else{
           console.log('response : ',response)
           setBlogs(blogs.concat(response))
-          messageNotification({ status:'success',content:'a new blog ${title} by ${author} add ' })
+          messageNotification({ status:'success',content: `a new blog ${title} by ${author} add ` })
           setAuthor('')
           setTitle('')
           setUrl('')
