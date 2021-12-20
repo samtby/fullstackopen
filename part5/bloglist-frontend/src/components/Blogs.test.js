@@ -70,24 +70,30 @@ test('renders content', async () => {
 
 
 
-  const user =  await loginService.login(
-    'mluukkai', ' salainen'
-  )
-  console.log('================user=============================:', user)
+  // const user =  await loginService.login(
+  //   'mluukkai', ' salainen'
+  // )
+  //console.log('================user=============================:', user)
   /*window.localStorage.setItem(
     'loggedBlogappUser', JSON.stringify(user)
   ) // You can view localstorage by console 'window.localStorage'*/
-   blogService.setToken(user.token)
-  
+   //blogService.setToken(user.token)
+
+const user = {
+  title: 'test',
+  author: 'test',
+  id: '44300'
+}
 
   const blog = {
     title: 'async/await simplifies making async calls',
     author: 'Robert C. Martin',
     user: {
-    name: 'TOTO'
+      username: "samtby",
+      name: "LaTest",
+      id: "test"
     }
   }
-
   
   const component = render(
     <Blog blog={blog} user={user}/>
@@ -100,4 +106,5 @@ test('renders content', async () => {
   expect(component.container).toHaveTextContent(
     'Robert C. Martin'
   )
+  
 })
