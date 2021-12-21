@@ -992,6 +992,24 @@ https://github.com/testing-library/react-testing-library
 * [ react-testing-library](https://github.com/testing-library/react-testing-library)
 * [testing-library](https://testing-library.com/docs/react-testing-library/api/#render)
 
+# Test coverage
+
+We can easily find out the [coverage](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#coverage-reporting) of our tests by running them with the command.
+```
+CI=true npm test -- --coverage
+```
+
+# Debugging test
+
+
+* [Debugging tests](https://testing-library.com/docs/react-testing-library/api/#debug)
+
+```
+component.debug()
+```
+
+
+
 ## Rendering the component for tests
 
 

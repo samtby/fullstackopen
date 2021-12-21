@@ -36,7 +36,7 @@ const Blog = ({ user,blog,handleSetBlog }) => {
         <div>
           {blog.title} {blog.author}<button onClick={toggleVisibility}>{visible ? 'hide' : 'view'}</button>
         </div>
-        <div style={showWhenVisible}>
+        <div style={showWhenVisible} className='togglableUrlLikes'>
           <div>{blog.url}</div>
           <Like blog={blog}/>
           <div>{blog.user.name}</div>
