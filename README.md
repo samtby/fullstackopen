@@ -983,6 +983,8 @@ npm test -- tests/blog_api.test.js
 
 # Test
 
+* [https://en.wikipedia.org/wiki/Mock_object](https://en.wikipedia.org/wiki/Mock_object)
+
 https://github.com/testing-library/react-testing-library
 
 
@@ -999,13 +1001,60 @@ We can easily find out the [coverage](https://github.com/facebook/create-react-a
 CI=true npm test -- --coverage
 ```
 
+
+
+# Searching for content in a component
+
+The react-testing-library package offers many different ways of investigating the content of the component being tested. Let's slightly expand our test:
+
+```TS
+test('renders content', () => {
+  const note = {
+    content: 'Component testing is done with react-testing-library',
+    important: true
+  }
+
+  const component = render(
+    <Note note={note} />
+  )
+
+  // method 1
+  expect(component.container).toHaveTextContent(
+    'Component testing is done with react-testing-library'
+  )
+
+  // method 2
+  const element = component.getByText(
+    'Component testing is done with react-testing-library'
+  )
+  expect(element).toBeDefined()
+
+  // method 3
+  const div = component.container.querySelector('.note')
+  expect(div).toHaveTextContent(
+    'Component testing is done with react-testing-library'
+  )
+})
+```
 # Debugging test
 
 
 * [Debugging tests](https://testing-library.com/docs/react-testing-library/api/#debug)
 
-```
+```TS
+import { prettyDOM } from '@testing-library/dom'
+
 component.debug()
+console.log(prettyDOM(li))
+
+```
+
+# Clicking buttons in tests
+
+* [Mock funciton](https://jestjs.io/docs/mock-functions)
+
+```TS
+import { render, fireEvent } from '@testing-library/react'
 ```
 
 
