@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development nodemon -L index.js",
+    "start": "cross-env NODE_ENV=production node index.js --trace-warnings",
+    "dev": "cross-env NODE_ENV=development nodemon -L index.js --trace-warnings",
     "test-echo": "echo \"Error: no test specified\" && exit 1",
     "test-tst": "cross-env NODE_ENV=test jest  --forceExit --detectOpenHandles --verbose --runInBand",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --verbose --runInBand"

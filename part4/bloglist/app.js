@@ -16,7 +16,7 @@ app.use(express.static('build'))
 app.use(express.json())
 
 logger.info('connecting to', config.MONGODB_URI)
-mongoose.connect(config.MONGODB_URI)
+mongoose.connect(config.MONGODB_URI,{ useNewUrlParser: true })
   .then(() => {
     logger.info('connected to MongoDB')
   })
