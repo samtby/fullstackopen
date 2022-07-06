@@ -16,6 +16,26 @@
 * part10 React Native
 * part11 CI/CD
 
+
+# Node.js Binary Distributions
+
+```
+# Using Ubuntu
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Using Debian, as root
+curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+apt-get install -y nodejs
+
+```
+
+Add to start old appl -openssl-legacy-provider like this: 
+
+```
+react-scripts start -openssl-legacy-provider
+```
+
 # Create React App
 
 ```
