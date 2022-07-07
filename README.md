@@ -28,14 +28,29 @@ sudo apt-get install -y nodejs
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 apt-get install -y nodejs
 
-```
+# Error ERR_OSSL_EVP_UNSUPPORTED
 
+```
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
 Add to start old appl -openssl-legacy-provider like this: 
 
-```
-react-scripts start -openssl-legacy-provider
-```
+## Solution ERR_OSSL_EVP_UNSUPPORTED
 
+Your package.json file should look like the below text:
+
+```
+{
+  ...
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    ...
+    },
+  ...
+}
+```
 # Create React App
 
 ```
