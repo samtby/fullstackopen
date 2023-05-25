@@ -16,6 +16,9 @@
 * part10 React Native
 * part11 CI/CD
 
+Utils:
+
+https://jsoncrack.com/
 
 # Node.js Binary Distributions
 
